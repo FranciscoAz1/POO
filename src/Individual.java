@@ -1,8 +1,9 @@
+package src;
 
 import java.util.*;
 
 // Represents an individual in the population
-class Individual {
+public class Individual {
   private int id;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 

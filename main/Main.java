@@ -1,7 +1,16 @@
+package main;
 
-import java.util.*;
+// import src.Empire;
+// import src.Patrol;
+// import src.Individual;
+// import src.PlanetarySystem;
 
-// Represents the empire managing patrols and planetary systems
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import src.*;
 
 public class Main {
   public static void main(String[] args) {

@@ -1,7 +1,8 @@
+package src;
 
 import java.util.*;
 
-class Empire {
+public class Empire {
   private List<Patrol> patrols;
   private List<PlanetarySystem> planetarySystems;
   private List<Individual> population;

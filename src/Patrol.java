@@ -1,9 +1,11 @@
 
+package src;
+
 //
 import java.util.*;
 
 // Represents a patrol
-class Patrol {
+public class Patrol {
   private int id;
   private Map<PlanetarySystem, Integer> timeRequired;
 

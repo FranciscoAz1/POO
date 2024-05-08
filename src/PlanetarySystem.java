@@ -1,5 +1,7 @@
+package src;
+
 // Represents a planetary system
-class PlanetarySystem {
+public class PlanetarySystem {
   private int id;
 
   public PlanetarySystem(int id) {
