@@ -1,6 +1,10 @@
 package src;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Empire {
   private List<Patrol> patrols;
@@ -54,8 +58,10 @@ public class Empire {
     for (Patrol patrol : patrols) {
       int minTime = Integer.MAX_VALUE;
       for (PlanetarySystem system : distribution.getOrDefault(patrol, Collections.emptySet())) {
-        int time = patrol.getTimeRequired().getOrDefault(system, 0);
-        minTime = Math.min(minTime, time);
+        int time = patrol.getTimeRequired().getOrDefault(system, -1);
+        if (time != -1) {
+          minTime = Math.min(minTime, time);
+        }
       }
       tMin += minTime;
     }

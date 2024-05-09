@@ -23,4 +23,22 @@ public class Individual {
   public int getId() {
     return id;
   }
+
+  // Method to print troop distribution over time
+  public void printTroopDistribution() {
+    System.out.println("Troop Distribution for Individual " + id + ":");
+    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
+      Patrol patrol = entry.getKey();
+      Set<PlanetarySystem> systems = entry.getValue();
+
+      System.out.println("Patrol " + patrol.getId() + ":");
+      for (PlanetarySystem system : systems) {
+        int days = patrol.getTimeRequired().getOrDefault(system, -1);
+        if (days != -1) {
+          System.out
+              .println("  - Planetary System " + system.getId() + " " + days + " days");
+        }
+      }
+    }
+  }
 }

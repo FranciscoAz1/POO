@@ -28,11 +28,17 @@ public class Main {
     // Create patrols and planetary systems based on the matrix
     for (int i = 0; i < matrix.length; i++) {
       Map<PlanetarySystem, Integer> timeRequired = new HashMap<>();
+      System.out.print("Initializing Patrol " + i + "|");
+
       for (int j = 0; j < matrix[i].length; j++) {
+
         PlanetarySystem system = new PlanetarySystem(j);
         planetarySystems.add(system);
         timeRequired.put(system, matrix[i][j]);
+        System.out.print(" " + timeRequired.get(system));
       }
+      System.out.println(" days");
+      // Debug
       Patrol patrol = new Patrol(i, timeRequired);
       patrols.add(patrol);
     }
@@ -41,13 +47,14 @@ public class Main {
     Empire empire = new Empire(patrols, planetarySystems);
 
     // Generate initial population
-    int numIndividuals = 10; // Specify the number of initial individuals
+    int numIndividuals = 100; // Specify the number of initial individuals
     empire.generateInitialPopulation(numIndividuals);
 
     // Find the best-fitted individual
     Individual bestIndividual = empire.findBestFittedIndividual();
 
     System.out.println("Best-fitted individual: " + bestIndividual.getId());
+    bestIndividual.printTroopDistribution();
     System.out.println("end Program");
   }
 }
