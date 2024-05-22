@@ -1,11 +1,11 @@
 package ev;
 
-public class Individuals {
+public class Individual {
 
   private int IndividualsID;
   private boolean IndivualDeath;
 
-  public Individuals() {
+  public Individual() {
     // TODO - implement Individuals.Individuals
     throw new UnsupportedOperationException();
   }
