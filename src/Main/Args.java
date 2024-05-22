@@ -3,6 +3,7 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import pa.Cost;
 
 /**
  * The Args class parses and stores the command line arguments passed to the
@@ -14,6 +15,7 @@ public class Args {
   public double tau, nu, numax, mu, rho, delta;
   public String file;
   public String mode;
+  public Cost costMatrix;
 
   // Default values
   private static final int DEFAULT_N = 3;
@@ -44,6 +46,8 @@ public class Args {
       this.mu = DEFAULT_MU;
       this.rho = DEFAULT_RHO;
       this.delta = DEFAULT_DELTA;
+
+      this.costMatrix = new Cost(this.n, this.m);
       return;
     }
 
@@ -54,6 +58,7 @@ public class Args {
         System.exit(0);
       }
       this.readFromArgs(args);
+      // Read the matrix values and store in Cost object
     } else if (option.equals("-f")) {
       this.file = args[1];
       this.mode = "read file";
@@ -80,6 +85,8 @@ public class Args {
     this.mu = Double.parseDouble(args[6]);
     this.rho = Double.parseDouble(args[7]);
     this.delta = Double.parseDouble(args[8]);
+
+    this.costMatrix = new Cost(this.n, this.m);
   }
 
   /**
@@ -111,6 +118,7 @@ public class Args {
       this.rho = scanner.nextDouble();
       this.delta = scanner.nextDouble();
 
+      this.costMatrix = new Cost(scanner, n, m);
       // Close the scanner
       scanner.close();
     } catch (FileNotFoundException e) {
