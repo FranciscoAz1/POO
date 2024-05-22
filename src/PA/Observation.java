@@ -1,4 +1,4 @@
-package PA;
+package pa;
 
 public class Observation {
 
