@@ -15,6 +15,16 @@ public class Args {
   public String file;
   public String mode;
 
+  // Default values
+  private static final int DEFAULT_N = 3;
+  private static final int DEFAULT_M = 6;
+  private static final double DEFAULT_TAU = 10.0;
+  private static final double DEFAULT_NU = 10.0;
+  private static final double DEFAULT_NUMAX = 100.0;
+  private static final double DEFAULT_MU = 10.0;
+  private static final double DEFAULT_RHO = 1.0;
+  private static final double DEFAULT_DELTA = 1.0;
+
   /**
    * Constructs an Args object and processes the command line arguments.
    *
@@ -22,8 +32,19 @@ public class Args {
    */
   public Args(String[] args) {
     if (args.length < 2) {
-      System.out.println("Not enough command line arguments.");
-      System.exit(0);
+      // No arguments provided, use default values
+      System.out.println("Not enough command line arguments. Using default vaules");
+      this.file = "";
+      this.mode = "generate";
+      this.n = DEFAULT_N;
+      this.m = DEFAULT_M;
+      this.tau = DEFAULT_TAU;
+      this.nu = DEFAULT_NU;
+      this.numax = DEFAULT_NUMAX;
+      this.mu = DEFAULT_MU;
+      this.rho = DEFAULT_RHO;
+      this.delta = DEFAULT_DELTA;
+      return;
     }
 
     String option = args[0];
