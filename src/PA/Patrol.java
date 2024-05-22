@@ -1,13 +1,23 @@
 package pa;
 
+import java.util.Map;
+
+import dss.PlanetarySystem;
+
 public class Patrol {
+  private int id;
+  private Map<PlanetarySystem, Integer> timeRequired;
 
-	public int patrolID = int;
-	private int timeToPacify;
+  public Patrol(int id, Map<PlanetarySystem, Integer> timeRequired) {
+    this.id = id;
+    this.timeRequired = timeRequired;
+  }
 
-	public void AlocatePatrol() {
-		// TODO - implement Patrol.AlocatePatrol
-		throw new UnsupportedOperationException();
-	}
+  public int getId() {
+    return id;
+  }
 
+  public Map<PlanetarySystem, Integer> getTimeRequired() {
+    return timeRequired;
+  }
 }

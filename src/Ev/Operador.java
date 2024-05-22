@@ -1,14 +1,13 @@
 package ev;
 
 public class Operador {
+  private int ni;
+  private int niw;
+  private int no;
 
-	private int µ;
-	private int ?;
-	private int ?;
-
-	public void CreateNewEvent() {
-		// TODO - implement Operador.CreateNewEvent
-		throw new UnsupportedOperationException();
-	}
+  public void CreateNewEvent() {
+    // TODO - implement Operador.CreateNewEvent
+    throw new UnsupportedOperationException();
+  }
 
 }
