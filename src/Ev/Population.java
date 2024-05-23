@@ -9,7 +9,7 @@ import pa.Empire;
 
 public class Population extends Empire {
 
-  private int numIndividuals;
+  private int numIndividuals = 0;
   private int MaxPopulationSize;
   private List<Individual> population = new ArrayList<>();
 
@@ -20,22 +20,11 @@ public class Population extends Empire {
   }
 
   public void createInitialPopulation(int numIndividuals) {
+    this.numIndividuals += numIndividuals;
     for (int i = 1; i < numIndividuals; i++) {
-      createIndividual(i);
-    }
-  }
 
-  private void createIndividual(int id) {
-    Individual individual = new Individual(id);
-    this.numIndividuals = Math.max(id, this.numIndividuals);
-    // Randomly distribute planetary systems among patrols
-    Collections.shuffle(planetarySystems);
-    for (var system : planetarySystems) {
-      var patrol = Utils.getRandomElement(patrols);
-      individual.assignSystemToPatrol(patrol, system);
+      population.add(new Individual(i, patrols, planetarySystems));
     }
-    individual.printTroopDistribution();
-    population.add(individual);
   }
 
   public void performReproduction() {
@@ -68,8 +57,9 @@ public class Population extends Empire {
   }
 
   public void printPopulation() {
-    for (var individual : population) {
-      individual.printTroopDistribution();
+    for (int i = 0; i < population.size(); i++) {
+      System.out.println("Troop Distribution for Individual " + i + ":");
+      population.get(i).printTroopDistribution();
     }
   }
 

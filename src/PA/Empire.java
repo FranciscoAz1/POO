@@ -15,6 +15,10 @@ public class Empire {
   }
 
   public Empire(int[][] matrix) {
+    // Create planetary systems first
+    for (int j = 0; j < matrix[0].length; j++) {
+      planetarySystems.add(new PlanetarySystem(j));
+    }
     // Create patrols and planetary systems based on the matrix
     for (int i = 0; i < matrix.length; i++) {
       Map<PlanetarySystem, Integer> timeRequired = new HashMap<>();
@@ -22,10 +26,7 @@ public class Empire {
 
       for (int j = 0; j < matrix[i].length; j++) {
 
-        PlanetarySystem system = new PlanetarySystem(j);
-        if (i == 0) {
-          planetarySystems.add(system);
-        }
+        PlanetarySystem system = planetarySystems.get(j);
         timeRequired.put(system, matrix[i][j]);
         System.out.print(" " + timeRequired.get(system));
       }
@@ -46,5 +47,13 @@ public class Empire {
     for (int i = 0; i < planetarySystems.size(); i++) {
       System.out.println("System " + i + ": " + planetarySystems.get(i).getId());
     }
+  }
+
+  public List<Patrol> getPatrols() {
+    return patrols;
+  }
+
+  public ArrayList<PlanetarySystem> getPlanetarySystems() {
+    return planetarySystems;
   }
 }

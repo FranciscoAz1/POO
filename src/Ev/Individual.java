@@ -1,28 +1,42 @@
 package ev;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import pa.PlanetarySystem;
+import rand.Utils;
 import pa.Patrol;
 import pa.Empire;
 
 public class Individual {
 
   private boolean IndivualDeath;
-  private int IndividualsID;
-
   private int id;
+
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
   // p1 - 1 , 3, 4
   // p2 - 2 , 5
   // p3 - 7
-  public Individual(int id) {
+  public Individual(int id, List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
     this.id = id;
     this.distribution = new HashMap<>();
+    createDistribution(patrols, planetarySystems);
+
+  }
+
+  private void createDistribution(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
+    // Randomly distribute planetary systems among patrols
+    // Collections.shuffle(planetarySystems);
+    for (var system : planetarySystems) {
+      var patrol = Utils.getRandomElement(patrols);
+      assignSystemToPatrol(patrol, system);
+    }
   }
 
   public void assignSystemToPatrol(Patrol patrol, PlanetarySystem system) {
@@ -33,13 +47,8 @@ public class Individual {
     return distribution;
   }
 
-  public int getId() {
-    return id;
-  }
-
   // Method to print troop distribution over time
   public void printTroopDistribution() {
-    System.out.println("Troop Distribution for Individual " + id + ":");
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systems = entry.getValue();
