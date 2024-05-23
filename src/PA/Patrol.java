@@ -1,8 +1,7 @@
 package pa;
 
 import java.util.Map;
-
-import dss.PlanetarySystem;
+import java.util.Set;
 
 public class Patrol {
   private int id;

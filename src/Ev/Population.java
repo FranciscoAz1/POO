@@ -1,21 +1,40 @@
 package ev;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
-public class Population {
+import rand.Utils;
+import pa.Empire;
 
-  private int populationSize;
+public class Population extends Empire {
+
+  private int numIndividuals;
   private int MaxPopulationSize;
-  private List<Individual> population;
+  private List<Individual> population = new ArrayList<>();
 
-  public Population(int populationSize, int MaxPopulationSize) {
-    this.populationSize = populationSize;
+  public Population(int[][] matrix, int MaxPopulationSize) {
+    super(matrix);
     this.MaxPopulationSize = MaxPopulationSize;
+
   }
 
-  public void selectIndividuals() {
-    // TODO - implement Population.selectIndividuals
-    throw new UnsupportedOperationException();
+  public void createInitialPopulation(int numIndividuals) {
+    for (int i = 1; i < numIndividuals; i++) {
+      createIndividual(i);
+    }
+  }
+
+  private void createIndividual(int id) {
+    Individual individual = new Individual(id);
+    this.numIndividuals = Math.max(id, this.numIndividuals);
+    // Randomly distribute planetary systems among patrols
+    Collections.shuffle(planetarySystems);
+    for (var system : planetarySystems) {
+      var patrol = Utils.getRandomElement(patrols);
+      individual.assignSystemToPatrol(patrol, system);
+    }
+    population.add(individual);
   }
 
   public void performReproduction() {
@@ -45,6 +64,12 @@ public class Population {
   public void Epidemics() {
     // TODO - implement Population.Epidemics
     throw new UnsupportedOperationException();
+  }
+
+  public void printPopulation() {
+    for (var individual : population) {
+      individual.printTroopDistribution();
+    }
   }
 
 }

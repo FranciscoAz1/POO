@@ -12,9 +12,9 @@ import pa.Cost;
 public class Args {
 
   public int n, m;
-  public static double tau;
-  public double nu;
-  public double numax;
+  public double tau;
+  public int nu;
+  public int numax;
   public double mu;
   public double rho;
   public double delta;
@@ -26,8 +26,8 @@ public class Args {
   private static final int DEFAULT_N = 3;
   private static final int DEFAULT_M = 6;
   private static final double DEFAULT_TAU = 10.0;
-  private static final double DEFAULT_NU = 10.0;
-  private static final double DEFAULT_NUMAX = 100.0;
+  private static final int DEFAULT_NU = 10;
+  private static final int DEFAULT_NUMAX = 100;
   private static final double DEFAULT_MU = 10.0;
   private static final double DEFAULT_RHO = 1.0;
   private static final double DEFAULT_DELTA = 1.0;
@@ -85,8 +85,8 @@ public class Args {
     this.n = Integer.parseInt(args[1]);
     this.m = Integer.parseInt(args[2]);
     this.tau = Double.parseDouble(args[3]);
-    this.nu = Double.parseDouble(args[4]);
-    this.numax = Double.parseDouble(args[5]);
+    this.nu = Integer.parseInt(args[4]);
+    this.numax = Integer.parseInt(args[5]);
     this.mu = Double.parseDouble(args[6]);
     this.rho = Double.parseDouble(args[7]);
     this.delta = Double.parseDouble(args[8]);
@@ -117,8 +117,8 @@ public class Args {
       this.n = scanner.nextInt();
       this.m = scanner.nextInt();
       this.tau = scanner.nextDouble();
-      this.nu = scanner.nextDouble();
-      this.numax = scanner.nextDouble();
+      this.nu = scanner.nextInt();
+      this.numax = scanner.nextInt();
       this.mu = scanner.nextDouble();
       this.rho = scanner.nextDouble();
       this.delta = scanner.nextDouble();

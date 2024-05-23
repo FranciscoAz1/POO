@@ -43,6 +43,10 @@ public class Cost {
     matrix[row][col] = value;
   }
 
+  public int[][] getMatrix() {
+    return matrix;
+  }
+
   public int getValue(int row, int col) {
     return matrix[row][col];
   }
@@ -56,4 +60,5 @@ public class Cost {
       System.out.println();
     }
   }
+
 }
