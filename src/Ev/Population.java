@@ -15,13 +15,17 @@ public class Population {
     throw new UnsupportedOperationException();
   }
 
-  public void performCrossover() {
+  public void performReproduction() {
     // TODO - implement Population.performCrossover
     throw new UnsupportedOperationException();
   }
 
   public void performMutation() {
     // TODO - implement Population.performMutation
+    throw new UnsupportedOperationException();
+  }
+
+  public void performDeath() {
     throw new UnsupportedOperationException();
   }
 

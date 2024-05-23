@@ -35,6 +35,6 @@ public class Individual {
 
   // Method to print troop distribution over time
   public void printTroopDistribution() {
-    throw new UnsupportedOperationException();
+
   }
 }
