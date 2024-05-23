@@ -33,13 +33,15 @@ public class Main {
         { 3, 3, 3, 3, 3, 3 }
     };
 
+    // Calculate tmin
+    Confort confort = new Confort(costMatrix.getMatrix());
     // Population population = new Population(costMatrix.getMatrix(), numax);
-
-    Population population = new Population(matrix, numax);
+    Population population = new Population(costMatrix.getMatrix(), numax);
     population.printPatrols();
     population.printSystems();
     // Create an individual and print its troop distribution
     population.createInitialPopulation(nu);
+
     population.printPopulation();
     System.out.println("Done!");
   }

@@ -59,6 +59,8 @@ public class Population extends Empire {
   public void printPopulation() {
     for (int i = 0; i < population.size(); i++) {
       System.out.println("Troop Distribution for Individual " + i + ":");
+      System.out.printf("Confort: %.2f\n", population.get(i).getConfort());
+
       population.get(i).printTroopDistribution();
     }
   }
