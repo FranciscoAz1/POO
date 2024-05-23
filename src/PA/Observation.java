@@ -1,5 +1,8 @@
 package pa;
 
+import main.Args;
+import dss.pec.PEC; // NEED EVENT COUNTER
+
 public class Observation {
 
   private int ObsID;
@@ -14,7 +17,23 @@ public class Observation {
 
   public Observation() {
     // TODO - implement Observation.Observation
-    throw new UnsupportedOperationException();
+    double TempoMax = Args.tau;
+    double incremento = TempoMax / 20;
+    int counter = 0;
+    for (double i = TempoMax / 20; i <= TempoMax; i = i + incremento) {
+      ObsID = counter;
+      // PresentInstant = i;
+      // NumberEvents = this.NumberEvents;
+      //
+      // // NumberEpidemics
+      // // BestDistPatrols
+      //
+      // Confort = Confort.pa;
+
+      // OtherDistPatrols
+
+      counter++;
+    }
   }
 
 }

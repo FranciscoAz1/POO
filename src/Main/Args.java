@@ -12,7 +12,12 @@ import pa.Cost;
 public class Args {
 
   public int n, m;
-  public double tau, nu, numax, mu, rho, delta;
+  public static double tau;
+  public double nu;
+  public double numax;
+  public double mu;
+  public double rho;
+  public double delta;
   public String file;
   public String mode;
   public Cost costMatrix;
