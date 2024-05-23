@@ -1,9 +1,12 @@
 package ev;
 
+import java.util.List;
+
 public class Population {
 
   private int populationSize;
   private int MaxPopulationSize;
+  private List<Individual> population;
 
   public Population(int populationSize, int MaxPopulationSize) {
     this.populationSize = populationSize;
