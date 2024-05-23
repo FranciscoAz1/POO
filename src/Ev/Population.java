@@ -34,6 +34,7 @@ public class Population extends Empire {
       var patrol = Utils.getRandomElement(patrols);
       individual.assignSystemToPatrol(patrol, system);
     }
+    individual.printTroopDistribution();
     population.add(individual);
   }
 

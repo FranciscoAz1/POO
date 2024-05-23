@@ -35,7 +35,7 @@ public class Main {
     Population population = new Population(costMatrix.getMatrix(), numax);
     population.createInitialPopulation(nu);
 
-    population.printPopulation();
+    // population.printPopulation();
     System.out.println("Done!");
   }
 

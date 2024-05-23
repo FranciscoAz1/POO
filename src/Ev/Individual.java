@@ -44,15 +44,17 @@ public class Individual {
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systems = entry.getValue();
 
+      System.out.println();
       System.out.print("Patrol " + patrol.getId() + ":");
       for (PlanetarySystem system : systems) {
         int days = patrol.getTimeRequired().getOrDefault(system, -1);
         if (days == -1) {
-          System.out.print("p" + system.getId() + "none");
-        }
-        System.out
-            .println(" p" + system.getId() + " " + days + " d");
+          System.out.print("[ p" + system.getId() + " n]");
+        } else
+          System.out
+              .print("[ p" + system.getId() + " " + days + "]");
       }
+      System.out.println();
     }
   }
 }
