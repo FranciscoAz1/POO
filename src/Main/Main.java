@@ -1,6 +1,6 @@
 package main;
 
-import pa.*;
+import pa.IEmpire;
 import ep.Individual;
 import ep.Population;
 import ep.Confort;
@@ -39,7 +39,8 @@ public class Main {
     costMatrix.setMatrix(matrix);
 
     // Calculate tmin
-    Confort confort = new Confort(costMatrix.getMatrix());
+     Confort confort = new Confort(costMatrix.getMatrix());
+
     // Population population = new Population(costMatrix.getMatrix(), numax);
     Population population = new Population(costMatrix.getMatrix(), numax);
     population.printPatrols();
