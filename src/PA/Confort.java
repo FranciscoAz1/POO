@@ -3,7 +3,7 @@ package pa;
 public class Confort {
   private int[][] matrix;
 
-  public static double tmin;
+  public static int tmin;
 
   public Confort(int[][] matrix) {
     this.matrix = matrix;
@@ -11,8 +11,8 @@ public class Confort {
   }
 
   // Método para calcular t_min
-  private double calculateTmin() {
-    double tmin = 0;
+  private int calculateTmin() {
+    int tmin = 0;
     for (int j = 0; j < matrix.length; j++) {
       int minTime = Integer.MAX_VALUE;
       for (int i = 0; i < matrix[j].length; i++) {

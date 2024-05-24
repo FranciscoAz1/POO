@@ -61,7 +61,7 @@ public class Individual {
         }
         timez += time;
       }
-      this.confort = timez / pa.Confort.tmin;
+      this.confort = pa.Confort.tmin / timez;
     }
   }
 

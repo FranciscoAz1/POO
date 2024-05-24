@@ -27,11 +27,15 @@ public class Main {
     System.out.printf("n: %d, m: %d, τ: %.2f, ν: %d, νmax: %d, µ: %.2f, ρ: %.2f, δ: %.2f%n",
         n, m, tau, nu, numax, mu, rho, delta);
     costMatrix.printMatrix();
+
+    // Exemple matrix
     int[][] matrix = {
         { 1, 2, 1, 1, 1, 1 },
         { 2, 1, 2, 2, 2, 2 },
-        { 3, 3, 3, 3, 3, 3 }
+        { 3, 3, 3, 3, 3, 3 },
+        { 3, 3, 3, 3, 3, 3 },
     };
+    costMatrix.setMatrix(matrix);
 
     // Calculate tmin
     Confort confort = new Confort(costMatrix.getMatrix());
@@ -39,7 +43,7 @@ public class Main {
     Population population = new Population(costMatrix.getMatrix(), numax);
     population.printPatrols();
     population.printSystems();
-    // Create an individual and print its troop distribution
+    // Create initial population
     population.createInitialPopulation(nu);
 
     population.printPopulation();

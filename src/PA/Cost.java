@@ -61,4 +61,9 @@ public class Cost {
     }
   }
 
+  public void setMatrix(int[][] matrix2) {
+    // TODO Auto-generated method stub
+    this.matrix = matrix2;
+  }
+
 }

@@ -19,10 +19,16 @@ public class Population extends Empire {
 
   }
 
+  public Population(int[][] matrix, int MaxPopulationSize, int numIndividuals) {
+    super(matrix);
+    this.MaxPopulationSize = MaxPopulationSize;
+    this.numIndividuals = numIndividuals;
+    createInitialPopulation(numIndividuals);
+  }
+
   public void createInitialPopulation(int numIndividuals) {
     this.numIndividuals += numIndividuals;
     for (int i = 1; i < numIndividuals; i++) {
-
       population.add(new Individual(i, patrols, planetarySystems));
     }
   }
