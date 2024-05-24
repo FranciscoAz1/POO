@@ -3,6 +3,7 @@ package main;
 import pa.*;
 import ep.Individual;
 import ep.Population;
+import ep.Confort;
 
 public class Main {
 

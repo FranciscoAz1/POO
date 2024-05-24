@@ -11,7 +11,7 @@ import java.util.Set;
 import pa.PlanetarySystem;
 import rand.Utils;
 import pa.Patrol;
-import pa.Confort;
+import ep.Confort;
 
 public class Individual {
 
@@ -62,7 +62,7 @@ public class Individual {
         }
         timez += time;
       }
-      this.confort = pa.Confort.tmin / timez;
+      this.confort = ep.Confort.tmin / timez;
     }
   }
 

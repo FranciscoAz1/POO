@@ -1,8 +1,8 @@
 package ep;
 
-public class Epidemics implements Epidemics {
+public class Epidemics {
 
-	public void Epidemics() {
-		throw new UnsupportedOperationException();
-	}
+  public void Epidemics() {
+    throw new UnsupportedOperationException();
+  }
 }

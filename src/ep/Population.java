@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import rand.Utils;
-import pa.Empire;
+import pa.AEmpire;
 
-public class Population extends AEmpire {
+public class Population extends AEmpire implements IPopulation {
 
   private int numIndividuals = 0;
   private int MaxPopulationSize;
@@ -16,7 +16,6 @@ public class Population extends AEmpire {
   public Population(int[][] matrix, int MaxPopulationSize) {
     super(matrix);
     this.MaxPopulationSize = MaxPopulationSize;
-
   }
 
   public Population(int[][] matrix, int MaxPopulationSize, int numIndividuals) {
@@ -71,5 +70,4 @@ public class Population extends AEmpire {
       population.get(i).printTroopDistribution();
     }
   }
-
 }

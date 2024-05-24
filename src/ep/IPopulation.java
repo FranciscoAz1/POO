@@ -2,23 +2,19 @@ package ep;
 
 public interface IPopulation {
 
-	public void Population(int[][] aMatrix, int aMaxPopulationSize);
+  public void createInitialPopulation(int aNumIndividuals);
 
-	public void Population(int[][] aMatrix, int aMaxPopulationSize, int aNumIndividuals);
+  public void performReproduction();
 
-	public void createInitialPopulation(int aNumIndividuals);
+  public void performMutation();
 
-	public void performReproduction();
+  public void performDeath();
 
-	public void performMutation();
+  public void evaluateFitness();
 
-	public void performDeath();
+  public void checkTerminationCondition();
 
-	public void evaluateFitness();
+  public void Epidemics();
 
-	public void checkTerminationCondition();
-
-	public void Epidemics();
-
-	public void printPopulation();
+  public void printPopulation();
 }
