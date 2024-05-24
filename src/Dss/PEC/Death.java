@@ -1,12 +1,13 @@
 package dss.PEC;
 
-public class Death {
+import evolveprog.Individual;
+import evolveprog.Epidemics;
 
-	private int IndividualID;
+public class Death extends AEvents {
+	private int _individualID;
+	public Individual _unnamed_Individual_;
 
-	public void PerformMutattion() {
-		// TODO - implement Death.PerformMutattion
+	public void HandleEvent() {
 		throw new UnsupportedOperationException();
 	}
-
 }

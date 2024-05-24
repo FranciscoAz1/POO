@@ -1,12 +1,12 @@
 package dss.PEC;
 
-public class Reproduction {
+import evolveprog.Population;
 
-	private int IndividualID;
+public class Reproduction extends AEvents {
+	private int _individualID;
+	public Population _unnamed_Population_;
 
-	public void PerformReproduction() {
-		// TODO - implement Reproduction.PerformReproduction
+	public void HandleEvent() {
 		throw new UnsupportedOperationException();
 	}
-
 }

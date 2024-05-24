@@ -25,11 +25,12 @@ public class Individual {
     this.distribution = new HashMap<>();
     createDistribution(patrols, planetarySystems);
     calculateConfort();
+
   }
 
   private void createDistribution(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
     // Randomly distribute planetary systems among patrols
-    // Collections.shuffle(planetarySystems);
+    Collections.shuffle(planetarySystems);
     for (var system : planetarySystems) {
       var patrol = Utils.getRandomElement(patrols);
       assignSystemToPatrol(patrol, system);

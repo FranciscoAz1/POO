@@ -1,12 +1,12 @@
 package dss.PEC;
 
-public class Mutation {
+import evolveprog.Individual;
 
-	private int IndividualID;
+public class Mutation extends AEvents {
+	private int _individualID;
+	public Individual _unnamed_Individual_;
 
-	public void PerformMutattion() {
-		// TODO - implement Mutation.PerformMutattion
+	public void HandleEvent() {
 		throw new UnsupportedOperationException();
 	}
-
 }
