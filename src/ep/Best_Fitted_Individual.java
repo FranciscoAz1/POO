@@ -1,6 +1,6 @@
 package ep;
 
-import evolveprog.IPopulation;
+import ep.IPopulation;
 
 public class Best_Fitted_Individual implements IPopulation {
 	private int _individualsID;

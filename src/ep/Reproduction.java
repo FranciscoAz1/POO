@@ -1,6 +1,6 @@
 package ep;
 
-import evolveprog.Population;
+import ep.Population;
 
 public class Reproduction extends AEvents {
   private int _individualID;

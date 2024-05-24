@@ -1,8 +1,8 @@
 package main;
 
 import pa.*;
-import ev.Individual;
-import ev.Population;
+import ep.Individual;
+import ep.Population;
 
 public class Main {
 
@@ -12,7 +12,7 @@ public class Main {
    */
   public static void main(String[] args) {
     Args params = new Args(args);
-    // Retrieve the values from the arguments object
+    // Retriepe the values from the arguments object
     int n = params.n;
     int m = params.m;
     double tau = params.tau;

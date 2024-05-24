@@ -1,7 +1,7 @@
 package ep;
 
-import evolveprog.Individual;
-import evolveprog.Epidemics;
+import ep.Individual;
+import ep.Epidemics;
 
 public class Death extends AEvents {
 	private int _individualID;

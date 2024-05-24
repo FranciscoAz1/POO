@@ -1,6 +1,6 @@
 package ep;
 
-import evolveprog.Individual;
+import ep.Individual;
 
 public class Mutation extends AEvents {
 	private int _individualID;

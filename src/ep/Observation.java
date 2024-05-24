@@ -1,7 +1,6 @@
 package ep;
 
 import java.util.Vector;
-import pa.Best_Fitted_Individual;
 
 public class Observation implements IObservation {
 	private int _counter = 0;
