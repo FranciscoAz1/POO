@@ -1,4 +1,4 @@
-package dss.PEC;
+package dss.pec;
 
 public interface IPEC {
 

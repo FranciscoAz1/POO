@@ -1,4 +1,4 @@
-package dss.PEC;
+package dss.pec;
 
 public class AEvents implements IEvents {
 	private Object _listEvents;

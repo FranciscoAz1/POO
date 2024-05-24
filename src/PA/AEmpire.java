@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Empire {
+public abstract class AEmpire {
   protected List<Patrol> patrols = new ArrayList<>();
   protected ArrayList<PlanetarySystem> planetarySystems = new ArrayList<>();
 
-  public Empire(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems2) {
+  public AEmpire(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems2) {
     this.patrols = patrols;
     this.planetarySystems = planetarySystems2;
   }
 
-  public Empire(int[][] matrix) {
+  public AEmpire(int[][] matrix) {
     // Create planetary systems first
     for (int j = 0; j < matrix[0].length; j++) {
       planetarySystems.add(new PlanetarySystem(j));

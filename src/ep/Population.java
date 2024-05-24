@@ -1,4 +1,4 @@
-package ev;
+package ep;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import rand.Utils;
 import pa.Empire;
 
-public class Population extends Empire {
+public class Population extends AEmpire {
 
   private int numIndividuals = 0;
   private int MaxPopulationSize;

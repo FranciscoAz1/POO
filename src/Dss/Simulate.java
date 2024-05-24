@@ -1,8 +1,9 @@
 package dss;
 
-import dss.PEC.IPEC;
-import dss.PEC.IEvents;
 import java.util.Vector;
+
+import dss.pec.IEvents;
+import dss.pec.IPEC;
 
 public class Simulate implements ISimulate {
 	private int _eventID;
