@@ -1,6 +1,7 @@
 package main;
 
 import pa.IEmpire;
+import pa.Cost;
 import ep.Individual;
 import ep.Population;
 import ep.Confort;

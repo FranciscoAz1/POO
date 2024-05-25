@@ -4,29 +4,44 @@ import java.util.Vector;
 
 import dss.pec.IEvents;
 import dss.pec.IPEC;
+import dss.pec.IEvent;
 
 public class Simulate implements ISimulate {
-	private int _eventID;
-	private IPEC _pec;
-	private int _sImulationTime;
-	private IEvent _currentEvent;
-	private int _currentTime;
-	public IEvents _unnamed_IEvents_;
-	public Vector<IPEC> _eventSet = new Vector<IPEC>();
+    private int eventID;
+    private IPEC pec;
+    private int simulationTime;
+    private IEvent currentEvent;
+    private int currentTime;
+    public IEvents unnamed_IEvents_;
+    public Vector<IPEC> eventSet = new Vector<IPEC>();
 
-	public void SimulateEvents() {
-		throw new UnsupportedOperationException();
-	}
+    public Simulate(int simulationTime, IPEC pec) {
+        this.simulationTime = simulationTime;
+        this.pec = pec;
+        this.currentTime = 0;
+    }
 
-	public void AddToPEC(IEvents aEvents) {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void SimulateEvents() {
+        while (currentTime < simulationTime && !pec.isEmpty()) {
+            currentEvent = pec.nextEvent();
+            currentTime = currentEvent.getTime();
+            currentEvent.execute();
+        }
+    }
 
-	public void run() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void AddToPEC(IEvents aEvents) {
+        pec.addEvent(aEvents);
+    }
 
-	public void AddtToPEC() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void run() {
+        SimulateEvents();
+    }
+
+    @Override
+    public void AddtToPEC() {
+        throw new UnsupportedOperationException();
+    }
 }

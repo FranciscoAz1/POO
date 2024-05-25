@@ -1,32 +1,37 @@
 package dss.pec;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AEvents implements IEvents {
-	private Object _listEvents;
-	private Object _eventTime;
-	protected IEvents _newEvent = new ArrayList<>();
-	protected IEvents _newEvents;
+    private List<IEvent> listEvents;
+    private int eventTime;
+    protected List<IEvent> newEvents = new ArrayList<>();
 
-	public void NewEvents() {
-		throw new UnsupportedOperationException();
-	}
+    public AEvents() {
+        listEvents = new ArrayList<>();
+    }
 
-	public void UpdateSimulation() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void NewEvents() {
+        // Implement logic for creating new events
+    }
 
-	public void HandleEvents() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void UpdateSimulation() {
+        // Implement logic for updating the simulation
+    }
 
-	public void NewEvents() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void HandleEvents() {
+        // Implement logic for handling events
+    }
 
-	public void UpdateSimulation() {
-		throw new UnsupportedOperationException();
-	}
+    public void addEvent(IEvent event) {
+        listEvents.add(event);
+    }
 
-	public void HandleEvents() {
-		throw new UnsupportedOperationException();
-	}
+    public List<IEvent> getEvents() {
+        return listEvents;
+    }
 }
