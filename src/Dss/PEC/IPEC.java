@@ -2,7 +2,7 @@ package dss.pec;
 
 public interface IPEC {
 
-	public void OrderEvents();
+	public void OrderEvent();
 
-	public IEvents AddToPEC(Object aIEvents);
+	public IEvent AddToPEC(Object aIEvent);
 }

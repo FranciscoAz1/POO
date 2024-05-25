@@ -1,8 +1,8 @@
 package ep;
 
-import dss.pec.AEvents;
+import dss.pec.AEvent;
 
-public class Mutation extends AEvents {
+public class Mutation extends AEvent {
   private int _individualID;
   public Individual _unnamed_Individual_;
 
