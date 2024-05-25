@@ -3,3 +3,13 @@
 /Operador.class
 /Population.class
 /Individual.class
+/Best_Fitted_Individual.class
+/Confort.class
+/Death.class
+/Epidemics.class
+/IObservation.class
+/IPopulation.class
+/Iindividual.class
+/Mutation.class
+/Observation.class
+/Reproduction.class
