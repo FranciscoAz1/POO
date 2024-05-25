@@ -7,7 +7,7 @@ public class Observation {
 
   private int ObsID;
   private int PresentInstant;
-  private int NumberEvents;
+  private int NumberEvent;
   private int PopulationSize;
   private int NumberEpidemics;
   private int BestDistPatrols;
@@ -23,7 +23,7 @@ public class Observation {
     for (double i = TempoMax / 20; i <= TempoMax; i = i + incremento) {
       ObsID = counter;
       // PresentInstant = i;
-      // NumberEvents = this.NumberEvents;
+      // NumberEvent = this.NumberEvent;
       //
       // // NumberEpidemics
       // // BestDistPatrols
