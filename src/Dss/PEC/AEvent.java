@@ -34,4 +34,8 @@ public class AEvent implements IEvent {
     public List<IEvent> getEvent() {
         return listEvent;
     }
+    @Override
+    public int getActionInstant() {
+        return this.eventTime;
+    }
 }

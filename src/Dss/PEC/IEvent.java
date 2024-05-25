@@ -7,4 +7,6 @@ public interface IEvent {
 	public void UpdateSimulation();
 
 	public void HandleEvent();
+
+	public int getActionInstant(); // Declare the method in the interface
 }
