@@ -13,7 +13,7 @@ public class Observation implements IObservation {
 		throw new UnsupportedOperationException();
 	}
 
-	public void HandleEvents() {
+	public void HandleEvent() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -21,7 +21,7 @@ public class Observation implements IObservation {
 		throw new UnsupportedOperationException();
 	}
 
-	public void NewEvents() {
+	public void NewEvent() {
 		throw new UnsupportedOperationException();
 	}
 
