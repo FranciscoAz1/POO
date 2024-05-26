@@ -1,7 +1,5 @@
 package dss;
 
-import java.util.Vector;
-
 public class Simulate implements ISimulate {
   private IPEC pec;
   private double simulationTime;

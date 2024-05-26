@@ -1,7 +1,6 @@
 package pa;
 
 import java.util.Map;
-import java.util.Set;
 
 public class Patrol {
   private int id;
