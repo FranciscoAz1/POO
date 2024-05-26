@@ -9,7 +9,6 @@ import java.util.List;
 
 import rand.myMath;
 
-
 import dss.pec.AEvent;
 import ep.Confort;
 
@@ -57,10 +56,10 @@ public class Main {
     population.createInitialPopulation(nu);
 
     // Criação da instância de myMath antes do loop
-    myMath mathUtils = new myMath();
+    myMath mathUtils = new myMath(mu, rho, delta);
 
     // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
-    population.printPopulation(mathUtils, params.rho, params.delta, params.mu);
+    population.printPopulation();
 
     System.out.println("It is Done!");
   }

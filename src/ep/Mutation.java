@@ -1,22 +1,27 @@
 package ep;
 
 import dss.pec.AEvent;
+import rand.myMath;
 
 public class Mutation extends AEvent {
-    private Individual individual;
+  private Individual individual;
 
-    public Mutation(double time, Individual individual) {
-        super(time);
-        this.individual = individual;
-    }
+  public Individual getIndividual() {
+    return individual;
+  }
 
-    @Override
-    public void HandleEvent() {
-        // Implementar a lógica de mutação
-    }
+  public Mutation(Individual individual) {
+    super(myMath.mutationRate(individual.getConfort()));
+    this.individual = individual;
+  }
 
-    @Override
-    public String toString() {
-        return "Mutation Event{time=" + getActionInstant() + "}";
-    }
+  @Override
+  public void HandleEvent() {
+    // Implementar a lógica de mutação
+  }
+
+  @Override
+  public String toString() {
+    return "Mutation Event{time=" + getActionInstant() + "}";
+  }
 }

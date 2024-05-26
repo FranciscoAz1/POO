@@ -39,10 +39,10 @@ public class Population extends AEmpire implements IPopulation {
     }
   }
 
-    // Método para retornar a lista de indivíduos
-    public List<Individual> getPopulation() {
-      return population;
-    }
+  // Método para retornar a lista de indivíduos
+  public List<Individual> getPopulation() {
+    return population;
+  }
 
   @Override
   public void performReproduction() {
@@ -80,23 +80,23 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   @Override
-   public void printPopulation(myMath mathUtils, double rho, double delta, double mu) {
-        for (int i = 0; i < population.size(); i++) {
+  public void printPopulation() {
+    for (int i = 0; i < population.size(); i++) {
 
-          // Linha que indica o indivíduo com uma linha em branco antes
-            System.out.println();
-            System.out.println("Individual " + i + ":");
+      // Linha que indica o indivíduo com uma linha em branco antes
+      System.out.println();
+      System.out.println("Individual " + i + ":");
 
-            Individual individual = population.get(i);
-            System.out.println("Troop Distribution for Individual " + i + ":");
-            System.out.printf("Confort: %.2f\n", individual.getConfort());
-            individual.printTroopDistribution();
+      Individual individual = population.get(i);
+      System.out.println("Troop Distribution for Individual " + i + ":");
+      System.out.printf("Confort: %.2f\n", individual.getConfort());
+      individual.printTroopDistribution();
 
-            // Imprimir os eventos do indivíduo
-            List<AEvent> events = individual.getEvents(mathUtils, rho, delta, mu);
-            for (AEvent event : events) {
-                System.out.println(event);
-            }
+      // Imprimir os eventos do indivíduo
+      List<AEvent> events = individual.getEvents();
+      for (AEvent event : events) {
+        System.out.println(event);
+      }
+    }
   }
-}
 }

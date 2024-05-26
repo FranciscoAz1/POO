@@ -1,23 +1,27 @@
 package ep;
 
 import dss.pec.AEvent;
+import rand.myMath;
 
 public class Reproduction extends AEvent {
-    private Individual individual;
+  private Individual individual;
 
-    public Reproduction(double time, Individual individual) {
-        super(time);
-        this.individual = individual;
-    }
+  public Individual getIndividual() {
+    return individual;
+  }
 
-    @Override
-    public void HandleEvent() {
-        // Implementar a lógica de reprodução
-    }
+  public Reproduction(Individual individual) {
+    super(myMath.reproductionRate(individual.getConfort()));
+    this.individual = individual;
+  }
 
-    @Override
-    public String toString() {
-        return "Reproduction Event{time=" + getActionInstant() + "}";
-    }
+  @Override
+  public void HandleEvent() {
+    // Implementar a lógica de reprodução
+  }
+
+  @Override
+  public String toString() {
+    return "Reproduction Event{time=" + getActionInstant() + "}";
+  }
 }
-
