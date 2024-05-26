@@ -33,16 +33,17 @@ public class PEC implements IPEC {
     }
 
     public void OrderEvent() {
-        // Assuming maxTime is the maximum time for which you want to check Event
-        for (int time = 0; time <= maxTime; time++) {
-            // Use a while loop to process all Event at this particular time
-            while (!Eventet.isEmpty() && Eventet.peek().getTime() == time) {
-                IEvent event = Eventet.poll();
-                // Process the event here
+    // Assuming maxTime is the maximum time for which you want to check Event
+    for (int instant = 0; instant <= maxTime; instant++) {
+        // Use a while loop to process all Event at this particular time
+        while (!Eventet.isEmpty() && Eventet.peek().getActionInstant() == time) {
+            IEvent event = Eventet.poll();
+            // Process the event here
 
             }
         }
     }
+
     
     public IEvent AddToPEC(Object aIEvent) {
         if (aIEvent instanceof IEvent) {
