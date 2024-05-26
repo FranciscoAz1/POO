@@ -64,7 +64,7 @@ public class Main {
     // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
     population.printPopulation();
 
-    // Testing Mutation
+    // Testing Death
     List<Individual> individuals = population.getPopulation();
     for (int i = 0; i < 3; i++) {
       Individual individual = individuals.get(i);

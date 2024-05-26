@@ -24,8 +24,8 @@ public abstract class AEvent implements IEvent {
   }
 
   @Override
-  public void HandleEvent() {
-    // Implement logic for handling Event
+  public boolean HandleEvent() {
+    throw new IllegalStateException("This is an abstract method.");
   }
 
   public void addEvent(IEvent event) {

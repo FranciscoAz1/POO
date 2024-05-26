@@ -26,7 +26,14 @@ public class Mutation extends AEvent {
   }
 
   @Override
-  public void HandleEvent() {
+  public boolean HandleEvent() {
+    if (individual == null) {
+      return false;
+    }
+    // check death
+    if (individual.getPopulation().getPopulation().contains(individual)) {
+      return false;
+    }
     distribution = individual.getDistribution();
     // Check if the distribution is not empty and has more than one patrol
     if (distribution == null || distribution.isEmpty()) {
@@ -78,6 +85,7 @@ public class Mutation extends AEvent {
     // Patrol
     distribution.computeIfAbsent(destinationPatrol, k -> new HashSet<>()).add(systemToMove);
     individual.setDistribution(distribution);
+    return true;
   }
 
   @Override

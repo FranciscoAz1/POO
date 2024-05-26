@@ -29,13 +29,26 @@ public class Reproduction extends AEvent implements Ireproduction {
   }
 
   @Override
-  public void HandleEvent() {
+  public boolean HandleEvent() {
+    // check death of individual
+    if (individual == null) {
+      return false;
+    }
+    if (individual.getPopulation().getPopulation().contains(individual)) {
+      return false;
+    }
+    distribution = individual.getDistribution();
+    // Check if the distribution is not empty and has more than one patrol
+    if (distribution == null || distribution.isEmpty()) {
+      throw new IllegalStateException("There must be at least one patrol with planetary systems in the distribution.");
+    }
+
     Individual newIndividual = new Individual(individual);
     Map<Patrol, Set<PlanetarySystem>> newDistribution = newIndividual.getDistribution();
     // Step 1 calculate ⌊(1 − ϕ(z))m⌋ systems to remove
     int nSystems = 0;
     List<PlanetarySystem> systemsToRemove = new ArrayList<>();
-    for (Set<PlanetarySystem> planetarySystems : newDistribution.values()) {
+    for (Set<PlanetarySystem> planetarySystems : distribution.values()) {
       nSystems += planetarySystems.size();
     }
     int nSystemsToRemove = (int) (1 - individual.getConfort()) * nSystems;
@@ -68,6 +81,7 @@ public class Reproduction extends AEvent implements Ireproduction {
     newIndividual.setDistribution(newDistribution);
     Population pop = individual.getPopulation();
     pop.addIndividual(newIndividual);
+    return true;
   }
 
   private Patrol getRandomPatrolWithSystems(Map<Patrol, Set<PlanetarySystem>> distribution) {
