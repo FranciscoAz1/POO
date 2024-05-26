@@ -3,13 +3,11 @@ package dss;
 import java.util.PriorityQueue;
 
 public class PEC implements IPEC {
-  private int eventID;
   private int maxTime;
-  private int instant;
   private PriorityQueue<IEvent> pec;
 
   public PEC() {
-    pec = new PriorityQueue<>((e1, e2) -> Integer.compare(e1.getActionInstant(), e2.getActionInstant()));
+    pec = new PriorityQueue<>((e1, e2) -> Double.compare(e1.getActionInstant(), e2.getActionInstant()));
   }
 
   @Override

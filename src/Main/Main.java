@@ -5,7 +5,12 @@ import pa.Cost;
 import ep.Population;
 
 import ep.Confort;
+import ep.Individual;
+import ep.Mutation;
 
+import java.util.List;
+
+import dss.IEvent;
 import dss.Simulate;
 
 import rand.myMath;
@@ -57,7 +62,19 @@ public class Main {
     // Criação da instância de myMath antes do loop
     myMath mathUtils = new myMath(mu, rho, delta);
     // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
-    population.printPopulation();
+    // population.printPopulation();
+
+    // Testing Mutation
+    // List<Individual> individuals = population.getPopulation();
+    // for (Individual individual : individuals) {
+    // System.out.println("Individual " + individual.getConfort() + ":");
+    // individual.printTroopDistribution();
+    // IEvent event = new Mutation(individual);
+    // event.HandleEvent();
+    //
+    // System.out.println("Mutated Individual " + individual.getConfort() + ":");
+    // individual.printTroopDistribution();
+    // }
 
     Simulate simulation = new Simulate(tau);
 

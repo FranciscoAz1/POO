@@ -12,7 +12,6 @@ import dss.AEvent;
 import pa.PlanetarySystem;
 import rand.Utils;
 import pa.Patrol;
-import ep.Confort;
 
 public class Individual {
 
@@ -28,8 +27,6 @@ public class Individual {
     // this.id = id; // Inicializando o id
     this.distribution = new HashMap<>();
     createDistribution(patrols, planetarySystems);
-    calculateConfort();
-
   }
 
   private void createDistribution(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
@@ -46,6 +43,7 @@ public class Individual {
   }
 
   public double getConfort() {
+    calculateConfort();
     return confort;
   }
 
@@ -106,5 +104,13 @@ public class Individual {
       }
       System.out.println();
     }
+  }
+
+  public void setDistribution(Map<Patrol, Set<PlanetarySystem>> distribution) {
+    this.distribution = distribution;
+  }
+
+  public void setConfort(double confort) {
+    this.confort = confort;
   }
 }
