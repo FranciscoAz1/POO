@@ -1,12 +1,22 @@
 package ep;
 
-import ep.Individual;
+import dss.pec.AEvent;
 
-public class Mutation extends AEvents {
-	private int _individualID;
-	public Individual _unnamed_Individual_;
+public class Mutation extends AEvent {
+    private Individual individual;
 
-	public void HandleEvent() {
-		throw new UnsupportedOperationException();
-	}
+    public Mutation(double time, Individual individual) {
+        super(time);
+        this.individual = individual;
+    }
+
+    @Override
+    public void handleEvent() {
+        // Implementar a lógica de mutação
+    }
+
+    @Override
+    public String toString() {
+        return "Mutation Event{time=" + getEventTime() + "}";
+    }
 }

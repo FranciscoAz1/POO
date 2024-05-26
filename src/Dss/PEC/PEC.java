@@ -13,9 +13,9 @@ public class PEC implements IPEC {
     }
 
     @Override
-    public void addEvent(IEvents events) {
-        if (events instanceof AEvents) {
-            for (IEvent event : ((AEvents) events).getEvents()) {
+    public void addEvent(IEvent events) {
+        if (events instanceof AEvent) {
+            for (IEvent event : ((AEvent) events).getEvents()) {
                 eventSet.add(event);
             }
         }

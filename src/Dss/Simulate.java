@@ -2,7 +2,7 @@ package dss;
 
 import java.util.Vector;
 
-import dss.pec.IEvents;
+import dss.pec.IEvent;
 import dss.pec.IPEC;
 import dss.pec.IEvent;
 
