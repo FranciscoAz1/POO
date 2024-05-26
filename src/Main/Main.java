@@ -16,7 +16,7 @@ public class Main {
    * 
    * @param args
    */
-  
+
   public static void main(String[] args) {
     Args params = new Args(args);
     // Retriepe the values from the arguments object
@@ -40,7 +40,7 @@ public class Main {
         { 1, 2, 1, 1, 1, 1 },
         { 2, 1, 2, 2, 2, 2 },
         { 3, 3, 3, 3, 3, 3 },
-        { 3, 3, 3, 3, 3, 3 },
+        { 4, 4, 3, 4, 4, 1 },
     };
     costMatrix.setMatrix(matrix);
 

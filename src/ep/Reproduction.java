@@ -3,8 +3,9 @@ package ep;
 import dss.AEvent;
 import rand.myMath;
 
-public class Reproduction extends AEvent {
+public class Reproduction extends AEvent implements Ireproduction {
   private Individual individual;
+  private Population pop;
 
   public Individual getIndividual() {
     return individual;
@@ -17,7 +18,7 @@ public class Reproduction extends AEvent {
 
   @Override
   public void HandleEvent() {
-    // Implementar a lógica de reprodução
+    pop.createInitialPopulation(1);
   }
 
   @Override

@@ -45,12 +45,6 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   @Override
-  public void performReproduction() {
-    // TODO - implement Population.performCrossover
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
   public void performMutation() {
     // TODO - implement Population.performMutation
     throw new UnsupportedOperationException();

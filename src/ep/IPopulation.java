@@ -6,8 +6,6 @@ public interface IPopulation {
 
   public void createInitialPopulation(int aNumIndividuals);
 
-  public void performReproduction();
-
   public void performMutation();
 
   public void performDeath();
@@ -19,4 +17,5 @@ public interface IPopulation {
   public void Epidemics();
 
   public void printPopulation();
+
 }

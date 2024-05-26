@@ -70,6 +70,17 @@ public class Individual {
     }
   }
 
+  public List<AEvent> createEvents() {
+    List<AEvent> events = new ArrayList<>();
+    events.add(new Reproduction(this));
+    events.add(new Mutation(this));
+    events.add(new Death(this));
+    return events;
+  }
+
+  public List<AEvent> getEvents() {
+    return createEvents();
+  }
   /*
    * // Método para obter o ID do indivíduo
    * public int getId() {
@@ -95,17 +106,5 @@ public class Individual {
       }
       System.out.println();
     }
-  }
-
-  public List<AEvent> createEvents() {
-    List<AEvent> events = new ArrayList<>();
-    events.add(new Reproduction(this));
-    events.add(new Mutation(this));
-    events.add(new Death(this));
-    return events;
-  }
-
-  public List<AEvent> getEvents() {
-    return createEvents();
   }
 }
