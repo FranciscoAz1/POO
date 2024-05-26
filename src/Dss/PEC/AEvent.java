@@ -3,13 +3,14 @@ package dss.pec;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AEvent implements IEvent {
+public abstract class AEvent implements IEvent {
+    private double eventTime;
     private List<IEvent> listEvent;
-    private int eventTime;
     protected List<IEvent> newEvent = new ArrayList<>();
 
-    public AEvent() {
-        listEvent = new ArrayList<>();
+    public AEvent(double eventTime) {
+        this.eventTime = eventTime;
+        this.listEvent = new ArrayList<>();
     }
 
     @Override
@@ -35,7 +36,8 @@ public class AEvent implements IEvent {
         return listEvent;
     }
     @Override
-    public int getActionInstant() {
+    public double getActionInstant() {
         return this.eventTime;
     }
 }
+

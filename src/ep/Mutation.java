@@ -6,7 +6,7 @@ public class Mutation extends AEvent {
     private Individual individual;
 
     public Mutation(double time, Individual individual) {
-        //super(time);
+        super(time);
         this.individual = individual;
     }
 

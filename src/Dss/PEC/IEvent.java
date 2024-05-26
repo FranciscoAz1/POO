@@ -8,5 +8,5 @@ public interface IEvent {
 
 	public void HandleEvent();
 
-	public int getActionInstant(); // Declare the method in the interface
+	public double getActionInstant(); // Declare the method in the interface
 }

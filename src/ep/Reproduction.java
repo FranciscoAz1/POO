@@ -6,7 +6,7 @@ public class Reproduction extends AEvent {
     private Individual individual;
 
     public Reproduction(double time, Individual individual) {
-        //super(time);
+        super(time);
         this.individual = individual;
     }
 

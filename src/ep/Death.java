@@ -6,7 +6,7 @@ public class Death extends AEvent {
     private Individual individual;
 
     public Death(double time, Individual individual) {
-        //super(time);
+        super(time);
         this.individual = individual;
     }
 
