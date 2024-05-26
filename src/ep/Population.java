@@ -7,11 +7,7 @@ import dss.AEvent;
 
 import java.util.ArrayList;
 
-//import rand.Utils;
-import rand.myMath;
 import pa.AEmpire;
-import pa.Patrol;
-import pa.PlanetarySystem;
 
 public class Population extends AEmpire implements IPopulation {
 
@@ -33,9 +29,8 @@ public class Population extends AEmpire implements IPopulation {
 
   public void createInitialPopulation(int numIndividuals) {
     this.numIndividuals += numIndividuals;
-    for (int i = 1; i < numIndividuals; i++) {
-
-      population.add(new Individual(i, patrols, planetarySystems));
+    for (int i = 0; i < numIndividuals; i++) {
+      population.add(new Individual(this, patrols, planetarySystems));
     }
   }
 
@@ -44,15 +39,13 @@ public class Population extends AEmpire implements IPopulation {
     return population;
   }
 
-  @Override
-  public void performMutation() {
-    // TODO - implement Population.performMutation
-    throw new UnsupportedOperationException();
+  public void setPopulation(List<Individual> population) {
+    this.population = population;
   }
 
-  @Override
-  public void performDeath() {
-    throw new UnsupportedOperationException();
+  public void addIndividual(Individual individual) {
+    this.numIndividuals += 1;
+    population.add(individual);
   }
 
   @Override

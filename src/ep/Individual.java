@@ -16,6 +16,8 @@ import pa.Patrol;
 public class Individual {
 
   private Map<Patrol, Set<PlanetarySystem>> distribution;
+  private Population population;
+
   private double confort;
 
   // private int id; // Adicionando o campo id
@@ -23,10 +25,17 @@ public class Individual {
   // p1 - 1 , 3, 4
   // p2 - 2 , 5
   // p3 - 7
-  public Individual(int id, List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
+  public Individual(Population population, List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
     // this.id = id; // Inicializando o id
+    this.population = population;
     this.distribution = new HashMap<>();
     createDistribution(patrols, planetarySystems);
+  }
+
+  // creating a copy of an individual
+  public Individual(Individual individual) {
+    this.distribution = individual.getDistribution();
+    this.population = individual.getPopulation();
   }
 
   private void createDistribution(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
@@ -40,6 +49,10 @@ public class Individual {
 
   public void assignSystemToPatrol(Patrol patrol, PlanetarySystem system) {
     distribution.computeIfAbsent(patrol, k -> new HashSet<>()).add(system);
+  }
+
+  public Population getPopulation() {
+    return population;
   }
 
   public double getConfort() {

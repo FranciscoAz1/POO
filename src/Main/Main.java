@@ -3,7 +3,7 @@ package main;
 import pa.Cost;
 
 import ep.Population;
-
+import ep.Reproduction;
 import ep.Confort;
 import ep.Individual;
 import ep.Mutation;
@@ -57,25 +57,25 @@ public class Main {
     population.printPatrols();
     population.printSystems();
     // Create initial population
-    population.createInitialPopulation(nu);
+    population.createInitialPopulation(3);
 
     // Criação da instância de myMath antes do loop
     myMath mathUtils = new myMath(mu, rho, delta);
     // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
-    // population.printPopulation();
+    population.printPopulation();
 
     // Testing Mutation
-    // List<Individual> individuals = population.getPopulation();
-    // for (Individual individual : individuals) {
-    // System.out.println("Individual " + individual.getConfort() + ":");
-    // individual.printTroopDistribution();
-    // IEvent event = new Mutation(individual);
-    // event.HandleEvent();
-    //
-    // System.out.println("Mutated Individual " + individual.getConfort() + ":");
-    // individual.printTroopDistribution();
-    // }
+    List<Individual> individuals = population.getPopulation();
+    for (int i = 0; i < 3; i++) {
+      Individual individual = individuals.get(i);
+      System.out.println("Individual " + individual.getConfort() + ":");
+      IEvent event = new Reproduction(individual);
+      event.HandleEvent();
 
+      System.out.println("Mutated Individual " + individual.getConfort() + ":");
+    }
+
+    population.printPopulation();
     Simulate simulation = new Simulate(tau);
 
     System.out.println("It is Done!");
