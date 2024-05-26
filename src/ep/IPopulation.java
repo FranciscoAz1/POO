@@ -1,5 +1,7 @@
 package ep;
 
+import rand.myMath;
+
 public interface IPopulation {
 
   public void createInitialPopulation(int aNumIndividuals);
@@ -16,5 +18,5 @@ public interface IPopulation {
 
   public void Epidemics();
 
-  public void printPopulation();
+  public void printPopulation(myMath mathUtils, double rho, double delta, double mu);
 }

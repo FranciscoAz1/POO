@@ -4,6 +4,13 @@ import pa.IEmpire;
 import pa.Cost;
 import ep.Individual;
 import ep.Population;
+
+import java.util.List;
+
+import rand.myMath;
+
+
+import dss.pec.AEvent;
 import ep.Confort;
 
 public class Main {
@@ -49,8 +56,13 @@ public class Main {
     // Create initial population
     population.createInitialPopulation(nu);
 
-    population.printPopulation();
-    System.out.println("Done!");
+    // Criação da instância de myMath antes do loop
+    myMath mathUtils = new myMath();
+
+    // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
+    population.printPopulation(mathUtils, params.rho, params.delta, params.mu);
+
+    System.out.println("It is Done!");
   }
 
 }

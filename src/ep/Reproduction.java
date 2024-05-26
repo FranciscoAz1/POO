@@ -3,10 +3,21 @@ package ep;
 import dss.pec.AEvent;
 
 public class Reproduction extends AEvent {
-  private int _individualID;
-  public Population _unnamed_Population_;
+    private Individual individual;
 
-  public void HandleEvent() {
-    throw new UnsupportedOperationException();
-  }
+    public Reproduction(double time, Individual individual) {
+        super(time);
+        this.individual = individual;
+    }
+
+    @Override
+    public void HandleEvent() {
+        // Implementar a lógica de reprodução
+    }
+
+    @Override
+    public String toString() {
+        return "Reproduction Event{time=" + getActionInstant() + "}";
+    }
 }
+

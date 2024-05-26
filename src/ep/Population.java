@@ -2,9 +2,13 @@ package ep;
 
 import java.util.Collections;
 import java.util.List;
+
+import dss.pec.AEvent;
+
 import java.util.ArrayList;
 
-import rand.Utils;
+//import rand.Utils;
+import rand.myMath;
 import pa.AEmpire;
 import pa.Patrol;
 import pa.PlanetarySystem;
@@ -34,6 +38,11 @@ public class Population extends AEmpire implements IPopulation {
       population.add(new Individual(i, patrols, planetarySystems));
     }
   }
+
+    // Método para retornar a lista de indivíduos
+    public List<Individual> getPopulation() {
+      return population;
+    }
 
   @Override
   public void performReproduction() {
@@ -71,12 +80,23 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   @Override
-  public void printPopulation() {
-    for (int i = 0; i < population.size(); i++) {
-      System.out.println("Troop Distribution for Individual " + i + ":");
-      System.out.printf("Confort: %.2f\n", population.get(i).getConfort());
+   public void printPopulation(myMath mathUtils, double rho, double delta, double mu) {
+        for (int i = 0; i < population.size(); i++) {
 
-      population.get(i).printTroopDistribution();
-    }
+          // Linha que indica o indivíduo com uma linha em branco antes
+            System.out.println();
+            System.out.println("Individual " + i + ":");
+
+            Individual individual = population.get(i);
+            System.out.println("Troop Distribution for Individual " + i + ":");
+            System.out.printf("Confort: %.2f\n", individual.getConfort());
+            individual.printTroopDistribution();
+
+            // Imprimir os eventos do indivíduo
+            List<AEvent> events = individual.getEvents(mathUtils, rho, delta, mu);
+            for (AEvent event : events) {
+                System.out.println(event);
+            }
   }
+}
 }

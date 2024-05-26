@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import dss.pec.AEvent;
 import pa.PlanetarySystem;
 import rand.Utils;
+import rand.myMath;
 import pa.Patrol;
 import ep.Confort;
 
@@ -18,10 +20,14 @@ public class Individual {
   private Map<Patrol, Set<PlanetarySystem>> distribution;
   private double confort;
 
+
+  //private int id; // Adicionando o campo id
+
   // p1 - 1 , 3, 4
   // p2 - 2 , 5
   // p3 - 7
   public Individual(int id, List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
+    //this.id = id; // Inicializando o id
     this.distribution = new HashMap<>();
     createDistribution(patrols, planetarySystems);
     calculateConfort();
@@ -66,6 +72,13 @@ public class Individual {
     }
   }
 
+  /*
+   // Método para obter o ID do indivíduo
+   public int getId() {
+    return id;
+  }
+  */
+
   // Method to print troop distribution over time
   public void printTroopDistribution() {
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
@@ -84,5 +97,17 @@ public class Individual {
       }
       System.out.println();
     }
+  }
+
+  public List<AEvent> createEvents(myMath mathUtils, double rho, double delta, double mu) {
+    List<AEvent> events = new ArrayList<>();
+    events.add(new Reproduction(mathUtils.reproductionRate(confort, rho), this));
+    events.add(new Mutation(mathUtils.mutationRate(confort, delta), this));
+    events.add(new Death(mathUtils.deathRate(confort, mu), this));
+    return events;
+  }
+
+  public List<AEvent> getEvents(myMath mathUtils, double rho, double delta, double mu) {
+    return createEvents(mathUtils, rho, delta, mu);
   }
 }

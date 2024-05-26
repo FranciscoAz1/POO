@@ -3,10 +3,20 @@ package ep;
 import dss.pec.AEvent;
 
 public class Death extends AEvent {
-  private int _individualID;
-  public Individual _unnamed_Individual_;
+    private Individual individual;
 
-  public void HandleEvent() {
-    throw new UnsupportedOperationException();
-  }
+    public Death(double time, Individual individual) {
+        super(time);
+        this.individual = individual;
+    }
+
+    @Override
+    public void HandleEvent() {
+        // Implementar a lógica de morte
+    }
+
+    @Override
+    public String toString() {
+        return "Death Event{time=" + getActionInstant() + "}";
+    }
 }
