@@ -1,7 +1,7 @@
 package pa;
 
 import main.Args;
-import dss.pec.PEC; // NEED EVENT COUNTER
+import dss.PEC; // NEED EVENT COUNTER
 
 public class Observation {
 

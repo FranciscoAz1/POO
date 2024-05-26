@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import dss.pec.AEvent;
+import dss.AEvent;
 import pa.PlanetarySystem;
 import rand.Utils;
 import pa.Patrol;

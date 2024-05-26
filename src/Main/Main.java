@@ -1,16 +1,14 @@
 package main;
 
-import pa.IEmpire;
 import pa.Cost;
-import ep.Individual;
+
 import ep.Population;
 
-import java.util.List;
+import ep.Confort;
+
+import dss.Simulate;
 
 import rand.myMath;
-
-import dss.pec.AEvent;
-import ep.Confort;
 
 public class Main {
 
@@ -57,9 +55,10 @@ public class Main {
 
     // Criação da instância de myMath antes do loop
     myMath mathUtils = new myMath(mu, rho, delta);
-
     // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
     population.printPopulation();
+
+    Simulate simulation = new Simulate(tau);
 
     System.out.println("It is Done!");
   }

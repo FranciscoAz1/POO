@@ -1,6 +1,6 @@
 package ep;
 
-import dss.pec.IEvent;
+import dss.IEvent;
 
 public interface IObservation extends IEvent {
 }

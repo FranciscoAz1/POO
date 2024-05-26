@@ -1,6 +1,6 @@
 package ep;
 
-import dss.pec.AEvent;
+import dss.AEvent;
 import rand.myMath;
 
 public class Death extends AEvent {
