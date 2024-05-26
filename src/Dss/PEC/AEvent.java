@@ -3,54 +3,39 @@ package dss.pec;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The AEvent class is an abstract class that implements the IEvent interface.
- * It provides common functionality for event objects in a simulation.
- * 
- * Note: The actual implementation of the IEvent interface is not shown here.
- * The AEvent class assumes that the IEvent interface exists and has appropriate functionality.
- */
+public class AEvent implements IEvent {
+    private List<IEvent> listEvent;
+    private int eventTime;
+    protected List<IEvent> newEvent = new ArrayList<>();
 
-public abstract class AEvent implements IEvent{
-    protected double eventTime;
-    protected List<IEvent> newEvents = new ArrayList<>();
-
-    /**
-     * Constructs a new AEvent object with the specified event time.
-     *
-     * @param eventTime the time at which the event occurs
-     */
-    public AEvent(double eventTime){
-        this.eventTime = eventTime;
+    public AEvent() {
+        listEvent = new ArrayList<>();
     }
 
     @Override
-    public double getEventTime(){
-        return eventTime;
+    public void NewEvent() {
+        // Implement logic for creating new Event
     }
 
     @Override
-    public List<IEvent> getNewEvents(){
-        //Copies the list, clears the original one, and returns the copy
-        List<IEvent> eventsCopy = new ArrayList<>(newEvents);
-        newEvents.clear();
-        return eventsCopy;
+    public void UpdateSimulation() {
+        // Implement logic for updating the simulation
     }
 
     @Override
-    public void updateSimulationState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateSimulationState'");
+    public void HandleEvent() {
+        // Implement logic for handling Event
     }
 
-    @Override
-    public boolean valid() {
-        return true;
+    public void addEvent(IEvent event) {
+        listEvent.add(event);
     }
 
+    public List<IEvent> getEvent() {
+        return listEvent;
+    }
     @Override
-    public void handleEvent() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handleEvent'");
+    public int getActionInstant() {
+        return this.eventTime;
     }
 }

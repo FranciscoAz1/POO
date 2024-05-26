@@ -6,39 +6,49 @@ public class PEC implements IPEC {
     private int eventID;
     private int maxTime;
     private int instant;
-    private PriorityQueue<IEvent> eventSet;
+    private PriorityQueue<IEvent> Eventet;
 
     public PEC() {
-        eventSet = new PriorityQueue<>((e1, e2) -> Integer.compare(e1.getTime(), e2.getTime()));
+        Eventet = new PriorityQueue<>((e1, e2) -> Integer.compare(e1.getActionInstant(), e2.getActionInstant()));
     }
+    
 
     @Override
-    public void addEvent(IEvent events) {
-        if (events instanceof AEvent) {
-            for (IEvent event : ((AEvent) events).getEvents()) {
-                eventSet.add(event);
+    public void addEvent(IEvent Event) {
+        if (Event instanceof AEvent) {
+            for (IEvent event : ((AEvent) Event).getEvent()) {
+                Eventet.add(event);
             }
         }
     }
 
     @Override
     public IEvent nextEvent() {
-        return eventSet.poll();
+        return Eventet.poll();
     }
 
     @Override
     public boolean isEmpty() {
-        return eventSet.isEmpty();
+        return Eventet.isEmpty();
     }
 
-    public void OrderEvents() {
-        // If ordering is needed beyond priority queue's natural ordering, implement here
-    }
+    public void OrderEvent() {
+    // Assuming maxTime is the maximum time for which you want to check Event
+    for (int instant = 0; instant <= maxTime; instant++) {
+        // Use a while loop to process all Event at this particular time
+        while (!Eventet.isEmpty() && Eventet.peek().getActionInstant() == time) {
+            IEvent event = Eventet.poll();
+            // Process the event here
 
-    public IEvents AddToPEC(Object aIEvents) {
-        if (aIEvents instanceof IEvents) {
-            addEvent((IEvents) aIEvents);
+            }
         }
-        return (IEvents) aIEvents;
+    }
+
+    
+    public IEvent AddToPEC(Object aIEvent) {
+        if (aIEvent instanceof IEvent) {
+            addEvent((IEvent) aIEvent);
+        }
+        return (IEvent) aIEvent;
     }
 }

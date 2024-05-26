@@ -6,17 +6,17 @@ public class Death extends AEvent {
     private Individual individual;
 
     public Death(double time, Individual individual) {
-        super(time);
+        //super(time);
         this.individual = individual;
     }
 
     @Override
-    public void handleEvent() {
+    public void HandleEvent() {
         // Implementar a lógica de morte
     }
 
     @Override
     public String toString() {
-        return "Death Event{time=" + getEventTime() + "}";
+        return "Death Event{time=" + getActionInstant() + "}";
     }
 }

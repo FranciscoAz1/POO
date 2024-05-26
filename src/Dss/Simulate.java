@@ -12,8 +12,8 @@ public class Simulate implements ISimulate {
     private int simulationTime;
     private IEvent currentEvent;
     private int currentTime;
-    public IEvents unnamed_IEvents_;
-    public Vector<IPEC> eventSet = new Vector<IPEC>();
+    public IEvent unnamed_IEvent_;
+    public Vector<IPEC> Eventet = new Vector<IPEC>();
 
     public Simulate(int simulationTime, IPEC pec) {
         this.simulationTime = simulationTime;
@@ -22,7 +22,7 @@ public class Simulate implements ISimulate {
     }
 
     @Override
-    public void SimulateEvents() {
+    public void SimulateEvent() {
         while (currentTime < simulationTime && !pec.isEmpty()) {
             currentEvent = pec.nextEvent();
             currentTime = currentEvent.getTime();
@@ -31,13 +31,13 @@ public class Simulate implements ISimulate {
     }
 
     @Override
-    public void AddToPEC(IEvents aEvents) {
-        pec.addEvent(aEvents);
+    public void AddToPEC(IEvent aEvent) {
+        pec.addEvent(aEvent);
     }
 
     @Override
     public void run() {
-        SimulateEvents();
+        SimulateEvent();
     }
 
     @Override
