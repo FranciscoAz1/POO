@@ -110,6 +110,6 @@ public class Reproduction extends AEvent implements Ireproduction {
 
   @Override
   public String toString() {
-    return "Reproduction Event{time= " + getActionInstant() + "}";
+    return "Reproduction Event{time= " + getEventTime() + "}";
   }
 }

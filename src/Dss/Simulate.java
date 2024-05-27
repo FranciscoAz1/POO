@@ -1,5 +1,7 @@
 package dss;
 
+import java.util.List;
+
 public class Simulate implements ISimulate {
   private IPEC pec;
   private double simulationTime;
@@ -10,6 +12,7 @@ public class Simulate implements ISimulate {
   public Simulate(double simulationTime) {
     this.simulationTime = simulationTime;
     this.currentTime = 0;
+    this.pec = new PEC();
   }
 
   @Override
@@ -19,14 +22,22 @@ public class Simulate implements ISimulate {
 
   @Override
   public void run() {
-    while (currentTime < simulationTime && !pec.isEmpty()) {
-      currentEvent = pec.nextEvent();
+    while (this.currentTime < this.simulationTime && !pec.isEmpty()) {
+      this.currentEvent = pec.nextEvent();
+      // updates the current time if handling event was successful
+      if (currentEvent.HandleEvent()) {
+        this.currentTime = this.currentEvent.getEventTime();
+      }
+      List<IEvent> events = currentEvent.getNewEvents();
+      for (IEvent e : event) {
+        pec.addEvent(e);
+      }
 
-      currentTime = currentEvent.getActionInstant();
+      currentTime = currentEvent.getEventTime();
       if (currentTime > simulationTime) {
         break;
       }
-      currentEvent.HandleEvent();
+      // check for event death or event is successful
     }
   }
 }

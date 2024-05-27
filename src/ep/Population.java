@@ -86,4 +86,12 @@ public class Population extends AEmpire implements IPopulation {
       }
     }
   }
+
+  public List<AEvent> getEvents() {
+    List<AEvent> AllEvents = new ArrayList<>();
+    for (Individual individual : population) {
+      AllEvents.addAll(individual.getEvents());
+    }
+    return AllEvents;
+  }
 }

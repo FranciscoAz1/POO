@@ -37,6 +37,6 @@ public class Death extends AEvent {
 
   @Override
   public String toString() {
-    return "Death Event{time=" + getActionInstant() + "}";
+    return "Death Event{time=" + getEventTime() + "}";
   }
 }

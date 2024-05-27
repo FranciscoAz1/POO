@@ -8,5 +8,5 @@ public interface IEvent {
 
   public boolean HandleEvent();
 
-  public double getActionInstant(); // Declare the method in the interface
+  public double getEventTime(); // Declare the method in the interface
 }

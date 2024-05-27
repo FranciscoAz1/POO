@@ -37,7 +37,7 @@ public abstract class AEvent implements IEvent {
   }
 
   @Override
-  public double getActionInstant() {
+  public double getEventTime() {
     return this.eventTime;
   }
 }

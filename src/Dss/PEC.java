@@ -7,7 +7,7 @@ public class PEC implements IPEC {
   private PriorityQueue<IEvent> pec;
 
   public PEC() {
-    pec = new PriorityQueue<>((e1, e2) -> Double.compare(e1.getActionInstant(), e2.getActionInstant()));
+    pec = new PriorityQueue<>((e1, e2) -> Double.compare(e1.getEventTime(), e2.getEventTime()));
   }
 
   @Override
@@ -33,7 +33,7 @@ public class PEC implements IPEC {
     // Assuming maxTime is the maximum time for which you want to check Event
     for (int instant = 0; instant <= maxTime; instant++) {
       // Use a while loop to process all Event at this particular time
-      while (!pec.isEmpty() && pec.peek().getActionInstant() == time) {
+      while (!pec.isEmpty() && pec.peek().getEventTime() == time) {
         IEvent event = pec.poll();
         // Process the event here
 

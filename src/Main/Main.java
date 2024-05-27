@@ -10,6 +10,7 @@ import ep.Mutation;
 
 import java.util.List;
 
+import dss.AEvent;
 import dss.IEvent;
 import dss.Simulate;
 
@@ -57,7 +58,7 @@ public class Main {
     population.printPatrols();
     population.printSystems();
     // Create initial population
-    population.createInitialPopulation(3);
+    population.createInitialPopulation(nu);
 
     // Criação da instância de myMath antes do loop
     myMath mathUtils = new myMath(mu, rho, delta);
@@ -65,18 +66,24 @@ public class Main {
     population.printPopulation();
 
     // Testing Death
-    List<Individual> individuals = population.getPopulation();
-    for (int i = 0; i < 3; i++) {
-      Individual individual = individuals.get(i);
-      System.out.println("Individual " + individual.getConfort() + ":");
-      IEvent event = new Reproduction(individual);
-      event.HandleEvent();
+    // List<Individual> individuals = population.getPopulation();
+    // for (int i = 0; i < 3; i++) {
+    // Individual individual = individuals.get(i);
+    // System.out.println("Individual " + individual.getConfort() + ":");
+    // IEvent event = new Reproduction(individual);
+    // event.HandleEvent();
+    //
+    // System.out.println("Mutated Individual " + individual.getConfort() + ":");
+    // }
 
-      System.out.println("Mutated Individual " + individual.getConfort() + ":");
+    Simulate simulation = new Simulate(tau);
+    // Initiate pec
+    List<AEvent> events = population.getEvents();
+    for (AEvent e : events) {
+      simulation.AddToPEC(e);
     }
 
-    population.printPopulation();
-    Simulate simulation = new Simulate(tau);
+    simulation.run();
 
     System.out.println("It is Done!");
   }

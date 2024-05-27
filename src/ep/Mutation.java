@@ -90,6 +90,6 @@ public class Mutation extends AEvent {
 
   @Override
   public String toString() {
-    return "Mutation Event{time=" + getActionInstant() + "}";
+    return "Mutation Event{time=" + getEventTime() + "}";
   }
 }
