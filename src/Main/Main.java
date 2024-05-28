@@ -82,7 +82,7 @@ public class Main {
     for (IEvent e : events) {
       simulation.AddToPEC(e);
     }
-    simulation.getPec().printPEC();
+    // simulation.getPec().printPEC();
     simulation.run();
 
     System.out.println("It is Done!");
