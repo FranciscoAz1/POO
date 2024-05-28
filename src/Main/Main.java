@@ -1,16 +1,12 @@
 package main;
 
+import java.util.List;
+
 import pa.Cost;
 
 import ep.Population;
-import ep.Reproduction;
 import ep.Confort;
-import ep.Individual;
-import ep.Mutation;
 
-import java.util.List;
-
-import dss.AEvent;
 import dss.IEvent;
 import dss.Simulate;
 
@@ -43,10 +39,8 @@ public class Main {
 
     // Exemple matrix
     int[][] matrix = {
-        { 1, 2, 1, 1, 1, 1 },
-        { 2, 1, 2, 2, 2, 2 },
-        { 3, 3, 3, 3, 3, 3 },
-        { 4, 4, 3, 4, 4, 1 },
+        { 1, 2, 1, 1 },
+        { 2, 1, 2, 2 },
     };
     costMatrix.setMatrix(matrix);
 
@@ -67,15 +61,15 @@ public class Main {
 
     System.out.println("first population size %d " + population.getPopulation().size());
     // Testing Death
-    List<Individual> individuals = population.getPopulation();
-    for (int i = 0; i < 3; i++) {
-      Individual individual = individuals.get(i);
-      System.out.println("Individual " + individual.getConfort() + ":");
-      IEvent event = new Reproduction(individual);
-      event.HandleEvent();
-
-      System.out.println("Produced Individual " + individual.getConfort() + ":");
-    }
+    // List<Individual> individuals = population.getPo pulation();
+    // for (int i = 0; i < 3; i++) {
+    // Individual individual = individuals.get(i);
+    // System.out.println("Individual " + individual.getConfort() + ":");
+    // IEvent event = new Reproduction(individual);
+    // event.HandleEvent();
+    //
+    // System.out.println("Produced Individual " + individual.getConfort() + ":");
+    // }
 
     System.out.println("New population size %d " + population.getPopulation().size());
 
