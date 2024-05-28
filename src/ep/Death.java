@@ -27,12 +27,8 @@ public class Death extends AEvent {
       return false;
     }
     Population pop = individual.getPopulation();
-    List<Individual> individuals = pop.getPopulation();
-    individuals.remove(individual);
-    pop.setPopulation(individuals);
-
+    pop.removeIndividual(individual);
     return true;
-    // Implementar a lógica de morte
   }
 
   @Override

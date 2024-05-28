@@ -5,6 +5,8 @@ import java.util.List;
 import dss.IEvent;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import pa.AEmpire;
 
@@ -40,29 +42,20 @@ public class Population extends AEmpire implements IPopulation {
 
   public void setPopulation(List<Individual> population) {
     this.population = population;
+    EpidemicMayOccur();
   }
 
   public void addIndividual(Individual individual) {
-    this.numIndividuals += 1;
-    population.add(individual);
+    if (population.add(individual)) {
+      this.numIndividuals += 1;
+    }
+    EpidemicMayOccur();
   }
 
-  @Override
-  public void evaluateFitness() {
-    // TODO - implement Population.evaluateFitness
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public void checkTerminationCondition() {
-    // TODO - implement Population.checkTerminationCondition
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public void Epidemics() {
-    // TODO - implement Population.Epidemics
-    throw new UnsupportedOperationException();
+  public void removeIndividual(Individual individual) {
+    if (this.population.remove(individual)) {
+      this.numIndividuals -= 1;
+    }
   }
 
   @Override
@@ -92,5 +85,23 @@ public class Population extends AEmpire implements IPopulation {
       AllEvents.addAll(individual.getEvents());
     }
     return AllEvents;
+  }
+
+  @Override
+  public void EpidemicMayOccur() {
+    if (this.numIndividuals >= this.MaxPopulationSize) {
+      System.out.println("Epidemic may occur");
+    }
+    doEpidemic();
+  }
+
+  private void sortPopulation() {
+    Collections.sort(population, Comparator.comparingDouble(Individual::getConfort).reversed());
+  }
+
+  private void doEpidemic() {
+    // Seperate the population to the five best one
+    sortPopulation();
+
   }
 }

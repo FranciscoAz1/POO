@@ -55,8 +55,15 @@ public class Individual {
     return population;
   }
 
-  public double getConfort() {
+  public double getNewConfort() {
     calculateConfort();
+    return confort;
+  }
+
+  public double getConfort() {
+    if (Double.isNaN(this.confort)) {
+      calculateConfort();
+    }
     return confort;
   }
 
@@ -120,6 +127,7 @@ public class Individual {
   }
 
   public void setDistribution(Map<Patrol, Set<PlanetarySystem>> distribution) {
+    calculateConfort();
     this.distribution = distribution;
   }
 

@@ -1,8 +1,11 @@
 package ep;
 
-public class Epidemics implements IPopulation {
+import ep.Death;
+import dss.AEvent;
 
-  public void Epidemics() {
+public class Epidemic extends AEvent {
+
+  public void Epidemic() {
     throw new UnsupportedOperationException();
   }
 

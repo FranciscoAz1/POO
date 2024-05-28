@@ -49,8 +49,10 @@ public class Main {
 
     // Population population = new Population(costMatrix.getMatrix(), numax);
     Population population = new Population(costMatrix.getMatrix(), numax);
-    population.printPatrols();
-    population.printSystems();
+
+    // population.printPatrols();
+    // population.printSystems();
+
     // Create initial population
     population.createInitialPopulation(nu);
 
@@ -80,7 +82,7 @@ public class Main {
     for (IEvent e : events) {
       simulation.AddToPEC(e);
     }
-
+    simulation.getPec().printPEC();
     simulation.run();
 
     System.out.println("It is Done!");

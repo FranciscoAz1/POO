@@ -8,7 +8,9 @@ public interface IPopulation {
 
   public void checkTerminationCondition();
 
-  public void Epidemics();
+  public void EpidemicMayOccur();
+
+  public void Epidemic();
 
   public void printPopulation();
 

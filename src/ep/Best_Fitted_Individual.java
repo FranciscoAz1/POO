@@ -1,52 +1,18 @@
 package ep;
 
-import ep.IPopulation;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class Best_Fitted_Individual implements IPopulation {
-  private int _individualsID;
-  private int _confort;
-
-  public BFT[] BestFittedIndividual() {
-    throw new UnsupportedOperationException();
+public class Best_Fitted_Individual {
+  // Método para classificar a população de acordo com o conforto dos indivíduos
+  public static void sortPopulation(List<Individual> population) {
+    Collections.sort(population, Comparator.comparingDouble(Individual::getConfort).reversed());
   }
 
-  public void Population(int[][] aMatrix, int aMaxPopulationSize) {
-    throw new UnsupportedOperationException();
-  }
-
-  public void Population(int[][] aMatrix, int aMaxPopulationSize, int aNumIndividuals) {
-    throw new UnsupportedOperationException();
-  }
-
-  public void createInitialPopulation(int aNumIndividuals) {
-    throw new UnsupportedOperationException();
-  }
-
-  public void performReproduction() {
-    throw new UnsupportedOperationException();
-  }
-
-  public void performMutation() {
-    throw new UnsupportedOperationException();
-  }
-
-  public void performDeath() {
-    throw new UnsupportedOperationException();
-  }
-
-  public void evaluateFitness() {
-    throw new UnsupportedOperationException();
-  }
-
-  public void checkTerminationCondition() {
-    throw new UnsupportedOperationException();
-  }
-
-  public void Epidemics() {
-    throw new UnsupportedOperationException();
-  }
-
-  public void printPopulation() {
-    throw new UnsupportedOperationException();
+  // Método para obter os 5 melhores indivíduos
+  public static List<Individual> getBest5(List<Individual> population) {
+    return population.stream().limit(5).collect(Collectors.toList());
   }
 }
