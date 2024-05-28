@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import dss.AEvent;
+import dss.IEvent;
 
 import java.util.ArrayList;
 
@@ -80,15 +81,15 @@ public class Population extends AEmpire implements IPopulation {
       individual.printTroopDistribution();
 
       // Imprimir os eventos do indivíduo
-      List<AEvent> events = individual.getEvents();
-      for (AEvent event : events) {
+      List<IEvent> events = individual.getEvents();
+      for (IEvent event : events) {
         System.out.println(event);
       }
     }
   }
 
-  public List<AEvent> getEvents() {
-    List<AEvent> AllEvents = new ArrayList<>();
+  public List<IEvent> getEvents() {
+    List<IEvent> AllEvents = new ArrayList<>();
     for (Individual individual : population) {
       AllEvents.addAll(individual.getEvents());
     }

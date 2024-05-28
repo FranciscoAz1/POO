@@ -9,7 +9,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import rand.Utils;
+
 import dss.AEvent;
+import dss.IEvent;
 import pa.Patrol;
 import pa.PlanetarySystem;
 import rand.myMath;
@@ -34,7 +37,7 @@ public class Reproduction extends AEvent implements Ireproduction {
     if (individual == null) {
       return false;
     }
-    if (individual.getPopulation().getPopulation().contains(individual)) {
+    if (!individual.getPopulation().getPopulation().contains(individual)) {
       return false;
     }
     distribution = individual.getDistribution();
@@ -61,14 +64,9 @@ public class Reproduction extends AEvent implements Ireproduction {
         break; // No more systems to remove
 
       Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
-      PlanetarySystem system = getRandomElementFromSet(systems);
+      PlanetarySystem system = Utils.getRandomElementFromSet(systems);
       systems.remove(system);
       removedSystems.add(system);
-
-      // Remove patrol if it has no more systems
-      if (systems.isEmpty()) {
-        newDistribution.remove(randomPatrol);
-      }
     }
 
     // Step 4: Randomly redistribute the removed systems among the patrols
@@ -81,6 +79,9 @@ public class Reproduction extends AEvent implements Ireproduction {
     newIndividual.setDistribution(newDistribution);
     Population pop = individual.getPopulation();
     pop.addIndividual(newIndividual);
+
+    addEvents(newIndividual.getEvents());
+
     return true;
   }
 
@@ -97,15 +98,6 @@ public class Reproduction extends AEvent implements Ireproduction {
   private Patrol getRandomPatrol(Map<Patrol, Set<PlanetarySystem>> distribution) {
     List<Patrol> patrolList = new ArrayList<>(distribution.keySet());
     return patrolList.get(random.nextInt(patrolList.size()));
-  }
-
-  private <T> T getRandomElementFromSet(Set<T> set) {
-    int index = random.nextInt(set.size());
-    Iterator<T> iter = set.iterator();
-    for (int i = 0; i < index; i++) {
-      iter.next();
-    }
-    return iter.next();
   }
 
   @Override

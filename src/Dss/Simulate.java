@@ -33,8 +33,8 @@ public class Simulate implements ISimulate {
       if (currentEvent.HandleEvent()) {
         this.currentTime = this.currentEvent.getEventTime();
       }
-      List<IEvent> events = currentEvent.getNewEvents();
-      for (IEvent e : event) {
+      List<IEvent> events = currentEvent.getEvents();
+      for (IEvent e : events) {
         pec.addEvent(e);
       }
 
@@ -45,5 +45,4 @@ public class Simulate implements ISimulate {
       // check for event death or event is successful
     }
   }
-}
 }

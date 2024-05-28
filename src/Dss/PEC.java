@@ -12,12 +12,12 @@ public class PEC implements IPEC {
 
   @Override
   public void addEvent(IEvent Event) {
-    if (Event instanceof AEvent) {
-      for (IEvent event : ((AEvent) Event).getEvent()) {
+    if (Event instanceof IEvent) {
+      for (IEvent event : ((IEvent) Event).getEvents()) {
         pec.add(event);
         printPEC(); // to check the current state of PEC
         System.out.println(" PEC should be empty");
-        
+
       }
     }
   }
@@ -31,9 +31,9 @@ public class PEC implements IPEC {
 
   @Override
   public boolean isEmpty() {
-       printPEC(); // to check the current state of PEC
+    printPEC(); // to check the current state of PEC
     System.out.println(" PEC should be empty");
-    
+
     return pec.isEmpty();
   }
 

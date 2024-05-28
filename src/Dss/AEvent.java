@@ -28,11 +28,17 @@ public abstract class AEvent implements IEvent {
     throw new IllegalStateException("This is an abstract method.");
   }
 
+  @Override
   public void addEvent(IEvent event) {
     listEvent.add(event);
   }
 
-  public List<IEvent> getEvent() {
+  public void addEvents(List<IEvent> events) {
+    listEvent.addAll(events);
+  }
+
+  @Override
+  public List<IEvent> getEvents() {
     return listEvent;
   }
 

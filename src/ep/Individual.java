@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import dss.AEvent;
+import dss.IEvent;
 import pa.PlanetarySystem;
 import rand.Utils;
 import pa.Patrol;
@@ -81,15 +81,15 @@ public class Individual {
     }
   }
 
-  public List<AEvent> createEvents() {
-    List<AEvent> events = new ArrayList<>();
+  public List<IEvent> createEvents() {
+    List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this));
     events.add(new Mutation(this));
     events.add(new Death(this));
     return events;
   }
 
-  public List<AEvent> getEvents() {
+  public List<IEvent> getEvents() {
     return createEvents();
   }
   /*

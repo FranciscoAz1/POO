@@ -65,22 +65,25 @@ public class Main {
     // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
     population.printPopulation();
 
+    System.out.println("first population size %d " + population.getPopulation().size());
     // Testing Death
-    // List<Individual> individuals = population.getPopulation();
-    // for (int i = 0; i < 3; i++) {
-    // Individual individual = individuals.get(i);
-    // System.out.println("Individual " + individual.getConfort() + ":");
-    // IEvent event = new Reproduction(individual);
-    // event.HandleEvent();
-    //
-    // System.out.println("Mutated Individual " + individual.getConfort() + ":");
-    // }
+    List<Individual> individuals = population.getPopulation();
+    for (int i = 0; i < 3; i++) {
+      Individual individual = individuals.get(i);
+      System.out.println("Individual " + individual.getConfort() + ":");
+      IEvent event = new Reproduction(individual);
+      event.HandleEvent();
+
+      System.out.println("Produced Individual " + individual.getConfort() + ":");
+    }
+
+    System.out.println("New population size %d " + population.getPopulation().size());
 
     Simulate simulation = new Simulate(tau);
 
     // Initiate pec
-    List<AEvent> events = population.getEvents();
-    for (AEvent e : events) {
+    List<IEvent> events = population.getEvents();
+    for (IEvent e : events) {
       simulation.AddToPEC(e);
     }
 
