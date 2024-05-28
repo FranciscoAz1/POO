@@ -18,7 +18,7 @@ public class Individual {
   private Map<Patrol, Set<PlanetarySystem>> distribution;
   private Population population;
 
-  private double confort;
+  private double confort = Double.NaN;
 
   // private int id; // Adicionando o campo id
 

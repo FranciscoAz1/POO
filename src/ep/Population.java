@@ -90,9 +90,8 @@ public class Population extends AEmpire implements IPopulation {
   @Override
   public void EpidemicMayOccur() {
     if (this.numIndividuals >= this.MaxPopulationSize) {
-      System.out.println("Epidemic may occur");
+      doEpidemic();
     }
-    doEpidemic();
   }
 
   private void sortPopulation() {
@@ -102,6 +101,9 @@ public class Population extends AEmpire implements IPopulation {
   private void doEpidemic() {
     // Seperate the population to the five best one
     sortPopulation();
+    // for (population p : population) {
+    //
+    // }
 
   }
 }
