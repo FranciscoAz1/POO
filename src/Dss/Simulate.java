@@ -2,6 +2,10 @@ package dss;
 
 import java.util.List;
 
+import ep.Death;
+import ep.Mutation;
+import ep.Reproduction;
+
 public class Simulate implements ISimulate {
   private IPEC pec;
   private double simulationTime;
@@ -19,6 +23,20 @@ public class Simulate implements ISimulate {
   public void AddToPEC(IEvent aEvent) {
     pec.addEvent(aEvent);
   }
+
+  @Override
+  public void setup( List<T> individuals ) {
+    // Add initial events for each individual
+    for (T individual : individuals) {
+      IEvent reproductionEvent = new Reproduction(individual);
+      AddToPEC(reproductionEvent);
+
+      IEvent mutationEvent = new Mutation(individual);
+      AddToPEC(mutationEvent);
+
+      IEvent deathEvent = new Death(individual);
+      AddToPEC(deathEvent);
+    }
 
   @Override
   public void run() {
@@ -40,4 +58,5 @@ public class Simulate implements ISimulate {
       // check for event death or event is successful
     }
   }
+}
 }

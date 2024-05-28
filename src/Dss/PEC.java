@@ -15,17 +15,25 @@ public class PEC implements IPEC {
     if (Event instanceof AEvent) {
       for (IEvent event : ((AEvent) Event).getEvent()) {
         pec.add(event);
+        printPEC(); // to check the current state of PEC
+        System.out.println(" PEC should be empty");
+        
       }
     }
   }
 
   @Override
   public IEvent nextEvent() {
+    printPEC(); // to check the current state of PEC
+    System.out.println("-> PEC next event: " + pec.peek());
     return pec.poll();
   }
 
   @Override
   public boolean isEmpty() {
+       printPEC(); // to check the current state of PEC
+    System.out.println(" PEC should be empty");
+    
     return pec.isEmpty();
   }
 
@@ -33,10 +41,11 @@ public class PEC implements IPEC {
     // Assuming maxTime is the maximum time for which you want to check Event
     for (int instant = 0; instant <= maxTime; instant++) {
       // Use a while loop to process all Event at this particular time
-      while (!pec.isEmpty() && pec.peek().getEventTime() == time) {
+      while (!pec.isEmpty() && pec.peek().getEventTime() == instant) {
         IEvent event = pec.poll();
         // Process the event here
-
+        printPEC(); // to check the current state of PEC
+        System.out.println(" PEC  is ordering events");
       }
     }
   }
@@ -45,6 +54,15 @@ public class PEC implements IPEC {
     if (aIEvent instanceof IEvent) {
       addEvent((IEvent) aIEvent);
     }
+    printPEC(); // to check the current state of PEC
+    System.out.println("Event added to PEC: " + aIEvent);
     return (IEvent) aIEvent;
+  }
+
+  public void printPEC() {
+    System.out.println("Current state of PEC:");
+    for (IEvent event : pec) {
+      System.out.println(event);
+    }
   }
 }
