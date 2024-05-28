@@ -77,6 +77,7 @@ public class Main {
     // }
 
     Simulate simulation = new Simulate(tau);
+
     // Initiate pec
     List<AEvent> events = population.getEvents();
     for (AEvent e : events) {
