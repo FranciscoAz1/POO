@@ -19,6 +19,7 @@ public class Individual {
   private Population population;
 
   private double confort = Double.NaN;
+  private double policingTime = Double.NaN;
 
   // private int id; // Adicionando o campo id
 
@@ -67,16 +68,23 @@ public class Individual {
     return confort;
   }
 
+  public double getPolicingTime() {
+    if (Double.isNaN(this.policingTime)) {
+      calculateConfort();
+    }
+    return this.policingTime;
+  }
+
   public Map<Patrol, Set<PlanetarySystem>> getDistribution() {
     return distribution;
   }
 
   public void calculateConfort() {
+    double total_time = 0;
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
       double timez = 0.0;
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systems = entry.getValue();
-      double timez = 0.0;
 
       for (PlanetarySystem system : systems) {
         double time = patrol.getTimeRequired().getOrDefault(system, -1);
@@ -85,8 +93,10 @@ public class Individual {
         }
         timez += time;
       }
+      total_time += timez;
       this.confort = ep.Confort.tmin / timez;
     }
+    this.policingTime = total_time;
   }
 
   public List<IEvent> createEvents() {
@@ -97,7 +107,8 @@ public class Individual {
     return events;
   }
 
-  //Igual ao de cima, ams apra criar os eventos com um tempo específico----------------
+  // Igual ao de cima, ams apra criar os eventos com um tempo
+  // específico----------------
   public List<IEvent> createEvents(double time) {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this, time));
@@ -109,7 +120,7 @@ public class Individual {
     return createEvents();
   }
 
-  //igual ao de cima, mas com um tempo específico--------------------
+  // igual ao de cima, mas com um tempo específico--------------------
   public List<IEvent> getNewEvents(double time) {
     return createEvents(time);
   }
@@ -149,44 +160,48 @@ public class Individual {
   public void setConfort(double confort) {
     this.confort = confort;
   }
-  
+
   public static boolean equalsByDistribution(Individual individualA, Individual individualB) {
-	  /*
-	   * 
-	   *The first for loop iterates over the patrol distribution of individualA 
-	   *and checks if the patrols and their corresponding systems are equal 
-	   *in both individualA and individualB.
-	   *
-	   *The second for loop iterates over the patrol distribution of individualB 
-	   *and checks if all the patrols present in this individual are also present 
-	   *in the patrol distribution of individualA. 
-	   *
-	   *This ensures that the patrol distribution of individualB does not 
-	   *contain patrols that are not present in the patrol distribution of individualA.
-	   * 
-	   * */
-	  
-	    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualA.distribution.entrySet()) {
-	        Patrol patrol = entry.getKey();
-	        Set<PlanetarySystem> systemsA = entry.getValue();
-	        Set<PlanetarySystem> systemsB = individualB.distribution.getOrDefault(patrol, new HashSet<>());
-	        if (!systemsA.equals(systemsB)) {
-	            //System.out.println("Indivíduos " + individualA + " e " + individualB + " têm distribuições de patrulha diferentes.");
-	            return false;
-	        }
-	    }
+    /*
+     * 
+     * The first for loop iterates over the patrol distribution of individualA
+     * and checks if the patrols and their corresponding systems are equal
+     * in both individualA and individualB.
+     *
+     * The second for loop iterates over the patrol distribution of individualB
+     * and checks if all the patrols present in this individual are also present
+     * in the patrol distribution of individualA.
+     *
+     * This ensures that the patrol distribution of individualB does not
+     * contain patrols that are not present in the patrol distribution of
+     * individualA.
+     * 
+     */
 
-	    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualB.distribution.entrySet()) {
-	        Patrol patrol = entry.getKey();
-	        Set<PlanetarySystem> systemsB = entry.getValue();
-	        Set<PlanetarySystem> systemsA = individualA.distribution.getOrDefault(patrol, new HashSet<>());
-	        if (!systemsB.equals(systemsA)) {
-	            //System.out.println("Indivíduos " + individualA + " e " + individualB + " têm distribuições de patrulha diferentes.");
-	            return false;
-	        }
-	    }
+    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualA.distribution.entrySet()) {
+      Patrol patrol = entry.getKey();
+      Set<PlanetarySystem> systemsA = entry.getValue();
+      Set<PlanetarySystem> systemsB = individualB.distribution.getOrDefault(patrol, new HashSet<>());
+      if (!systemsA.equals(systemsB)) {
+        // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
+        // distribuições de patrulha diferentes.");
+        return false;
+      }
+    }
 
-	    //System.out.println("Indivíduos " + individualA + " e " + individualB + " têm a mesma distribuição de patrulha.");
-	    return true;
-	}
+    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualB.distribution.entrySet()) {
+      Patrol patrol = entry.getKey();
+      Set<PlanetarySystem> systemsB = entry.getValue();
+      Set<PlanetarySystem> systemsA = individualA.distribution.getOrDefault(patrol, new HashSet<>());
+      if (!systemsB.equals(systemsA)) {
+        // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
+        // distribuições de patrulha diferentes.");
+        return false;
+      }
+    }
+
+    // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
+    // a mesma distribuição de patrulha.");
+    return true;
+  }
 }
