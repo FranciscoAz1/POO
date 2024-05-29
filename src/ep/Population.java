@@ -5,16 +5,16 @@ import java.util.List;
 import dss.IEvent;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import pa.AEmpire;
 
 public class Population extends AEmpire implements IPopulation {
 
   private int numIndividuals = 0;
-
   private int MaxPopulationSize;
   private List<Individual> population = new ArrayList<>();
-  private Epidemic epidemic = new Epidemic();
 
   public Population(int[][] matrix, int MaxPopulationSize) {
     super(matrix);
@@ -42,14 +42,14 @@ public class Population extends AEmpire implements IPopulation {
 
   public void setPopulation(List<Individual> population) {
     this.population = population;
-    epidemic.MayOccur(this);
+    EpidemicMayOccur();
   }
 
   public void addIndividual(Individual individual) {
     if (population.add(individual)) {
       this.numIndividuals += 1;
-      epidemic.MayOccur(this);
     }
+    EpidemicMayOccur();
   }
 
   public void removeIndividual(Individual individual) {
@@ -77,6 +77,31 @@ public class Population extends AEmpire implements IPopulation {
         System.out.println(event);
       }
     }
+
+    /*
+     * System.out.println("\nLista ordenada de todos os indivíduos:");
+     * Best_Fitted_Individual.sortPopulation(population);
+     * for (Individual individual : population) {
+     * System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(),
+     * individual);
+     * }
+     * 
+     * System.out.println("\nOs 5 melhores indivíduos:");
+     * List<Individual> best5 = Best_Fitted_Individual.getBest5(population);
+     * for (Individual individual : best5) {
+     * System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(),
+     * individual);
+     * }
+     * // Imprimir o melhor indivíduo rastreado
+     * Individual bestIndividual = Best_Fitted_Individual.getBestIndividual();
+     * if (bestIndividual != null) {
+     * System.out.println("\nMelhor indivíduo rastreado:");
+     * System.out.printf("Conforto: %.2f - %s\n", bestIndividual.getConfort(),
+     * bestIndividual);
+     * } else {
+     * System.out.println("\nNenhum indivíduo rastreado como o melhor.");
+     * }
+     */
   }
 
   public List<IEvent> getEvents() {
@@ -87,15 +112,29 @@ public class Population extends AEmpire implements IPopulation {
     return AllEvents;
   }
 
-  public int getMaxPopulationSize() {
-    return MaxPopulationSize;
+  @Override
+  public void EpidemicMayOccur() {
+    if (this.numIndividuals >= this.MaxPopulationSize) {
+      doEpidemic();
+    }
   }
 
-  public int getNumIndividuals() {
-    return numIndividuals;
+  private void sortPopulation() {
+    Collections.sort(population, Comparator.comparingDouble(Individual::getConfort).reversed());
   }
+
+  <<<<<<<HEAD
 
   public Epidemic getEpidemic() {
     return epidemic;
+  }=======
+
+  private void doEpidemic() {
+    // Seperate the population to the five best one
+    sortPopulation();
+    // for (population p : population) {
+    //
+    // }
+
   }
-}
+}>>>>>>>9938f 6d a6165397af5adb53bac5c496ef4c329c1
