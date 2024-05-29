@@ -19,13 +19,13 @@ public class PEC implements IPEC {
 
   @Override
   public IEvent nextEvent() {
-    System.out.println("-> PEC next event: " + pec.peek());
+    // System.out.println("-> PEC next event: " + pec.peek());
     return pec.poll();
   }
 
   @Override
   public boolean isEmpty() {
-    System.out.println(" PEC should be empty");
+    // System.out.println(" PEC should be empty");
 
     return pec.isEmpty();
   }
@@ -37,7 +37,6 @@ public class PEC implements IPEC {
       while (!pec.isEmpty() && pec.peek().getEventTime() == instant) {
         IEvent event = pec.poll();
         // Process the event here
-        System.out.println(" PEC  is ordering events");
       }
     }
   }
@@ -46,12 +45,12 @@ public class PEC implements IPEC {
     if (aIEvent instanceof IEvent) {
       addEvent((IEvent) aIEvent);
     }
-    System.out.println("Event added to PEC: " + aIEvent);
+    // System.out.println("Event added to PEC: " + aIEvent);
     return (IEvent) aIEvent;
   }
 
   public void printPEC() {
-    System.out.println("Current state of PEC:");
+    // System.out.println("Current state of PEC:");
     for (IEvent event : pec) {
       System.out.println(event);
     }

@@ -75,7 +75,7 @@ public class Main {
 
     System.out.println("New population size %d " + population.getPopulation().size());
 
-    Simulate simulation = new Simulate(tau);
+    Simulate simulation = new Simulate(tau, population);
 
     // Initiate pec
     List<IEvent> events = population.getEvents();

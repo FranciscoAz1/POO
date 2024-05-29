@@ -2,10 +2,8 @@ package dss;
 
 import java.util.List;
 
-import ep.Death;
-import ep.Iindividual;
-import ep.Mutation;
-import ep.Reproduction;
+import ep.Observation;
+import ep.Population;
 
 public class Simulate implements ISimulate {
   private IPEC pec;
@@ -14,10 +12,16 @@ public class Simulate implements ISimulate {
   private double currentTime;
   public IEvent unnamed_IEvent_;
 
-  public Simulate(double simulationTime) {
+  public Simulate(double simulationTime, Population population) {
     this.simulationTime = simulationTime;
     this.currentTime = 0;
     this.pec = new PEC();
+
+    // Schedule the 20 initial observation events
+    for (int i = 1; i <= 20; i++) {
+      double observationTime = i * this.simulationTime / 20;
+      AddToPEC(new Observation(observationTime, this.simulationTime, population));
+    }
   }
 
   @Override

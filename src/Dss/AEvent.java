@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AEvent implements IEvent {
-  private double eventTime;
+  protected double eventTime;
   private List<IEvent> listEvent;
   protected List<IEvent> newEvent = new ArrayList<>();
 

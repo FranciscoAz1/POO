@@ -94,4 +94,8 @@ public class Population extends AEmpire implements IPopulation {
   public int getNumIndividuals() {
     return numIndividuals;
   }
+
+  public Epidemic getEpidemic() {
+    return epidemic;
+  }
 }

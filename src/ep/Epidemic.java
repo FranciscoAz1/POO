@@ -13,6 +13,11 @@ public class Epidemic {
     this.counter = 0;
   }
 
+  public int getCounter() {
+
+    return counter;
+  }
+
   public void MayOccur(Population pop) {
     if (pop.getNumIndividuals() >= pop.getMaxPopulationSize()) {
       doEpidemic(pop);
@@ -21,7 +26,7 @@ public class Epidemic {
   }
 
   private void doEpidemic(Population pop) {
-    List<Individual> individuals = Best_Fitted_Individual.getOrdered(pop.getPopulation());
+    List<Individual> individuals = Best_Fitted_Individual.getSorted((pop.getPopulation()));
     if (individuals.size() < 5) {
       return;
     }

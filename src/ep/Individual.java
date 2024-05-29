@@ -19,6 +19,7 @@ public class Individual {
   private Population population;
 
   private double confort = Double.NaN;
+  private double policingTime = Double.NaN;
 
   // private int id; // Adicionando o campo id
 
@@ -67,15 +68,45 @@ public class Individual {
     return confort;
   }
 
+  public double getPolicingTime() {
+    if (Double.isNaN(this.policingTime)) {
+      calculateConfort();
+    }
+    return policingTime;
+  }
+
   public Map<Patrol, Set<PlanetarySystem>> getDistribution() {
     return distribution;
   }
 
-  public void calculateConfort() {
+  public String toString() {
+    StringBuilder result = new StringBuilder();
+
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systems = entry.getValue();
-      double timez = 0.0;
+
+      result.append(" ");
+      result.append("P").append(patrol.getId()).append(":");
+      for (PlanetarySystem system : systems) {
+        int days = patrol.getTimeRequired().getOrDefault(system, -1);
+        if (days == -1) {
+          result.append("[ p").append(system.getId()).append(" n]");
+        } else {
+          result.append("[ p").append(system.getId()).append(" ").append(days).append("]");
+        }
+      }
+      result.append("\n");
+    }
+
+    return result.toString();
+  }
+
+  public void calculateConfort() {
+    double timez = 0.0;
+    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
+      Patrol patrol = entry.getKey();
+      Set<PlanetarySystem> systems = entry.getValue();
 
       for (PlanetarySystem system : systems) {
         double time = patrol.getTimeRequired().getOrDefault(system, -1);
@@ -84,6 +115,7 @@ public class Individual {
         }
         timez += time;
       }
+      this.policingTime = timez;
       this.confort = ep.Confort.tmin / timez;
     }
   }
@@ -96,7 +128,8 @@ public class Individual {
     return events;
   }
 
-  //Igual ao de cima, ams apra criar os eventos com um tempo específico----------------
+  // Igual ao de cima, ams apra criar os eventos com um tempo
+  // específico----------------
   public List<IEvent> createEvents(double time) {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this, time));
@@ -108,7 +141,7 @@ public class Individual {
     return createEvents();
   }
 
-  //igual ao de cima, mas com um tempo específico--------------------
+  // igual ao de cima, mas com um tempo específico--------------------
   public List<IEvent> getNewEvents(double time) {
     return createEvents(time);
   }
@@ -138,6 +171,10 @@ public class Individual {
       }
       System.out.println();
     }
+  }
+
+  public void printConfort() {
+    System.out.println("Confort: " + confort);
   }
 
   public void setDistribution(Map<Patrol, Set<PlanetarySystem>> distribution) {
