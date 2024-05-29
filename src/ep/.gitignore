@@ -13,3 +13,7 @@
 /Mutation.class
 /Observation.class
 /Reproduction.class
+/Epidemic.class
+/Ideath.class
+/Imutation.class
+/Ireproduction.class

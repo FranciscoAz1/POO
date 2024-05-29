@@ -208,32 +208,9 @@ public class Individual {
     // a mesma distribuição de patrulha.");
     return true;
   }
-
-  @Override
-  public String toString() {
-    StringBuilder output = new StringBuilder();
-    output.append("{");
-    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
-      Patrol patrol = entry.getKey();
-      Set<PlanetarySystem> systems = entry.getValue();
-      output.append("{");
-      for (PlanetarySystem system : systems) {
-        output.append( + system.getId());
-        if (system != systems) {
-          output.append(",");
-        }
-      }
-      output.replace(output.length() - 1, output.length(),"},");
-    }
-    output.replace(output.length() - 1, output.length(),"}");
-    if (output.length() == 0) {
-      throw new NullPointerException("Leitura de indivíduo falhou");
-    }
-    return output.toString();
-  }
-
   
-  private Death deathEvent;
+  private Death deathEvent; // Field to store the death event associated with this individual, allowing tracking and access to specific death-related information.
+
 
   public void setDeathEvent(Death deathEvent) {
 	    this.deathEvent = deathEvent;

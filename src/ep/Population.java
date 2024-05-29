@@ -49,7 +49,7 @@ public class Population extends AEmpire implements IPopulation {
 
   public void addIndividual(Individual individual) {
 	    int attempts = 0;
-	    int maxAttempts=10;
+	    int maxAttempts=10; //number of times we try to avoid duplicates 
 	    while (attempts < maxAttempts) {
 	        boolean isDuplicate = false;
 	        for (Individual existingIndividual : population) {
@@ -69,10 +69,11 @@ public class Population extends AEmpire implements IPopulation {
 	            attempts++;
 	        }
 	    }
-	    System.out.println("Exceeded maximum attempts to add individual, adding a duplicate.");
+	    //System.out.println("Exceeded maximum attempts to add individual, adding a duplicate.");
+	    /*
 	    population.add(individual);
 	    this.numIndividuals += 1;
-	    epidemic.MayOccur(this);
+	    epidemic.MayOccur(this);*/
 	}
 
 
@@ -148,5 +149,4 @@ public class Population extends AEmpire implements IPopulation {
   public Epidemic getEpidemic() {
     return epidemic;
   }
-  
 }
