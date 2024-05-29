@@ -2,6 +2,7 @@ package dss;
 
 import java.util.List;
 
+import ep.Best_Fitted_Individual;
 import ep.Observation;
 import ep.Population;
 
@@ -21,6 +22,9 @@ public class Simulate implements ISimulate {
     for (int i = 1; i <= 20; i++) {
       double observationTime = i * this.simulationTime / 20;
       AddToPEC(new Observation(observationTime, this.simulationTime, population, i));
+    }
+    if (checkSimulationStateBegginning(population)) {
+      System.out.println("Solution Found");
     }
   }
 
@@ -45,13 +49,26 @@ public class Simulate implements ISimulate {
       if (currentTime > simulationTime) {
         break;
       }
+      if (isSolutionFound(currentEvent)) {
+        break;
+      }
       // check for event death or event is successful
     }
   }
 
-  private boolean checkSimulationState(Population population) { // iterate
+  private boolean isSolutionFound(IEvent event) {
+    if (event instanceof Observation) {
+      if (Best_Fitted_Individual.getBestIndividual().getConfort() == 1) {
+        System.out.println("Solution Found");
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private boolean checkSimulationStateBegginning(Population population) { // iterate
     // throuth individuals in population, cheking if any has confort 1
-    for (Individual individual : population.getPopulation()) {
+    for (var individual : population.getPopulation()) {
       if (individual.getConfort() == 1) {
         return true;
       }
