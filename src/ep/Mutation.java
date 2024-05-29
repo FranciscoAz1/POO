@@ -26,7 +26,7 @@ public class Mutation extends AEvent {
   }
 
   public Mutation(Individual individual, double time) {
-    super(time +myMath.mutationRate(individual.getConfort()));
+    super(time + myMath.mutationRate(individual.getConfort()));
     this.individual = individual;
   }
 
@@ -35,10 +35,10 @@ public class Mutation extends AEvent {
     if (individual == null) {
       return false;
     }
-    // check death
-    if (individual.getPopulation().getPopulation().contains(individual)) {
-      return false;
-    }
+    // // check death
+    // if (individual.getPopulation().getPopulation().contains(individual)) {
+    // return false;
+    // }
     distribution = individual.getDistribution();
     // Check if the distribution is not empty and has more than one patrol
     if (distribution == null || distribution.isEmpty()) {
@@ -96,7 +96,6 @@ public class Mutation extends AEvent {
     Mutation newMutationEvent = new Mutation(individual, newEventTime);
     this.addEvent(newMutationEvent);
 
-    
     return true;
   }
 

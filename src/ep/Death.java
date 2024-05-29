@@ -11,23 +11,22 @@ public class Death extends AEvent {
   public Individual getIndividual() {
     return individual;
   }
-  
-  public Death(Individual individual) {
-      super(myMath.deathRate(individual.getConfort()));
-      this.individual = individual;
-      this.individual.setDeathEvent(this); // Associando o evento de morte ao indivíduo
-  }
 
+  public Death(Individual individual) {
+    super(myMath.deathRate(individual.getConfort()));
+    this.individual = individual;
+    this.individual.setDeathEvent(this); // Associando o evento de morte ao indivíduo
+  }
 
   @Override
   public boolean HandleEvent() {
     // check death of individual
-    if (individual == null) {
-      return false;
-    }
-    if (individual.getPopulation().getPopulation().contains(individual)) {
-      return false;
-    }
+    // if (individual == null) {
+    // return false;
+    // }
+    // if (individual.getPopulation().getPopulation().contains(individual)) {
+    // return false;
+    // }
     Population pop = individual.getPopulation();
     pop.removeIndividual(individual);
     return true;
