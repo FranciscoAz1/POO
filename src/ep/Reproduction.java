@@ -85,7 +85,15 @@ public class Reproduction extends AEvent implements Ireproduction {
     Population pop = individual.getPopulation();
     pop.addIndividual(newIndividual);
 
-    addEvents(newIndividual.getEvents());
+    // add events to the new individual, with the time of the parent individual
+    double currentTime = getEventTime();
+    addEvents(newIndividual.getNewEvents(currentTime));
+
+    
+    // Agendar um novo evento de reprodução para o mesmo indivíduo
+    double newEventTime = getEventTime() + myMath.reproductionRate(individual.getConfort());
+    Reproduction newReproductionEvent = new Reproduction(individual, newEventTime);
+    this.addEvent(newReproductionEvent);
 
     return true;
   }

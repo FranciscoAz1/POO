@@ -25,6 +25,11 @@ public class Mutation extends AEvent {
     this.individual = individual;
   }
 
+  public Mutation(Individual individual, double time) {
+    super(time +myMath.mutationRate(individual.getConfort()));
+    this.individual = individual;
+  }
+
   @Override
   public boolean HandleEvent() {
     if (individual == null) {
@@ -85,6 +90,13 @@ public class Mutation extends AEvent {
     // Patrol
     distribution.computeIfAbsent(destinationPatrol, k -> new HashSet<>()).add(systemToMove);
     individual.setDistribution(distribution);
+
+    // Agendar um novo evento de reprodução para o mesmo indivíduo
+    double newEventTime = getEventTime() + myMath.mutationRate(individual.getConfort());
+    Mutation newMutationEvent = new Mutation(individual, newEventTime);
+    this.addEvent(newMutationEvent);
+
+    
     return true;
   }
 

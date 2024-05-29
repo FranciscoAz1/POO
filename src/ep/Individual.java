@@ -96,9 +96,23 @@ public class Individual {
     return events;
   }
 
+  //Igual ao de cima, ams apra criar os eventos com um tempo específico----------------
+  public List<IEvent> createEvents(double time) {
+    List<IEvent> events = new ArrayList<>();
+    events.add(new Reproduction(this, time));
+    events.add(new Mutation(this, time));
+    return events;
+  }
+
   public List<IEvent> getEvents() {
     return createEvents();
   }
+
+  //igual ao de cima, mas com um tempo específico--------------------
+  public List<IEvent> getNewEvents(double time) {
+    return createEvents(time);
+  }
+
   /*
    * // Método para obter o ID do indivíduo
    * public int getId() {
