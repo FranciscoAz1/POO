@@ -1,6 +1,12 @@
 package dss;
 
+import java.util.List;
+import java.util.ArrayList;
+
+
 import java.util.PriorityQueue;
+import ep.Death;
+import ep.Individual;
 
 public class PEC implements IPEC {
   private int maxTime;
@@ -12,10 +18,17 @@ public class PEC implements IPEC {
 
   @Override
   public void addEvent(IEvent event) {
-    if (event instanceof IEvent) {
       pec.add(event);
-    }
+      if (event instanceof Death) {
+          Death deathEvent = (Death) event;
+          Individual individual = deathEvent.getIndividual();
+          double deathTime = deathEvent.getEventTime();
+          //System.out.println("Morte detectada para o indivíduo " + individual + " no tempo " + deathTime);
+          List<IEvent> eventList = new ArrayList<>(pec);
+          individual.removeEventsAfterDeath(eventList);
+      }
   }
+
 
   @Override
   public IEvent nextEvent() {
