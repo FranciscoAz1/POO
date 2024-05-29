@@ -17,17 +17,15 @@ public class PEC implements IPEC {
 
   @Override
   public void addEvent(IEvent event) {
-    pec.add(event);
-    // check if is death, if yes, remove other individuals
-    if (event instanceof Death) {
-      Death deathEvent = (Death) event;
-      Individual individual = deathEvent.getIndividual();
-      double deathTime = deathEvent.getEventTime();
-      // System.out.println("Morte detectada para o indivíduo " + individual + " no
-      // tempo " + deathTime);
-      List<IEvent> eventList = new ArrayList<>(pec);
-      individual.removeEventsAfterDeath(eventList);
-    }
+      pec.add(event);
+      if (event instanceof Death) { 
+          Death deathEvent = (Death) event;
+          Individual individual = deathEvent.getIndividual(); //Gets the Individual asscociated with this death
+          double deathTime = deathEvent.getEventTime();
+          //System.out.println("Morte detectada para o indivíduo " + individual + " no tempo " + deathTime);
+          List<IEvent> eventList = new ArrayList<>(pec); //Lists the events of this individual 
+          individual.removeEventsAfterDeath(eventList);
+      }
   }
 
   @Override

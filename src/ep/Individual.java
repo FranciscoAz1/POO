@@ -207,8 +207,9 @@ public class Individual {
     // a mesma distribuição de patrulha.");
     return true;
   }
+  
+  private Death deathEvent; // Field to store the death event associated with this individual, allowing tracking and access to specific death-related information.
 
-  private Death deathEvent;
 
   public void setDeathEvent(Death deathEvent) {
     this.deathEvent = deathEvent;
