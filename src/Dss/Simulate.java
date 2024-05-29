@@ -48,6 +48,11 @@ public class Simulate implements ISimulate {
       if (currentTime > simulationTime) {
         break;
       }
+      if (currentEvent instanceof Observation) {
+        if (!currentEvent.UpdateSimulation()) {
+          break;
+        }
+      }
       // if (isSolutionFound(currentEvent)) {
       // break;
       // }

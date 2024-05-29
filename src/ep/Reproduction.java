@@ -93,7 +93,7 @@ public class Reproduction extends AEvent implements Ireproduction {
     double newEventTime = getEventTime() + myMath.reproductionRate(individual.getConfort());
     Reproduction newReproductionEvent = new Reproduction(individual, newEventTime);
     this.addEvent(newReproductionEvent);
-
+    pop.countEvent();
     return true;
   }
 

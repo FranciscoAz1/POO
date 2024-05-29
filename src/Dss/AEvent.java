@@ -29,7 +29,8 @@ public abstract class AEvent implements IEvent {
   }
 
   @Override
-  public void UpdateSimulation() {
+  public boolean UpdateSimulation() {
+    return true;
     // Implement logic for updating the simulation
   }
 

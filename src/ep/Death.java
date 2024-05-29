@@ -29,6 +29,7 @@ public class Death extends AEvent {
     // }
     Population pop = individual.getPopulation();
     pop.removeIndividual(individual);
+    pop.countEvent();
     return true;
   }
 

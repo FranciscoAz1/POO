@@ -90,6 +90,7 @@ public class Mutation extends AEvent {
     // Patrol
     distribution.computeIfAbsent(destinationPatrol, k -> new HashSet<>()).add(systemToMove);
     individual.setDistribution(distribution);
+    individual.getPopulation().countEvent();
 
     // Agendar um novo evento de reprodução para o mesmo indivíduo
     double newEventTime = getEventTime() + myMath.mutationRate(individual.getConfort());

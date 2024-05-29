@@ -84,6 +84,7 @@ public class Population extends AEmpire implements IPopulation {
      * this.numIndividuals += 1;
      * epidemic.MayOccur(this);
      */
+    epidemic.MayOccur(this);
   }
 
   public void removeIndividual(Individual individual) {
