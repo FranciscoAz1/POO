@@ -22,7 +22,7 @@ public class Best_Fitted_Individual {
         return sortedPopulation;
     }
 
-    // Method to find the individual with the best confort value
+    // Method to find the individual with the best confort value 
     public static Individual getBestIndividual() {
         return bestIndividual;
     }
