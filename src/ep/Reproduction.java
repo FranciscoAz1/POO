@@ -31,6 +31,11 @@ public class Reproduction extends AEvent implements Ireproduction {
     this.individual = individual;
   }
 
+  public Reproduction(Individual individual, double time) {
+    super(time + myMath.reproductionRate(individual.getConfort()));
+    this.individual = individual;
+  }
+
   @Override
   public boolean HandleEvent() {
     // check death of individual

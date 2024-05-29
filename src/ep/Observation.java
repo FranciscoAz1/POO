@@ -1,31 +1,38 @@
 package ep;
 
+import java.util.List;
 import java.util.Vector;
 
-public class Observation implements IObservation {
+import dss.AEvent;
+
+public class Observation extends AEvent implements IObservation {
   private int _counter = 0;
   private int _finalInstante;
   private int _actualTime;
-  public Population _population;
-  public Vector<Best_Fitted_Individual> _unnamed_Best_Fitted_Individual_ = new Vector<Best_Fitted_Individual>();
+  private Population _population;
 
   public Observation() {
+    super();
     throw new UnsupportedOperationException();
   }
 
-  public void HandleEvents() {
-    throw new UnsupportedOperationException();
-  }
-
-  public void CallToObservation() {
-    throw new UnsupportedOperationException();
-  }
-
+  @Override
   public void NewEvent() {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException("Unimplemented method 'NewEvent'");
   }
 
+  @Override
   public void UpdateSimulation() {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException("Unimplemented method 'UpdateSimulation'");
+  }
+
+  @Override
+  public boolean HandleEvent() {
+    throw new UnsupportedOperationException("Unimplemented method 'HandleEvent'");
+  }
+
+  @Override
+  public double getEventTime() {
+    throw new UnsupportedOperationException("Unimplemented method 'getEventTime'");
   }
 }
