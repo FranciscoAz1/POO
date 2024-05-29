@@ -3,6 +3,16 @@ package dss;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The AEvent class is an abstract class that implements the IEvent interface.
+ * It provides common functionality for event objects in a simulation.
+ * 
+ * 
+ * Note: This class assumes the existence of the IEvent interface
+ * Implementations of the IEvent interface are not provided here
+ * 
+ */
+
 public abstract class AEvent implements IEvent {
   private double eventTime;
   private List<IEvent> listEvent;
