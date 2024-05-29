@@ -124,4 +124,5 @@ public class Population extends AEmpire implements IPopulation {
   public Epidemic getEpidemic() {
     return epidemic;
   }
+  
 }

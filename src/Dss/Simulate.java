@@ -20,7 +20,7 @@ public class Simulate implements ISimulate {
     // Schedule the 20 initial observation events
     for (int i = 1; i <= 20; i++) {
       double observationTime = i * this.simulationTime / 20;
-      AddToPEC(new Observation(observationTime, this.simulationTime, population));
+      AddToPEC(new Observation(observationTime, this.simulationTime, population, i));
     }
   }
 
@@ -49,8 +49,14 @@ public class Simulate implements ISimulate {
     }
   }
 
-  // private boolean checkSimulationState(Population population) { // iterate
-  // throuth individuals in population, cheking if any has confort 1
-  //
-  // }
+  private boolean checkSimulationState(Population population) { // iterate
+    // throuth individuals in population, cheking if any has confort 1
+    for (Individual individual : population.getPopulation()) {
+      if (individual.getConfort() == 1) {
+        return true;
+      }
+    }
+    return false;
+
+  }
 }
