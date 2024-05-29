@@ -84,7 +84,6 @@ public class Main {
     }
     // simulation.getPec().printPEC();
     simulation.run();
-
     System.out.println("It is Done!");
   }
 

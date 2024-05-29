@@ -26,8 +26,8 @@ public class Args {
   private static final int DEFAULT_N = 3;
   private static final int DEFAULT_M = 6;
   private static final double DEFAULT_TAU = 10.0;
-  private static final int DEFAULT_NU = 10;
-  private static final int DEFAULT_NUMAX = 100;
+  private static final int DEFAULT_NU = 9;
+  private static final int DEFAULT_NUMAX = 10;
   private static final double DEFAULT_MU = 10.0;
   private static final double DEFAULT_RHO = 1.0;
   private static final double DEFAULT_DELTA = 1.0;

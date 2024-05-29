@@ -15,4 +15,8 @@ public class Best_Fitted_Individual {
   public static List<Individual> getBest5(List<Individual> population) {
     return population.stream().limit(5).collect(Collectors.toList());
   }
+
+  public static List<Individual> getOrdered(List<Individual> population) {
+    return population.stream().collect(Collectors.toList());
+  }
 }

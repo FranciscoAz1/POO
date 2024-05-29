@@ -33,13 +33,14 @@ public abstract class AEvent implements IEvent {
     listEvent.add(event);
   }
 
-  public void addEvents(List<IEvent> events) {
-    listEvent.addAll(events);
-  }
-
   @Override
   public List<IEvent> getEvents() {
     return listEvent;
+  }
+
+  @Override
+  public void addEvents(List<IEvent> events) {
+    listEvent.addAll(events);
   }
 
   @Override

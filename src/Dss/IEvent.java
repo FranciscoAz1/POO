@@ -10,6 +10,8 @@ public interface IEvent {
 
   public boolean HandleEvent();
 
+  public void addEvents(List<IEvent> events);
+
   public void addEvent(IEvent event);
 
   public List<IEvent> getEvents();
