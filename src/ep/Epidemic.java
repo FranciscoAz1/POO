@@ -1,10 +1,6 @@
 package ep;
 
-import ep.Death;
-
 import java.util.List;
-
-import dss.AEvent;
 
 public class Epidemic {
   private int counter;
@@ -35,7 +31,7 @@ public class Epidemic {
       // Kill with randomness
       double randomNumber = Math.random();
       double individualScore = randomNumber * individual.getConfort();
-      if (individualScore > 2 / 3) {
+      if (individualScore < (2.0 / 3.0)) {
         Death death = new Death(individual);
         death.HandleEvent();
       }

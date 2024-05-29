@@ -15,6 +15,7 @@ public class Population extends AEmpire implements IPopulation {
   private int numIndividuals = 0;
   private int MaxPopulationSize;
   private List<Individual> population = new ArrayList<>();
+  private Epidemic epidemic = new Epidemic();
 
   public Population(int[][] matrix, int MaxPopulationSize) {
     super(matrix);
@@ -42,14 +43,14 @@ public class Population extends AEmpire implements IPopulation {
 
   public void setPopulation(List<Individual> population) {
     this.population = population;
-    EpidemicMayOccur();
+    epidemic.MayOccur(this);
   }
 
   public void addIndividual(Individual individual) {
     if (population.add(individual)) {
       this.numIndividuals += 1;
     }
-    EpidemicMayOccur();
+    epidemic.MayOccur(this);
   }
 
   public void removeIndividual(Individual individual) {
@@ -112,29 +113,15 @@ public class Population extends AEmpire implements IPopulation {
     return AllEvents;
   }
 
-  @Override
-  public void EpidemicMayOccur() {
-    if (this.numIndividuals >= this.MaxPopulationSize) {
-      doEpidemic();
-    }
+  public int getNumIndividuals() {
+    return numIndividuals;
   }
 
-  private void sortPopulation() {
-    Collections.sort(population, Comparator.comparingDouble(Individual::getConfort).reversed());
+  public int getMaxPopulationSize() {
+    return MaxPopulationSize;
   }
-
-  <<<<<<<HEAD
 
   public Epidemic getEpidemic() {
     return epidemic;
-  }=======
-
-  private void doEpidemic() {
-    // Seperate the population to the five best one
-    sortPopulation();
-    // for (population p : population) {
-    //
-    // }
-
   }
-}>>>>>>>9938f 6d a6165397af5adb53bac5c496ef4c329c1
+}
