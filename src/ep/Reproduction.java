@@ -22,9 +22,6 @@ public class Reproduction extends AEvent implements Ireproduction {
   private Individual individual;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
-  public Individual getIndividual() {
-    return individual;
-  }
 
   public Reproduction(Individual individual) {
     super(myMath.reproductionRate(individual.getConfort()));
@@ -36,6 +33,9 @@ public class Reproduction extends AEvent implements Ireproduction {
     this.individual = individual;
   }
 
+  public Individual getIndividual() {
+    return individual;
+  }
   @Override
   public boolean HandleEvent() {
     // check death of individual
