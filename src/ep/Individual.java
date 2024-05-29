@@ -103,8 +103,8 @@ public class Individual {
   }
 
   public void calculateConfort() {
-    double timez = 0.0;
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
+      double timez = 0.0;
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systems = entry.getValue();
 

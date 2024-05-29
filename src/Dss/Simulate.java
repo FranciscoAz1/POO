@@ -41,7 +41,6 @@ public class Simulate implements ISimulate {
       for (IEvent e : events) {
         pec.addEvent(e);
       }
-
       currentTime = currentEvent.getEventTime();
       if (currentTime > simulationTime) {
         break;
@@ -49,4 +48,9 @@ public class Simulate implements ISimulate {
       // check for event death or event is successful
     }
   }
+
+  // private boolean checkSimulationState(Population population) { // iterate
+  // throuth individuals in population, cheking if any has confort 1
+  //
+  // }
 }
