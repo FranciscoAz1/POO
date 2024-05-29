@@ -11,11 +11,13 @@ public class Death extends AEvent {
   public Individual getIndividual() {
     return individual;
   }
-
+  
   public Death(Individual individual) {
-    super(myMath.deathRate(individual.getConfort()));
-    this.individual = individual;
+      super(myMath.deathRate(individual.getConfort()));
+      this.individual = individual;
+      this.individual.setDeathEvent(this); // Associando o evento de morte ao indivíduo
   }
+
 
   @Override
   public boolean HandleEvent() {
