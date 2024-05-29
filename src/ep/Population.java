@@ -3,6 +3,7 @@ package ep;
 import java.util.List;
 
 import dss.IEvent;
+import ep.Individual;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,11 +48,34 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   public void addIndividual(Individual individual) {
-    if (population.add(individual)) {
-      this.numIndividuals += 1;
-    }
-    epidemic.MayOccur(this);
-  }
+	    int attempts = 0;
+	    int maxAttempts=10;
+	    while (attempts < maxAttempts) {
+	        boolean isDuplicate = false;
+	        for (Individual existingIndividual : population) {
+	            if (Individual.equalsByDistribution(individual, existingIndividual)) {
+	                isDuplicate = true;
+	                break;
+	            }
+	        }
+	        if (!isDuplicate) {
+	            if (population.add(individual)) {
+	                this.numIndividuals += 1;
+	                epidemic.MayOccur(this);
+	            }
+	            return;
+	        } else {
+	            individual = new Individual(this, patrols, planetarySystems);
+	            attempts++;
+	        }
+	    }
+	    System.out.println("Exceeded maximum attempts to add individual, adding a duplicate.");
+	    population.add(individual);
+	    this.numIndividuals += 1;
+	    epidemic.MayOccur(this);
+	}
+
+
 
   public void removeIndividual(Individual individual) {
     if (this.population.remove(individual)) {

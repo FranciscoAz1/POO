@@ -1,5 +1,9 @@
 package ep;
 
+import java.util.List;
+import java.util.ArrayList;
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -227,5 +231,31 @@ public class Individual {
     }
     return output.toString();
   }
+
+  
+  private Death deathEvent;
+
+  public void setDeathEvent(Death deathEvent) {
+	    this.deathEvent = deathEvent;
+	}
+
+
+  public Death getDeathEvent() {
+      return deathEvent;
+  }
+  public void removeEventsAfterDeath(List<IEvent> pec) {
+	    if (deathEvent != null) {
+	        double deathTime = deathEvent.getEventTime();
+	        //System.out.println("\n \nPara o indivíduo " + this + " com morte em " + deathTime + ", foram apagados os seguintes eventos:");
+	        pec.removeIf(event -> {
+	            boolean removed = event.getEventTime() > deathTime && !(event instanceof Observation);
+	            if (removed) {
+	               // System.out.println("Evento removido: " + event + " - Tempo: " + event.getEventTime());
+	            }
+	            return removed;
+	        });
+	    }
+	}
+
 
 }
