@@ -6,32 +6,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Best_Fitted_Individual {
-  private static Individual bestIndividual;
+    private static Individual bestIndividual;
 
-  // Método para classificar a população de acordo com o conforto dos indivíduos
-  public static void sortPopulation(List<Individual> population) {
-    Collections.sort(population, Comparator.comparingDouble(Individual::getConfort).reversed());
+    // Method to sort population by confort value and return the sorted list
+    public static List<Individual> sortPopulation(List<Individual> population) {
+        List<Individual> sortedPopulation = population.stream()
+                .sorted(Comparator.comparingDouble(Individual::getConfort).reversed())
+                .collect(Collectors.toList());
 
-    // Verificar se o melhor indivíduo mudou e atualizar, se necessário
-    if (!population.isEmpty()
-        && (bestIndividual == null || population.get(0).getConfort() > bestIndividual.getConfort())) {
-      bestIndividual = population.get(0);
+        // Find the best individual ever and check if he has changed
+        if (!sortedPopulation.isEmpty() && (bestIndividual == null || sortedPopulation.get(0).getConfort() > bestIndividual.getConfort())) {
+            bestIndividual = sortedPopulation.get(0);
+        }
+
+        return sortedPopulation;
     }
-  }
 
-  // Método para obter o melhor indivíduo
-  public static Individual getBestIndividual() {
-    return bestIndividual;
-  }
+    // Method to find the individual with the best confort value
+    public static Individual getBestIndividual() {
+        return bestIndividual;
+    }
 
-  // Método para obter os 5 melhores indivíduos
-  public static List<Individual> getBest5(List<Individual> population) {
-    sortPopulation(population);
-    return population.stream().limit(5).collect(Collectors.toList());
-  }
-
-  public static List<Individual> getSorted(List<Individual> population) {
-    sortPopulation(population);
-    return population.stream().collect(Collectors.toList());
-  }
+    // Method to get the 5 best individuals
+    public static List<Individual> getBest5(List<Individual> population) {
+        List<Individual> sortedPopulation = sortPopulation(population);
+        return sortedPopulation.stream().limit(5).collect(Collectors.toList());
+    }
 }
