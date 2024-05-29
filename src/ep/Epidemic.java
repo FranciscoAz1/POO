@@ -22,7 +22,7 @@ public class Epidemic {
   }
 
   private void doEpidemic(Population pop) {
-    List<Individual> individuals = Best_Fitted_Individual.sortPopulation((pop.getPopulation()));
+    List<Individual> individuals = pop.getBestIndividual().getSorted(pop.getPopulation());
     if (individuals.size() < 5) {
       return;
     }

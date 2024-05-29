@@ -3,26 +3,23 @@ package ep;
 import java.util.List;
 
 import dss.IEvent;
-import ep.Individual;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import pa.AEmpire;
 
 public class Population extends AEmpire implements IPopulation {
 
   private int numIndividuals = 0;
+  private int eventsPerformed = 0;
   private int MaxPopulationSize;
   private List<Individual> population = new ArrayList<>();
   private Epidemic epidemic = new Epidemic();
+  private Best_Fitted_Individual bestIndividual = new Best_Fitted_Individual();
 
   public Population(int[][] matrix, int MaxPopulationSize) {
     super(matrix);
     this.MaxPopulationSize = MaxPopulationSize;
-    Best_Fitted_Individual.sortPopulation(population);
-
   }
 
   public Population(int[][] matrix, int MaxPopulationSize, int numIndividuals) {
@@ -30,7 +27,6 @@ public class Population extends AEmpire implements IPopulation {
     this.MaxPopulationSize = MaxPopulationSize;
     this.numIndividuals = numIndividuals;
     createInitialPopulation(numIndividuals);
-    Best_Fitted_Individual.sortPopulation(population);
   }
 
   public void createInitialPopulation(int numIndividuals) {
@@ -38,6 +34,7 @@ public class Population extends AEmpire implements IPopulation {
     for (int i = 0; i < numIndividuals; i++) {
       addIndividual(new Individual(this, patrols, planetarySystems));
     }
+    population = bestIndividual.getSorted(population);
   }
 
   // Método para retornar a lista de indivíduos
@@ -50,36 +47,44 @@ public class Population extends AEmpire implements IPopulation {
     epidemic.MayOccur(this);
   }
 
+  public void countEvent() {
+    this.eventsPerformed++;
+  }
+
+  public int getNumEvents() {
+    return eventsPerformed;
+  }
+
   public void addIndividual(Individual individual) {
-	    int attempts = 0;
-	    int maxAttempts=10; //number of times we try to avoid duplicates 
-	    while (attempts < maxAttempts) {
-	        boolean isDuplicate = false;
-	        for (Individual existingIndividual : population) {
-	            if (Individual.equalsByDistribution(individual, existingIndividual)) {
-	                isDuplicate = true;
-	                break;
-	            }
-	        }
-	        if (!isDuplicate) {
-	            if (population.add(individual)) {
-	                this.numIndividuals += 1;
-	                epidemic.MayOccur(this);
-	            }
-	            return;
-	        } else {
-	            individual = new Individual(this, patrols, planetarySystems);
-	            attempts++;
-	        }
-	    }
-	    //System.out.println("Exceeded maximum attempts to add individual, adding a duplicate.");
-	    /*
-	    population.add(individual);
-	    this.numIndividuals += 1;
-	    epidemic.MayOccur(this);*/
-	}
-
-
+    int attempts = 0;
+    int maxAttempts = 10; // number of times we try to avoid duplicates
+    while (attempts < maxAttempts) {
+      boolean isDuplicate = false;
+      for (Individual existingIndividual : population) {
+        if (Individual.equalsByDistribution(individual, existingIndividual)) {
+          isDuplicate = true;
+          break;
+        }
+      }
+      if (!isDuplicate) {
+        if (population.add(individual)) {
+          this.numIndividuals += 1;
+          epidemic.MayOccur(this);
+        }
+        return;
+      } else {
+        individual = new Individual(this, patrols, planetarySystems);
+        attempts++;
+      }
+    }
+    // System.out.println("Exceeded maximum attempts to add individual, adding a
+    // duplicate.");
+    /*
+     * population.add(individual);
+     * this.numIndividuals += 1;
+     * epidemic.MayOccur(this);
+     */
+  }
 
   public void removeIndividual(Individual individual) {
     if (this.population.remove(individual)) {
@@ -151,5 +156,9 @@ public class Population extends AEmpire implements IPopulation {
 
   public Epidemic getEpidemic() {
     return epidemic;
+  }
+
+  public Best_Fitted_Individual getBestIndividual() {
+    return bestIndividual;
   }
 }

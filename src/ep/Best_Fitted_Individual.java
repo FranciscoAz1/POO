@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Best_Fitted_Individual {
-  private static Individual bestIndividual;
+  private Individual bestIndividual;
+
+  public Best_Fitted_Individual() {
+  }
 
   // Method to sort population by confort value and return the sorted list
-  public static List<Individual> sortPopulation(List<Individual> population) {
+  public List<Individual> getSorted(List<Individual> population) {
     List<Individual> sortedPopulation = population.stream()
         .sorted(Comparator.comparingDouble(Individual::getConfort).reversed())
         .collect(Collectors.toList());
@@ -24,13 +27,13 @@ public class Best_Fitted_Individual {
   }
 
   // Method to find the individual with the best confort value
-  public static Individual getBestIndividual() {
+  public Individual getBestIndividual() {
     return bestIndividual;
   }
 
   // Method to get the 5 best individuals
-  public static List<Individual> getBest5(List<Individual> population) {
-    List<Individual> sortedPopulation = sortPopulation(population);
+  public List<Individual> getBest5(List<Individual> population) {
+    List<Individual> sortedPopulation = getSorted(population);
     return sortedPopulation.stream().limit(5).collect(Collectors.toList());
   }
 }
