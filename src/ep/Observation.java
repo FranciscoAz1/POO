@@ -6,15 +6,16 @@ import java.util.Vector;
 import dss.AEvent;
 
 public class Observation extends AEvent implements IObservation {
-  private int counter = 0;
+  private int i = 0;
   private double finalInstance;
   private int actualTime;
   private Population population;
 
-  public Observation(double time, double finalInstance, Population population) {
+  public Observation(double time, double finalInstance, Population population, int i) {
     super(time);
     this.population = population;
     this.finalInstance = finalInstance;
+    this.i = i;
   }
 
   @Override
@@ -30,7 +31,7 @@ public class Observation extends AEvent implements IObservation {
   @Override
   public boolean HandleEvent() {
     StringBuilder sb = new StringBuilder();
-    sb.append("Observation " + this.counter + ":");
+    sb.append("Observation " + this.i + ":");
     String topic1 = sb.toString();
 
     sb = new StringBuilder();
@@ -52,9 +53,7 @@ public class Observation extends AEvent implements IObservation {
       sb.append(String.format(": \t\t%f", candidate.getPolicingTime()));
       sb.append(String.format(": \t\t%f", candidate.getConfort()));
     }
-    this.counter++;
     // Program the event time for the next TimeEvent
-    this.eventTime = (counter * finalInstance) / 20;
     System.out.println(sb.toString());
     return true;
   }
