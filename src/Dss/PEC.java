@@ -2,9 +2,12 @@ package dss;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import java.util.PriorityQueue;
 import ep.Death;
+import ep.Reproduction;
+import ep.Mutation;
 import ep.Individual;
 
 public class PEC implements IPEC {
@@ -17,15 +20,30 @@ public class PEC implements IPEC {
 
   @Override
   public void addEvent(IEvent event) {
-      pec.add(event);
-      if (event instanceof Death) { 
-          Death deathEvent = (Death) event;
-          Individual individual = deathEvent.getIndividual(); //Gets the Individual asscociated with this death
-          double deathTime = deathEvent.getEventTime();
-          //System.out.println("Morte detectada para o indivíduo " + individual + " no tempo " + deathTime);
-          List<IEvent> eventList = new ArrayList<>(pec); //Lists the events of this individual 
-          individual.removeEventsAfterDeath(eventList);
+    pec.add(event);
+  }
+
+  @Override
+  public void removeIndividual(Individual individual) {
+    Iterator<IEvent> it = pec.iterator();
+    while (it.hasNext()) {
+      if (it instanceof Death) {
+        Death death = (Death) it;
+        if (death.getIndividual() == individual) {
+          it.remove();
+        }
+      } else if (it instanceof Reproduction) {
+        Reproduction reproduction = (Reproduction) it;
+        if (reproduction.getIndividual() == individual) {
+          it.remove();
+        }
+      } else if (it instanceof Mutation) {
+        Mutation mutation = (Mutation) it;
+        if (mutation.getIndividual() == individual) {
+          it.remove();
+        }
       }
+    }
   }
 
   @Override
@@ -37,7 +55,6 @@ public class PEC implements IPEC {
   @Override
   public boolean isEmpty() {
     // System.out.println(" PEC should be empty");
-
     return pec.isEmpty();
   }
 

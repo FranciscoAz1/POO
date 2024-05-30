@@ -29,7 +29,6 @@ public class Observation extends AEvent implements IObservation {
       return false;
     }
     return true;
-
   }
 
   @Override

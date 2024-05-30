@@ -1,5 +1,7 @@
 package dss;
 
+import ep.Individual;
+
 public interface IPEC {
 
   public void addEvent(IEvent Event);
@@ -7,6 +9,8 @@ public interface IPEC {
   public IEvent nextEvent();
 
   public boolean isEmpty();
+
+  public void removeIndividual(Individual individual);
 
   public IEvent AddToPEC(Object aIEvent);
 }

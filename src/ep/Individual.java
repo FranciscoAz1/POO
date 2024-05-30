@@ -207,32 +207,4 @@ public class Individual {
     // a mesma distribuição de patrulha.");
     return true;
   }
-
-  private Death deathEvent; // Field to store the death event associated with this individual, allowing
-                            // tracking and access to specific death-related information.
-
-  public void setDeathEvent(Death deathEvent) {
-    this.deathEvent = deathEvent;
-  }
-
-  public Death getDeathEvent() {
-    return deathEvent;
-  }
-
-  public void removeEventsAfterDeath(List<IEvent> pec) {
-    if (deathEvent != null) {
-      double deathTime = deathEvent.getEventTime();
-      // System.out.println("\n \nPara o indivíduo " + this + " com morte em " +
-      // deathTime + ", foram apagados os seguintes eventos:");
-      pec.removeIf(event -> {
-        boolean removed = event.getEventTime() > deathTime && !(event instanceof Observation);
-        if (removed) {
-          // System.out.println("Evento removido: " + event + " - Tempo: " +
-          // event.getEventTime());
-        }
-        return removed;
-      });
-    }
-  }
-
 }

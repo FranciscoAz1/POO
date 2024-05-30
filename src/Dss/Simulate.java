@@ -3,6 +3,7 @@ package dss;
 import java.util.List;
 
 import ep.Population;
+import ep.Death;
 import ep.Observation;
 
 public class Simulate implements ISimulate {
@@ -52,6 +53,10 @@ public class Simulate implements ISimulate {
         if (!currentEvent.UpdateSimulation()) {
           break;
         }
+      }
+      if (currentEvent instanceof Death) {
+        Death death = (Death) currentEvent;
+        pec.removeIndividual(death.getIndividual());
       }
       // if (isSolutionFound(currentEvent)) {
       // break;

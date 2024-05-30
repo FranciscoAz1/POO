@@ -1,7 +1,5 @@
 package ep;
 
-import java.util.List;
-
 import dss.AEvent;
 import rand.myMath;
 
@@ -15,7 +13,6 @@ public class Death extends AEvent {
   public Death(Individual individual) {
     super(myMath.deathRate(individual.getConfort()));
     this.individual = individual;
-    this.individual.setDeathEvent(this); // Associando o evento de morte ao indivíduo
   }
 
   @Override
