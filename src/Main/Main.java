@@ -12,6 +12,24 @@ import dss.Simulate;
 
 import rand.myMath;
 
+/* 
+ * Entrar na pasta certa:
+ * cd src
+ * 
+ * Compilar tudo:
+ * javac $(find . -name "*.java")
+ * 
+ * Criar o executável:
+ * jar cmf manif.txt project.jar $(find . -name "*.java") $(find . -name "*.class")
+ * 
+ * Correr o executável:
+ * java -jar project.jar
+ * 
+ * Remover todos .class files:
+ * find . -name "*.class" -type f -exec rm -f {} +
+ * (linux)
+->
+ * */
 public class Main {
 
   /**
