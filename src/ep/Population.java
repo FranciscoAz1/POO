@@ -60,7 +60,7 @@ public class Population extends AEmpire implements IPopulation {
 
   public void addIndividual(Individual individual) {
     int attempts = 0;
-    int maxAttempts = 10; // number of times we try to avoid duplicates
+    int maxAttempts = 100; // number of times we try to avoid duplicates
     while (attempts < maxAttempts) {
       boolean isDuplicate = false;
       for (Individual existingIndividual : population) {
@@ -79,6 +79,8 @@ public class Population extends AEmpire implements IPopulation {
         attempts++;
       }
     }
+
+    System.out.println("Unique Individual could not be found");
     // System.out.println("Exceeded maximum attempts to add individual, adding a
     // duplicate.");
     /*

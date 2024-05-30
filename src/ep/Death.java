@@ -15,6 +15,11 @@ public class Death extends AEvent {
     this.individual = individual;
   }
 
+  public Death(Individual individual, double time) {
+    super(time);
+    this.individual = individual;
+  }
+
   @Override
   public boolean HandleEvent() {
     // check death of individual
