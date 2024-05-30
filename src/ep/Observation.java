@@ -25,7 +25,7 @@ public class Observation extends AEvent implements IObservation {
 
   @Override
   public boolean UpdateSimulation() {
-    if (population.getBestIndividual().getBestIndividual().getConfort() == 1) {
+    if (population.getBestIndividual().getBestIndividual().getConfort() >= 1) {
       return false;
     }
     return true;

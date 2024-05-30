@@ -22,15 +22,15 @@ public abstract class AEmpire {
     // Create patrols and planetary systems based on the matrix
     for (int i = 0; i < matrix.length; i++) {
       Map<PlanetarySystem, Integer> timeRequired = new HashMap<>();
-      System.out.print("Initializing Patrol " + i);
+      // System.out.print("Initializing Patrol " + i);
 
       for (int j = 0; j < matrix[i].length; j++) {
 
         PlanetarySystem system = planetarySystems.get(j);
         timeRequired.put(system, matrix[i][j]);
-        System.out.print(" " + timeRequired.get(system));
+        // System.out.print(" " + timeRequired.get(system));
       }
-      System.out.println(" days");
+      // System.out.println(" days");
       // Debug
       Patrol patrol = new Patrol(i, timeRequired);
       patrols.add(patrol);

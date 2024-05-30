@@ -65,9 +65,7 @@ public class Main {
     // Criação da instância de myMath antes do loop
     myMath mathUtils = new myMath(mu, rho, delta);
     // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
-    population.printPopulation();
-
-    System.out.println("first population size %d " + population.getPopulation().size());
+    // population.printPopulation();
     // Testing Death
     // List<Individual> individuals = population.getPo pulation();
     // for (int i = 0; i < 3; i++) {
@@ -78,8 +76,6 @@ public class Main {
     //
     // System.out.println("Produced Individual " + individual.getConfort() + ":");
     // }
-
-    System.out.println("New population size %d " + population.getPopulation().size());
 
     Simulate simulation = new Simulate(tau, population);
 

@@ -68,19 +68,11 @@ public class Simulate implements ISimulate {
       // check for event death or event is successful
     }
   }
-  // if (event instanceof Observation) {
-  // if (event.getConfort() == 1) {
-  // System.out.println("Solution Found");
-  // return true;
-  // }
-  // }
-  // return false;
-  // }
 
   private boolean checkSimulationStateBegginning(Population population) { // iterate
     // throuth individuals in population, cheking if any has confort 1
     for (var individual : population.getPopulation()) {
-      if (individual.getConfort() == 1) {
+      if (individual.getConfort() >= 1) {
         return true;
       }
     }
