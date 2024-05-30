@@ -49,11 +49,15 @@ public class Simulate implements ISimulate {
       if (currentTime > simulationTime) {
         break;
       }
+
+      // check if solution has been found
       if (currentEvent instanceof Observation) {
         if (!currentEvent.UpdateSimulation()) {
           break;
         }
       }
+
+      // remove dead individuals from pec
       if (currentEvent instanceof Death) {
         Death death = (Death) currentEvent;
         pec.removeIndividual(death.getIndividual());
