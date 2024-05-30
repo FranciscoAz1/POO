@@ -20,6 +20,7 @@ public class Population extends AEmpire implements IPopulation {
   public Population(int[][] matrix, int MaxPopulationSize) {
     super(matrix);
     this.MaxPopulationSize = MaxPopulationSize;
+    Best_Fitted_Individual.sortPopulation(population);
   }
 
   public Population(int[][] matrix, int MaxPopulationSize, int numIndividuals) {
@@ -27,6 +28,7 @@ public class Population extends AEmpire implements IPopulation {
     this.MaxPopulationSize = MaxPopulationSize;
     this.numIndividuals = numIndividuals;
     createInitialPopulation(numIndividuals);
+    Best_Fitted_Individual.sortPopulation(population);
   }
 
   public void createInitialPopulation(int numIndividuals) {
