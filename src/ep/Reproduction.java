@@ -95,7 +95,7 @@ public class Reproduction extends AEvent implements Ireproduction {
 
     this.addEvent(newReproductionEvent);
     // Epidemic may occur
-    this.addEvents(Epidemic.MayOccur(pop));
+    this.addEvents(Epidemic.MayOccur(pop, currentTime));
     pop.countEvent();
     return true;
   }
