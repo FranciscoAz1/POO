@@ -39,7 +39,7 @@ public class Observation extends AEvent implements IObservation {
     sb.append("Present instant:\t\t\t" + String.format("%.2f", this.eventTime) + "\n");
     sb.append("Number of realized events:\t\t" + population.getNumEvents() + "\n");
     sb.append("Population size:\t\t\t" + population.getPopulation().size() + "\n");
-    sb.append("Number of epidemics:\t\t\t" + population.getEpidemic().getCounter() + "\n");
+    sb.append("Number of epidemics:\t\t\t" + population.getEpidemicCounter() + "\n");
     sb.append(
         "Best distribution of the patrols:" + population.getBestIndividual().getBestIndividual().toString() + "\n");
     sb.append("Empire policing time:\t\t"

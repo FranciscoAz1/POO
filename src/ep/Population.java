@@ -12,9 +12,9 @@ public class Population extends AEmpire implements IPopulation {
 
   private int numIndividuals = 0;
   private int eventsPerformed = 0;
+  private int epidemicCounter = 0;
   private int MaxPopulationSize;
   private List<Individual> population = new ArrayList<>();
-  private Epidemic epidemic = new Epidemic();
   private Best_Fitted_Individual bestIndividual = new Best_Fitted_Individual();
 
   public Population(int[][] matrix, int MaxPopulationSize) {
@@ -42,17 +42,20 @@ public class Population extends AEmpire implements IPopulation {
     return population;
   }
 
-  public void setPopulation(List<Individual> population) {
-    this.population = population;
-    epidemic.MayOccur(this);
-  }
-
   public void countEvent() {
     this.eventsPerformed++;
   }
 
   public int getNumEvents() {
     return eventsPerformed;
+  }
+
+  public int getEpidemicCounter() {
+    return epidemicCounter;
+  }
+
+  public void IncrementEpidemic() {
+    this.epidemicCounter++;
   }
 
   public void addIndividual(Individual individual) {
@@ -69,7 +72,6 @@ public class Population extends AEmpire implements IPopulation {
       if (!isDuplicate) {
         if (population.add(individual)) {
           this.numIndividuals += 1;
-          epidemic.MayOccur(this);
         }
         return;
       } else {
@@ -84,7 +86,6 @@ public class Population extends AEmpire implements IPopulation {
      * this.numIndividuals += 1;
      * epidemic.MayOccur(this);
      */
-    epidemic.MayOccur(this);
   }
 
   public void removeIndividual(Individual individual) {
@@ -153,10 +154,6 @@ public class Population extends AEmpire implements IPopulation {
 
   public int getMaxPopulationSize() {
     return MaxPopulationSize;
-  }
-
-  public Epidemic getEpidemic() {
-    return epidemic;
   }
 
   public Best_Fitted_Individual getBestIndividual() {

@@ -56,7 +56,6 @@ public class Simulate implements ISimulate {
           break;
         }
       }
-
       // remove dead individuals from pec
       if (currentEvent instanceof Death) {
         Death death = (Death) currentEvent;

@@ -1,41 +1,36 @@
 package ep;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import dss.IEvent;
+
 public class Epidemic {
-  private int counter;
 
-  public Epidemic() {
-    this.counter = 0;
-  }
-
-  public int getCounter() {
-
-    return counter;
-  }
-
-  public void MayOccur(Population pop) {
+  public static List<IEvent> MayOccur(final Population pop) {
     if (pop.getNumIndividuals() >= pop.getMaxPopulationSize()) {
-      doEpidemic(pop);
-      counter++;
+      return doEpidemic(pop);
     }
+    return new ArrayList<>();
   }
 
-  private void doEpidemic(Population pop) {
-    List<Individual> individuals = pop.getBestIndividual().getSorted(pop.getPopulation());
+  private static List<IEvent> doEpidemic(final Population pop) {
+    final List<Individual> individuals = pop.getBestIndividual().getSorted(pop.getPopulation());
+    final List<IEvent> deaths = new ArrayList<>();
     if (individuals.size() < 5) {
-      return;
+      return deaths;
     }
     for (int i = 5; i < individuals.size(); i++) {
-      Individual individual = individuals.get(i);
+      final Individual individual = individuals.get(i);
       // Kill with randomness
-      double randomNumber = Math.random();
-      double individualScore = randomNumber * individual.getConfort();
+      final double randomNumber = Math.random();
+      final double individualScore = randomNumber * individual.getConfort();
       if (individualScore < (2.0 / 3.0)) {
-        Death death = new Death(individual);
-        death.HandleEvent();
+        final Death death = new Death(individual);
+        deaths.add(death);
       }
     }
-
+    pop.IncrementEpidemic();
+    return deaths;
   }
 }
