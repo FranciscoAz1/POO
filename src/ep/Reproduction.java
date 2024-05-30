@@ -22,7 +22,6 @@ public class Reproduction extends AEvent implements Ireproduction {
   private Individual individual;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
-
   public Reproduction(Individual individual) {
     super(myMath.reproductionRate(individual.getConfort()));
     this.individual = individual;
@@ -36,15 +35,16 @@ public class Reproduction extends AEvent implements Ireproduction {
   public Individual getIndividual() {
     return individual;
   }
+
   @Override
   public boolean HandleEvent() {
     // check death of individual
     if (individual == null) {
       return false;
     }
-    if (!individual.getPopulation().getPopulation().contains(individual)) {
-      return false;
-    }
+    // if (!individual.getPopulation().getPopulation().contains(individual)) {
+    // return false;
+    // }
     distribution = individual.getDistribution();
     // Check if the distribution is not empty and has more than one patrol
     if (distribution == null || distribution.isEmpty()) {
@@ -89,12 +89,11 @@ public class Reproduction extends AEvent implements Ireproduction {
     double currentTime = getEventTime();
     addEvents(newIndividual.getNewEvents(currentTime));
 
-    
     // Agendar um novo evento de reprodução para o mesmo indivíduo
     double newEventTime = getEventTime() + myMath.reproductionRate(individual.getConfort());
     Reproduction newReproductionEvent = new Reproduction(individual, newEventTime);
     this.addEvent(newReproductionEvent);
-
+    pop.countEvent();
     return true;
   }
 

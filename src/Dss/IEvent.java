@@ -6,7 +6,7 @@ public interface IEvent {
 
   public void NewEvent();
 
-  public void UpdateSimulation();
+  public boolean UpdateSimulation();
 
   public boolean HandleEvent();
 

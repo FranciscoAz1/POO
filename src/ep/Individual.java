@@ -3,7 +3,6 @@ package ep;
 import java.util.List;
 import java.util.ArrayList;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -209,53 +208,31 @@ public class Individual {
     return true;
   }
 
-  @Override
-  public String toString() {
-    StringBuilder output = new StringBuilder();
-    output.append("{");
-    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
-      Patrol patrol = entry.getKey();
-      Set<PlanetarySystem> systems = entry.getValue();
-      output.append("{");
-      for (PlanetarySystem system : systems) {
-        output.append( + system.getId());
-        if (system != systems) {
-          output.append(",");
-        }
-      }
-      output.replace(output.length() - 1, output.length(),"},");
-    }
-    output.replace(output.length() - 1, output.length(),"}");
-    if (output.length() == 0) {
-      throw new NullPointerException("Leitura de indivíduo falhou");
-    }
-    return output.toString();
-  }
-
-  
-  private Death deathEvent;
+  private Death deathEvent; // Field to store the death event associated with this individual, allowing
+                            // tracking and access to specific death-related information.
 
   public void setDeathEvent(Death deathEvent) {
-	    this.deathEvent = deathEvent;
-	}
-
+    this.deathEvent = deathEvent;
+  }
 
   public Death getDeathEvent() {
-      return deathEvent;
+    return deathEvent;
   }
-  public void removeEventsAfterDeath(List<IEvent> pec) {
-	    if (deathEvent != null) {
-	        double deathTime = deathEvent.getEventTime();
-	        //System.out.println("\n \nPara o indivíduo " + this + " com morte em " + deathTime + ", foram apagados os seguintes eventos:");
-	        pec.removeIf(event -> {
-	            boolean removed = event.getEventTime() > deathTime && !(event instanceof Observation);
-	            if (removed) {
-	               // System.out.println("Evento removido: " + event + " - Tempo: " + event.getEventTime());
-	            }
-	            return removed;
-	        });
-	    }
-	}
 
+  public void removeEventsAfterDeath(List<IEvent> pec) {
+    if (deathEvent != null) {
+      double deathTime = deathEvent.getEventTime();
+      // System.out.println("\n \nPara o indivíduo " + this + " com morte em " +
+      // deathTime + ", foram apagados os seguintes eventos:");
+      pec.removeIf(event -> {
+        boolean removed = event.getEventTime() > deathTime && !(event instanceof Observation);
+        if (removed) {
+          // System.out.println("Evento removido: " + event + " - Tempo: " +
+          // event.getEventTime());
+        }
+        return removed;
+      });
+    }
+  }
 
 }

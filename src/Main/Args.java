@@ -23,11 +23,11 @@ public class Args {
   public Cost costMatrix;
 
   // Default values
-  private static final int DEFAULT_N = 5;  //patrols 
-  private static final int DEFAULT_M = 20; //planest
+  private static final int DEFAULT_N = 5; // patrols
+  private static final int DEFAULT_M = 20; // planest
   private static final double DEFAULT_TAU = 10.0; // time max
-  private static final int DEFAULT_NU = 20; // population init 
-  private static final int DEFAULT_NUMAX = 1000;// max population 
+  private static final int DEFAULT_NU = 5; // population init
+  private static final int DEFAULT_NUMAX = 10;// max population
   private static final double DEFAULT_MU = 10.0;// death rate
   private static final double DEFAULT_RHO = 1.0;// reporduction rate
   private static final double DEFAULT_DELTA = 1.0;// mutation rate

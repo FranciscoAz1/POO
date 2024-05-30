@@ -2,9 +2,8 @@ package dss;
 
 import java.util.List;
 
-import ep.Best_Fitted_Individual;
-import ep.Observation;
 import ep.Population;
+import ep.Observation;
 
 public class Simulate implements ISimulate {
   private IPEC pec;
@@ -49,22 +48,25 @@ public class Simulate implements ISimulate {
       if (currentTime > simulationTime) {
         break;
       }
-      if (isSolutionFound(currentEvent)) {
-        break;
+      if (currentEvent instanceof Observation) {
+        if (!currentEvent.UpdateSimulation()) {
+          break;
+        }
       }
+      // if (isSolutionFound(currentEvent)) {
+      // break;
+      // }
       // check for event death or event is successful
     }
   }
-
-  private boolean isSolutionFound(IEvent event) {
-    if (event instanceof Observation) {
-      if (Best_Fitted_Individual.getBestIndividual().getConfort() == 1) {
-        System.out.println("Solution Found");
-        return true;
-      }
-    }
-    return false;
-  }
+  // if (event instanceof Observation) {
+  // if (event.getConfort() == 1) {
+  // System.out.println("Solution Found");
+  // return true;
+  // }
+  // }
+  // return false;
+  // }
 
   private boolean checkSimulationStateBegginning(Population population) { // iterate
     // throuth individuals in population, cheking if any has confort 1

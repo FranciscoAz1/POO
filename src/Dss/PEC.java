@@ -3,7 +3,6 @@ package dss;
 import java.util.List;
 import java.util.ArrayList;
 
-
 import java.util.PriorityQueue;
 import ep.Death;
 import ep.Individual;
@@ -19,16 +18,15 @@ public class PEC implements IPEC {
   @Override
   public void addEvent(IEvent event) {
       pec.add(event);
-      if (event instanceof Death) {
+      if (event instanceof Death) { 
           Death deathEvent = (Death) event;
-          Individual individual = deathEvent.getIndividual();
+          Individual individual = deathEvent.getIndividual(); //Gets the Individual asscociated with this death
           double deathTime = deathEvent.getEventTime();
           //System.out.println("Morte detectada para o indivíduo " + individual + " no tempo " + deathTime);
-          List<IEvent> eventList = new ArrayList<>(pec);
+          List<IEvent> eventList = new ArrayList<>(pec); //Lists the events of this individual 
           individual.removeEventsAfterDeath(eventList);
       }
   }
-
 
   @Override
   public IEvent nextEvent() {
