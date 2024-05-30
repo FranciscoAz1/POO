@@ -1,8 +1,11 @@
 package ep;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
+import utils.ContinuousFileWriter;
 import dss.AEvent;
 
 public class Observation extends AEvent implements IObservation {
@@ -10,12 +13,14 @@ public class Observation extends AEvent implements IObservation {
   private double finalInstance;
   private int actualTime;
   private Population population;
+  private ContinuousFileWriter file;
 
   public Observation(double time, double finalInstance, Population population, int i) {
     super(time);
     this.population = population;
     this.finalInstance = finalInstance;
     this.i = i;
+    this.file = new ContinuousFileWriter("output.txt");
   }
 
   @Override
@@ -56,6 +61,7 @@ public class Observation extends AEvent implements IObservation {
     }
     // Program the event time for the next TimeEvent
     System.out.println(sb.toString());
+    file.writeToFile(sb.toString() + "\n");
     return true;
 
   }
