@@ -65,8 +65,6 @@ public class Reproduction extends AEvent implements Ireproduction {
     List<PlanetarySystem> removedSystems = new ArrayList<>();
     for (int i = 0; i < nSystemsToRemove; i++) {
       Patrol randomPatrol = getRandomPatrolWithSystems(distribution);
-      if (randomPatrol == null)
-        break; // No more systems to remove
 
       Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
       PlanetarySystem system = Utils.getRandomElementFromSet(systems);
