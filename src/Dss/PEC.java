@@ -27,18 +27,19 @@ public class PEC implements IPEC {
   public void removeIndividual(Individual individual) {
     Iterator<IEvent> it = pec.iterator();
     while (it.hasNext()) {
-      if (it instanceof Death) {
-        Death death = (Death) it;
+      IEvent event = it.next();
+      if (event instanceof Death) {
+        Death death = (Death) event;
         if (death.getIndividual() == individual) {
           it.remove();
         }
-      } else if (it instanceof Reproduction) {
-        Reproduction reproduction = (Reproduction) it;
+      } else if (event instanceof Reproduction) {
+        Reproduction reproduction = (Reproduction) event;
         if (reproduction.getIndividual() == individual) {
           it.remove();
         }
-      } else if (it instanceof Mutation) {
-        Mutation mutation = (Mutation) it;
+      } else if (event instanceof Mutation) {
+        Mutation mutation = (Mutation) event;
         if (mutation.getIndividual() == individual) {
           it.remove();
         }
