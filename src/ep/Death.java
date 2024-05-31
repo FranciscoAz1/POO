@@ -8,7 +8,7 @@ import rand.myMath;
  * dies.
  * It extends the AEvent class and overrides the HandleEvent method.
  */
-public class Death extends AEvent {
+public class Death extends AEvent implements Ideath {
   private Individual individual;
 
   public Individual getIndividual() {

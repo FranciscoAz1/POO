@@ -16,7 +16,7 @@ import rand.myMath;
  * The Mutation class provides a concrete implementation of a mutation event in
  * a simulation. It defines methods for handling mutation events.
  */
-public class Mutation extends AEvent {
+public class Mutation extends AEvent implements Imutation {
   private Individual individual;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 

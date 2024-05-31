@@ -29,7 +29,7 @@ public class Epidemic {
    * Simulates an epidemic in the population.
    *
    * @param pop  the population to simulate
-   * @param time the current time
+   * @param time the current time, used to generate deaths at this time
    * @return a list of events that occurred
    */
   private static List<IEvent> doEpidemic(Population pop, double time) {

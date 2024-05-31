@@ -1,13 +1,13 @@
 package ep;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * The Best_Fitted_Individual class provides functionality for
- * finding the best fitted individual in a population.
+ * finding the best fitted individual in a population. Saving it even
+ * when the individual is dead
  */
 public class Best_Fitted_Individual {
   private Individual bestIndividual;
