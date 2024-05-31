@@ -46,7 +46,7 @@ public class Confort {
     }
 
     // Calculate the average
-    double average = (double) sumOfMins / numRows;
+    double average = (double) sumOfMins;
     return average;
   }
 }

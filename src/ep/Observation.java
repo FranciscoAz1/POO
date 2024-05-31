@@ -1,12 +1,9 @@
 package ep;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
-import java.util.Vector;
 
-import utils.ContinuousFileWriter;
 import dss.AEvent;
+import utils.ContinuousFileWriter;
 
 /**
  * The Observation class provides a contract for observation events in a
@@ -14,8 +11,6 @@ import dss.AEvent;
  */
 public class Observation extends AEvent implements IObservation {
   private int i = 0;
-  private double finalInstance;
-  private int actualTime;
   private Population population;
   private ContinuousFileWriter file;
 
@@ -28,10 +23,9 @@ public class Observation extends AEvent implements IObservation {
    * @param population    the population of the observation
    * @param i             the i of the observation
    */
-  public Observation(double time, double finalInstance, Population population, int i) {
+  public Observation(double time, Population population, int i) {
     super(time);
     this.population = population;
-    this.finalInstance = finalInstance;
     this.i = i;
     this.file = new ContinuousFileWriter("output.txt");
   }
@@ -76,7 +70,8 @@ public class Observation extends AEvent implements IObservation {
   public void HandleEvent() {
     StringBuilder sb = new StringBuilder();
     List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
-    Individual bestIndividual = population.getBestIndividual().getBestIndividual(); // Obtendo o melhor indivíduo já registrado
+    Individual bestIndividual = population.getBestIndividual().getBestIndividual(); // Obtendo o melhor indivíduo já
+                                                                                    // registrado
     double bestConfort = bestIndividual.getConfort(); // Obtendo o melhor conforto já registrado
     double bestPolicingTime = bestIndividual.getPolicingTime(); // Obtendo o melhor tempo de policiamento já registrado
     sb.append("Observation:\t\t\t\t" + this.i + "\n");
@@ -89,7 +84,7 @@ public class Observation extends AEvent implements IObservation {
     sb.append("Empire policing time:\t\t"
         + String.format("%.2f", population.getBestIndividual().getBestIndividual().getPolicingTime()) + "\n");
     sb.append("Comfort:\t\t\t"
-            + String.format("%.2f", bestConfort) + "\n");
+        + String.format("%.2f", bestConfort) + "\n");
     sb.append("Other candidate distributions:\n");
 
     for (int i = 0; i < otherCandidates.size(); i++) {

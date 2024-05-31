@@ -33,11 +33,11 @@ public class Simulate implements ISimulate {
     // Schedule the 20 initial observation events
     for (int i = 0; i <= 20; i++) {
       double observationTime = i * this.simulationTime / 20;
-      AddToPEC(new Observation(observationTime, this.simulationTime, population, i));
-    }/* 
-    if (checkSimulationStateBegginning(population)) {
-      System.out.println("Solution Found");
-    }*/
+      AddToPEC(new Observation(observationTime, population, i));
+    }
+    // if (checkSimulationStateBegginning(population)) {
+    // System.out.println("Solution Found");
+    // }
   }
 
   /**
@@ -82,10 +82,6 @@ public class Simulate implements ISimulate {
         Death death = (Death) currentEvent;
         pec.removeIndividual(death.getIndividual());
       }
-      // if (isSolutionFound(currentEvent)) {
-      // break;
-      // }
-      // check for event death or event is successful
     }
   }
 
