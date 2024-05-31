@@ -185,7 +185,7 @@ public class Individual {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this, time));
     events.add(new Mutation(this, time));
-    events.add(new Death(this, time + myMath.mutationRate(confort)));
+    events.add(new Death(this, time + myMath.mutationRate(getConfort())));
     return events;
   }
 
@@ -330,11 +330,12 @@ public class Individual {
     }
     return output.toString();
   }
+
   public void updateFrom(Individual other) {
-      // Atualize os atributos conforme necessário
-      this.distribution = other.getDistribution();
-      this.confort = other.getConfort();
-      this.policingTime = other.getPolicingTime();
-      // Adicione os demais atributos que precisam ser atualizados
+    // Atualize os atributos conforme necessário
+    this.distribution = other.getDistribution();
+    this.confort = other.getConfort();
+    this.policingTime = other.getPolicingTime();
+    // Adicione os demais atributos que precisam ser atualizados
   }
 }

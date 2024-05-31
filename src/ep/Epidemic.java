@@ -19,7 +19,7 @@ public class Epidemic {
    * @return a list of events that may occur
    */
   public static List<IEvent> MayOccur(Population pop, double time) {
-    if (pop.getNumIndividuals() >= pop.getMaxPopulationSize()) {
+    if (pop.getNumIndividuals() > pop.getMaxPopulationSize()) {
       return doEpidemic(pop, time);
     }
     return new ArrayList<>();

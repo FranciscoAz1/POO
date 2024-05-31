@@ -144,6 +144,7 @@ public class Population extends AEmpire implements IPopulation {
   @Override
   public void forceAdd(Individual individual) {
     population.add(individual);
+    this.numIndividuals += 1;
   }
 
   /**
