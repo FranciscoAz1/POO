@@ -2,15 +2,13 @@ package main;
 
 import java.util.List;
 
-import pa.Cost;
-
-import ep.Population;
-import ep.Confort;
-
 import dss.IEvent;
 import dss.Simulate;
-
+import ep.Confort;
+import ep.Population;
+import pa.Cost;
 import rand.myMath;
+import utils.ContinuousFileWriter;
 
 /* 
  * Entrar na pasta certa:
@@ -30,7 +28,8 @@ import rand.myMath;
 
 /**
  * The Main class provides a main method that runs the simulation.
- * @author Henrique João 
+ * 
+ * @author Henrique João
  * @author Tiago Nascimento
  * @author Ricardo Nobre
  * @author Francisco Azeredo
@@ -108,6 +107,7 @@ public class Main {
     }
     // simulation.getPec().printPEC();
     simulation.run();
+    ContinuousFileWriter.close();
     System.out.println("It is Done!");
   }
 

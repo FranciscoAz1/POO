@@ -27,7 +27,6 @@ public class Observation extends AEvent implements IObservation {
     super(time);
     this.population = population;
     this.i = i;
-    this.file = new ContinuousFileWriter(utils.StringSaver.getString());
   }
 
   /**
@@ -94,7 +93,8 @@ public class Observation extends AEvent implements IObservation {
     }
     // Program the event time for the next TimeEvent
     System.out.println(sb.toString());
-    file.writeToFile(sb.toString() + "\n");
+    // TODO delete before submission
+    utils.ContinuousFileWriter.writeToFile(sb.toString() + "\n");
   }
 
   /**

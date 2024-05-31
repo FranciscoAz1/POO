@@ -3,7 +3,9 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 import pa.Cost;
+import utils.ContinuousFileWriter;
 
 /**
  * The Args class parses and stores the command line arguments passed to the
@@ -112,7 +114,7 @@ public class Args {
         filePath = currentDir + File.separator + filePath.substring(2);
       }
       // TODO delete before sending
-      utils.StringSaver.setString(filePath);
+      ContinuousFileWriter.initialize(filePath);
 
       File file = new File(filePath);
       Scanner scanner = new Scanner(file);
