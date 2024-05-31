@@ -171,10 +171,11 @@ public class Population extends AEmpire implements IPopulation {
 
     
     System.out.println("\nLista ordenada de todos os indivíduos:");
-    bestIndividual.getSorted(population); // Utilizando a instância para chamar o método não estático
-    for (Individual individual : population) {
-      System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(), individual);
+    List<Individual> sortedPopulation = bestIndividual.getSorted(population); // Obtendo a lista ordenada
+    for (Individual individual : sortedPopulation) { // Iterando sobre a lista ordenada
+        System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(), individual);
     }
+
 
     System.out.println("\nOs 5 melhores indivíduos:");
     List<Individual> best5 = bestIndividual.getBest5(population); // Utilizando a instância para chamar o método não estático
