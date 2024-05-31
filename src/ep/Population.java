@@ -118,27 +118,45 @@ public class Population extends AEmpire implements IPopulation {
   @Override
   public void addIndividual(Individual individual) {
     int attempts = 0;
-    int maxAttempts = 100; // number of times we try to avoid duplicates
+    int maxAttempts = 10 * population.size(); // number of times we try to avoid duplicates
+
     while (attempts < maxAttempts) {
       boolean isDuplicate = false;
+
+      // Check for duplicates in the population
       for (Individual existingIndividual : population) {
         if (Individual.equalsByDistribution(individual, existingIndividual)) {
           isDuplicate = true;
           break;
         }
       }
+
+      // If no duplicate found, add the individual to the population
       if (!isDuplicate) {
         if (population.add(individual)) {
           this.numIndividuals += 1;
         }
         return;
       } else {
+        // Generate a new individual and increment the attempts counter
         individual = new Individual(this, patrols, planetarySystems);
         attempts++;
       }
     }
+
+    // If the loop exits without finding a unique individual, add the last generated
+    // one anyway
     population.add(individual);
-    System.out.println("Unique Individual could not be found");
+  }
+
+  public boolean tryAdd(Individual individual) {
+    for (Individual fromPop : population) {
+      if (Individual.equalsByDistribution(individual, fromPop)) {
+        return false;
+      }
+    }
+    population.add(individual);
+    return true;
   }
 
   @Override

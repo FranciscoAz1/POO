@@ -67,22 +67,29 @@ public class Observation extends AEvent implements IObservation {
    */
   @Override
   public void HandleEvent() {
-	  StringBuilder sb = new StringBuilder();
-	    List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
-	    Individual bestIndividual = population.getBestIndividual().getBestIndividual(population.getPopulation()); // Obtendo o melhor indivíduo já
-	                                                                                    // registrado
-	    double bestConfort = bestIndividual.getConfort(); // Obtendo o melhor conforto já registrado
-	    double bestPolicingTime = bestIndividual.getPolicingTime(); // Obtendo o melhor tempo de policiamento já registrado
-	  sb.append("Observation:\t\t\t\t" + this.i + "\n");
-	    sb.append("Present instant:\t\t\t" + String.format("%.2f", this.eventTime) + "\n");
-	    sb.append("Number of realized events:\t\t" + population.getNumEvents() + "\n");
-	    sb.append("Population size:\t\t\t" + population.getPopulation().size() + "\n");
-	    sb.append("Number of epidemics:\t\t\t" + population.getEpidemicCounter() + "\n");
-	    sb.append(
-	        "Best distribution of the patrols:" + population.getBestIndividual().getBestIndividual(population.getPopulation()).toString() + "\n");
-	    sb.append("Empire policing time:\t\t"  //+ String.format("%.2f", population.getBestIndividual().getBestIndividual(population.getPopulation()).getPolicingTime()) + "\n");
-	    + String.format("%.2f", bestPolicingTime) + "\n");
-     sb.append("Comfort:\t\t\t"
+    StringBuilder sb = new StringBuilder();
+    List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
+    Individual bestIndividual = population.getBestIndividual().getBestIndividual(population.getPopulation()); // Obtendo
+                                                                                                              // o
+                                                                                                              // melhor
+                                                                                                              // indivíduo
+                                                                                                              // já
+    // registrado
+    double bestConfort = bestIndividual.getConfort(); // Obtendo o melhor conforto já registrado
+    double bestPolicingTime = bestIndividual.getPolicingTime(); // Obtendo o melhor tempo de policiamento já registrado
+    sb.append("Observation:\t\t\t\t" + this.i + "\n");
+    sb.append("Present instant:\t\t\t" + String.format("%.2f", this.eventTime) + "\n");
+    sb.append("Number of realized events:\t\t" + population.getNumEvents() + "\n");
+    sb.append("Population size:\t\t\t" + population.getPopulation().size() + "\n");
+    sb.append("Number of epidemics:\t\t\t" + population.getEpidemicCounter() + "\n");
+    sb.append(
+        "Best distribution of the patrols:"
+            + population.getBestIndividual().getBestIndividual(population.getPopulation()).toString() + "\n");
+    sb.append("Empire policing time:\t\t" // + String.format("%.2f",
+                                          // population.getBestIndividual().getBestIndividual(population.getPopulation()).getPolicingTime())
+                                          // + "\n");
+        + String.format("%.2f", bestPolicingTime) + "\n");
+    sb.append("Comfort:\t\t\t"
         + String.format("%.2f", bestConfort) + "\n");
     sb.append("Other candidate distributions:\n");
 

@@ -1,0 +1,15 @@
+Observation:				0
+Present instant:			0.00
+Number of realized events:		0
+Population size:			9
+Number of epidemics:			0
+Best distribution of the patrols:{{7,0},{1},{4},{6,5,8,9},{3,2}}
+Empire policing time:		26.00
+Comfort:			0.69
+Other candidate distributions:
+				{{7,0},{1},{4},{6,5,8,9},{3,2}} : 26.00 : 0.69
+				{{1,0},{3},{7,5,9},{6,8},{2,4}} : 37.00 : 0.49
+				{{0,2},{7,6,1,4},{5,8},{3,9}} : 40.00 : 0.45
+				{{3},{7,1,2},{6,8,4},{5,0,9}} : 41.00 : 0.44
+				{{1,4},{9},{0,2},{5},{7,6,3,8}} : 45.00 : 0.40
+

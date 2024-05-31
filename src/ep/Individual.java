@@ -276,7 +276,7 @@ public class Individual {
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualA.distribution.entrySet()) {
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systemsA = entry.getValue();
-      Set<PlanetarySystem> systemsB = individualB.distribution.getOrDefault(patrol, new HashSet<>());
+      Set<PlanetarySystem> systemsB = individualB.distribution.get(patrol);
       if (!systemsA.equals(systemsB)) {
         // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
         // distribuições de patrulha diferentes.");
@@ -287,7 +287,7 @@ public class Individual {
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualB.distribution.entrySet()) {
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systemsB = entry.getValue();
-      Set<PlanetarySystem> systemsA = individualA.distribution.getOrDefault(patrol, new HashSet<>());
+      Set<PlanetarySystem> systemsA = individualA.distribution.get(patrol);
       if (!systemsB.equals(systemsA)) {
         // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
         // distribuições de patrulha diferentes.");

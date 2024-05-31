@@ -94,6 +94,7 @@ public class Main {
     }
     // simulation.getPec().printPEC();
     simulation.run();
+    // TODO remove before submission
     // ContinuousFileWriter.close();
     System.out.println("It is Done!");
   }

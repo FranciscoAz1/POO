@@ -91,27 +91,34 @@ public class Reproduction extends AEvent implements Ireproduction {
     // ⌊(1 − ϕ(z))m⌋
     int nSystemsToRemove = (int) ((1 - individual.getConfort()) * nSystems);
     //
-    // Step 3: Randomly remove planetary systems from the new distribution
-    List<PlanetarySystem> removedSystems = new ArrayList<>();
-    for (int i = 0; i < nSystemsToRemove; i++) {
-      Patrol randomPatrol = getRandomPatrolWithSystems(distribution);
-
-      Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
-      PlanetarySystem system = Utils.getRandomElementFromSet(systems);
-      systems.remove(system);
-      removedSystems.add(system);
-    }
-
-    // Step 4: Randomly redistribute the removed systems among the patrols
-    for (PlanetarySystem system : removedSystems) {
-      Patrol randomPatrol = getRandomPatrol(newDistribution);
-      newDistribution.computeIfAbsent(randomPatrol, k -> new HashSet<>()).add(system);
-    }
-
-    // Step 5: add new individual to population
-    newIndividual.setDistribution(newDistribution);
     Population pop = individual.getPopulation();
-    pop.forceAdd(newIndividual);
+    int attempts = 50;
+    do {
+      attempts--;
+      if (attempts == 0) {
+        pop.addIndividual(newIndividual);
+        break;
+      }
+      // Step 3: Randomly remove planetary systems from the new distribution
+      List<PlanetarySystem> removedSystems = new ArrayList<>();
+      for (int i = 0; i < nSystemsToRemove; i++) {
+        Patrol randomPatrol = getRandomPatrolWithSystems(distribution);
+
+        Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
+        PlanetarySystem system = Utils.getRandomElementFromSet(systems);
+        systems.remove(system);
+        removedSystems.add(system);
+      }
+
+      // Step 4: Randomly redistribute the removed systems among the patrols
+      for (PlanetarySystem system : removedSystems) {
+        Patrol randomPatrol = getRandomPatrol(newDistribution);
+        newDistribution.computeIfAbsent(randomPatrol, k -> new HashSet<>()).add(system);
+      }
+      // Step 5: add new individual to population
+      newIndividual.setDistribution(newDistribution);
+    } while (pop.tryAdd(newIndividual));
+    // pop.forceAdd(newIndividual);
 
     double currentTime = getEventTime();
     // Epidemic may occur
