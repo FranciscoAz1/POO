@@ -27,7 +27,7 @@ public class Args {
    */
   private static final int DEFAULT_N = 3; // patrols
   private static final int DEFAULT_M = 6; // planest
-  private static final double DEFAULT_TAU = 1500.0; // time max
+  private static final double DEFAULT_TAU = 150.0; // time max
   private static final int DEFAULT_NU = 100; // population init
   private static final int DEFAULT_NUMAX = 200;// max population
   private static final double DEFAULT_MU = 10.0;// death rate

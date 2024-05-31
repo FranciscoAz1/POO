@@ -34,10 +34,10 @@ public class Simulate implements ISimulate {
     for (int i = 0; i <= 20; i++) {
       double observationTime = i * this.simulationTime / 20;
       AddToPEC(new Observation(observationTime, this.simulationTime, population, i));
-    }
+    }/* 
     if (checkSimulationStateBegginning(population)) {
       System.out.println("Solution Found");
-    }
+    }*/
   }
 
   /**
@@ -95,6 +95,8 @@ public class Simulate implements ISimulate {
    * @param event the event to check
    * @return true if the simulation has reached a solution, false otherwise
    */
+  /* 
+  @Override
   private boolean checkSimulationStateBegginning(Population population) { // iterate
     // throuth individuals in population, cheking if any has confort 1
     for (var individual : population.getPopulation()) {
@@ -104,5 +106,5 @@ public class Simulate implements ISimulate {
     }
     return false;
 
-  }
+  }*/
 }

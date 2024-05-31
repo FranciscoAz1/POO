@@ -101,7 +101,7 @@ public class Individual {
    * 
    * @return the comfort of the individual
    */
-  public double getNewConfort() {
+  public double getNewConfort(){
     calculateConfort();
     return confort;
   }
@@ -210,14 +210,6 @@ public class Individual {
   public List<IEvent> getNewEvents(double time) {
     return createEvents(time);
   }
-
-  /*
-   * // Método para obter o ID do indivíduo
-   * public int getId() {
-   * return id;
-   * }
-   */
-
   /**
    * Method to print troop distribution over time
    * 

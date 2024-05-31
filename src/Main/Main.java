@@ -14,13 +14,10 @@ import rand.myMath;
 
 /* 
  * Entrar na pasta certa:
- * cd src
+ * cd src 
  * 
- * Compilar tudo:
- * javac $(find . -name "*.java")
- * 
- * Criar o executável:
- * jar cmf manif.txt project.jar $(find . -name "*.java") $(find . -name "*.class")
+ * Compilar tudo e Criar o executável:
+ *  javac $(find . -name "*.java") && jar cmf manif.txt project.jar $(find . -name "*.java") $(find . -name "*.class")
  * 
  * Correr o executável:
  * java -jar project.jar
@@ -28,11 +25,15 @@ import rand.myMath;
  * Remover todos .class files:
  * find . -name "*.class" -type f -exec rm -f {} +
  * (linux)
-->
+ * 
  * */
 
 /**
  * The Main class provides a main method that runs the simulation.
+ * @author Henrique João 
+ * @author Tiago Nascimento
+ * @author Ricardo Nobre
+ * @author Francisco Azeredo
  */
 public class Main {
 

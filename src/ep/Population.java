@@ -68,6 +68,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return true if the simulation is in the beginning state
    */
+  @Override
   public List<Individual> getPopulation() {
     return population;
   }
