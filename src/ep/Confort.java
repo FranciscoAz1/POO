@@ -11,6 +11,7 @@ public class Confort {
 
   /**
    * Constructs a Confort object with the specified matrix.
+   * it iniitiates static variable tmin
    *
    * @param matrix the matrix to calculate t_min
    */

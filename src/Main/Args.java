@@ -59,13 +59,13 @@ public class Args {
     }
 
     String option = args[0];
+    // check if reads from a argumtents or from file
     if (option.equals("-r")) {
       if (args.length < 9) {
         System.out.println("Not enough command line arguments.");
         System.exit(0);
       }
       this.readFromArgs(args);
-      // Read the matrix values and store in Cost object
     } else if (option.equals("-f")) {
       this.file = args[1];
       this.mode = "read file";
