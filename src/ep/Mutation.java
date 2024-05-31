@@ -67,7 +67,7 @@ public class Mutation extends AEvent implements Imutation {
     Patrol sourcePatrol = null;
     Set<PlanetarySystem> sourceSystems = null;
     boolean foundNonEmptyPatrol = false;
-    double attempts = 1000 * patrolList.size();
+    double attempts = 100 * patrolList.size();
 
     // Try to find a patrol with at least one planetary system
     for (int i = 0; i < attempts; i++) {
@@ -105,9 +105,6 @@ public class Mutation extends AEvent implements Imutation {
     individual.setDistribution(distribution);
     // increment event
     individual.getPopulation().countEvent();
-
-    // Agendar um novo evento de reprodução para o mesmo indivíduo
-    double newEventTime = getEventTime() + myMath.mutationRate(individual.getConfort());
 
     Mutation newMutationEvent = new Mutation(individual, getEventTime());
     this.addEvent(newMutationEvent);
