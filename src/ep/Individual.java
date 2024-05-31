@@ -1,5 +1,7 @@
 package ep;
 
+import java.util.Objects;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -251,53 +253,79 @@ public class Individual {
     this.confort = confort;
   }
 
-  /**
-   * Sets the population of the individual.
-   * 
-   * @param population the population to set
-   */
-  public static boolean equalsByDistribution(Individual individualA, Individual individualB) {
-    /*
-     * 
-     * The first for loop iterates over the patrol distribution of individualA
-     * and checks if the patrols and their corresponding systems are equal
-     * in both individualA and individualB.
-     *
-     * The second for loop iterates over the patrol distribution of individualB
-     * and checks if all the patrols present in this individual are also present
-     * in the patrol distribution of individualA.
-     *
-     * This ensures that the patrol distribution of individualB does not
-     * contain patrols that are not present in the patrol distribution of
-     * individualA.
-     * 
-     */
+  // /**
+  // * Sets the population of the individual.
+  // *
+  // * @param population the population to set
+  // */
+  // /*
+  // *
+  // * The first for loop iterates over the patrol distribution of individualA
+  // * and checks if the patrols and their corresponding systems are equal
+  // * in both individualA and individualB.
+  // *
+  // * The second for loop iterates over the patrol distribution of individualB
+  // * and checks if all the patrols present in this individual are also present
+  // * in the patrol distribution of individualA.
+  // *
+  // * This ensures that the patrol distribution of individualB does not
+  // * contain patrols that are not present in the patrol distribution of
+  // * individualA.
+  // *
+  // */
+  // public static boolean equalsByDistribution(Individual individualA, Individual
+  // individualB) {
+  //
+  // for (Map.Entry<Patrol, Set<PlanetarySystem>> entry :
+  // individualA.distribution.entrySet()) {
+  // Patrol patrol = entry.getKey();
+  // Set<PlanetarySystem> systemsA = entry.getValue();
+  // Set<PlanetarySystem> systemsB = individualB.distribution.get(patrol);
+  // if (!systemsA.equals(systemsB)) {
+  // // System.out.println("Indivíduos " + individualA + " e " + individualB + "
+  // têm
+  // // distribuições de patrulha diferentes.");
+  // return false;
+  // }
+  // }
+  //
+  // for (Map.Entry<Patrol, Set<PlanetarySystem>> entry :
+  // individualB.distribution.entrySet()) {
+  // Patrol patrol = entry.getKey();
+  // Set<PlanetarySystem> systemsB = entry.getValue();
+  // Set<PlanetarySystem> systemsA = individualA.distribution.get(patrol);
+  // if (!systemsB.equals(systemsA)) {
+  // // System.out.println("Indivíduos " + individualA + " e " + individualB + "
+  // têm
+  // // distribuições de patrulha diferentes.");
+  // return false;
+  // }
+  // }
+  //
+  // // System.out.println("Indivíduos " + individualA + " e " + individualB + "
+  // têm
+  // // a mesma distribuição de patrulha.");
+  // return true;
+  // }
 
-    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualA.distribution.entrySet()) {
-      Patrol patrol = entry.getKey();
-      Set<PlanetarySystem> systemsA = entry.getValue();
-      Set<PlanetarySystem> systemsB = individualB.distribution.get(patrol);
-      if (!systemsA.equals(systemsB)) {
-        // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
-        // distribuições de patrulha diferentes.");
-        return false;
-      }
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Individual that = (Individual) o;
+    return Objects.equals(distribution, that.distribution);
+  }
 
-    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individualB.distribution.entrySet()) {
-      Patrol patrol = entry.getKey();
-      Set<PlanetarySystem> systemsB = entry.getValue();
-      Set<PlanetarySystem> systemsA = individualA.distribution.get(patrol);
-      if (!systemsB.equals(systemsA)) {
-        // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
-        // distribuições de patrulha diferentes.");
-        return false;
-      }
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(distribution);
+  }
 
-    // System.out.println("Indivíduos " + individualA + " e " + individualB + " têm
-    // a mesma distribuição de patrulha.");
-    return true;
+  // Static method for comparing by distribution if needed
+  public static boolean equalsByDistribution(Individual a, Individual b) {
+    return Objects.equals(a.distribution, b.distribution);
   }
 
   /**

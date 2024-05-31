@@ -32,7 +32,7 @@ public class Epidemic {
    * @param time the current time, used to generate deaths at this time
    * @return a list of events that occurred
    */
-  private static List<IEvent> doEpidemic(Population pop, double time) {
+  public static List<IEvent> doEpidemic(Population pop, double time) {
 
     List<Individual> individuals = pop.getBestIndividual().getSorted(pop.getPopulation());
     List<IEvent> deaths = new ArrayList<>();

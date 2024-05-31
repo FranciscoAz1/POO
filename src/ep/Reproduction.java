@@ -1,6 +1,7 @@
 package ep;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -92,17 +93,18 @@ public class Reproduction extends AEvent implements Ireproduction {
     int nSystemsToRemove = (int) ((1 - individual.getConfort()) * nSystems);
     //
     Population pop = individual.getPopulation();
-    int attempts = 50;
+    int attempts = 10 + nSystems * pop.getPopulation().size();
     do {
       attempts--;
       if (attempts == 0) {
-        pop.addIndividual(newIndividual);
+        // pop.forceAdd(newIndividual);
         break;
       }
+      newIndividual.setDistribution(individual.getDistribution());
       // Step 3: Randomly remove planetary systems from the new distribution
       List<PlanetarySystem> removedSystems = new ArrayList<>();
       for (int i = 0; i < nSystemsToRemove; i++) {
-        Patrol randomPatrol = getRandomPatrolWithSystems(distribution);
+        Patrol randomPatrol = getRandomPatrolWithSystems(newIndividual.getDistribution());
 
         Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
         PlanetarySystem system = Utils.getRandomElementFromSet(systems);
@@ -117,12 +119,17 @@ public class Reproduction extends AEvent implements Ireproduction {
       }
       // Step 5: add new individual to population
       newIndividual.setDistribution(newDistribution);
-    } while (pop.tryAdd(newIndividual));
+    } while (!pop.tryAdd(newIndividual));
+
     // pop.forceAdd(newIndividual);
 
     double currentTime = getEventTime();
     // Epidemic may occur
-    this.addEvents(Epidemic.MayOccur(pop, currentTime));
+    if (attempts == 0) {
+      this.addEvents(Epidemic.doEpidemic(pop, currentTime));
+    } else {
+      this.addEvents(Epidemic.MayOccur(pop, currentTime));
+    }
     // add events to the new individual, with the time of the parent individual
     // Agendar um novo evento de reprodução para o mesmo indivíduo
     Reproduction newReproductionEvent = new Reproduction(individual, getEventTime());
