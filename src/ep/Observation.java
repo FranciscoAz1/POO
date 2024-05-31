@@ -70,6 +70,9 @@ public class Observation extends AEvent implements IObservation {
   public void HandleEvent() {
     StringBuilder sb = new StringBuilder();
     List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
+    Individual bestIndividual = population.getBestIndividual().getBestIndividual(); // Obtendo o melhor indivíduo já registrado
+    double bestConfort = bestIndividual.getConfort(); // Obtendo o melhor conforto já registrado
+    double bestPolicingTime = bestIndividual.getPolicingTime(); // Obtendo o melhor tempo de policiamento já registrado
     sb.append("Observation:\t\t\t\t" + this.i + "\n");
     sb.append("Present instant:\t\t\t" + String.format("%.2f", this.eventTime) + "\n");
     sb.append("Number of realized events:\t\t" + population.getNumEvents() + "\n");
@@ -80,7 +83,7 @@ public class Observation extends AEvent implements IObservation {
     sb.append("Empire policing time:\t\t"
         + String.format("%.2f", population.getBestIndividual().getBestIndividual().getPolicingTime()) + "\n");
     sb.append("Comfort:\t\t\t"
-        + String.format("%.2f", population.getBestIndividual().getBestIndividual().getConfort()) + "\n");
+            + String.format("%.2f", bestConfort) + "\n");
     sb.append("Other candidate distributions:\n");
 
     for (int i = 0; i < otherCandidates.size(); i++) {
