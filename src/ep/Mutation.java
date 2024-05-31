@@ -12,6 +12,10 @@ import pa.Patrol;
 import pa.PlanetarySystem;
 import rand.myMath;
 
+/**
+ * The Mutation class provides a concrete implementation of a mutation event in
+ * a simulation. It defines methods for handling mutation events.
+ */
 public class Mutation extends AEvent {
   private Individual individual;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
@@ -20,16 +24,32 @@ public class Mutation extends AEvent {
     return individual;
   }
 
+  /**
+   * Constructs a Mutation object with a specified individual.
+   * 
+   * @param individual
+   */
   public Mutation(Individual individual) {
     super(myMath.mutationRate(individual.getConfort()));
     this.individual = individual;
   }
 
+  /**
+   * Constructs a Mutation object with a specified individual and time.
+   * 
+   * @param individual
+   * @param time
+   */
   public Mutation(Individual individual, double time) {
     super(time + myMath.mutationRate(individual.getConfort()));
     this.individual = individual;
   }
 
+  /**
+   * Handles the event by moving a planetary system from one patrol to another.
+   * 
+   * @return true if the event was successfully handled.
+   */
   @Override
   public boolean HandleEvent() {
     if (individual == null) {
@@ -100,6 +120,12 @@ public class Mutation extends AEvent {
     return true;
   }
 
+  
+  /**
+   * Returns a string representation of the Mutation event.
+   * 
+   * @return a string representation of the Mutation event
+   */
   @Override
   public String toString() {
     return "Mutation Event{time=" + getEventTime() + "}";

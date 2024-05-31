@@ -18,42 +18,88 @@ public abstract class AEvent implements IEvent {
   private List<IEvent> listEvent;
   protected List<IEvent> newEvent = new ArrayList<>();
 
+
+/**
+ * Constructs an AEvent object with the specified event time.
+ * 
+ * @param eventTime
+ */
   public AEvent(double eventTime) {
     this.eventTime = eventTime;
     this.listEvent = new ArrayList<>();
   }
 
+
+/**
+ * Creates a new event. Implementation should define the logic for creating a new event.
+ * 
+ */
   @Override
   public void NewEvent() {
     // Implement logic for creating new Event
   }
 
+
+
+/**
+  * Updates the simulation. Implementation should define how the simulation is updated.
+  * 
+  * @return true if the simulation was successfully updated.
+  */
   @Override
   public boolean UpdateSimulation() {
     return true;
     // Implement logic for updating the simulation
   }
 
+/**
+  * Handles the event. As this is an abstract class, the implementation should
+  * define the specific handling logic.
+  * 
+  * @return true if the event was successfully handled.
+  * @throws IllegalStateException if this method is called directly on AEvent.
+  */
   @Override
   public boolean HandleEvent() {
     throw new IllegalStateException("This is an abstract method.");
   }
 
+/**
+  * Adds an event to the list of events.
+  * 
+  * @param event the event to be added.
+  */
   @Override
   public void addEvent(IEvent event) {
     listEvent.add(event);
   }
 
+/**
+  * Returns the list of events.
+  * 
+  * @return A list of IEvent objects.
+  */
   @Override
   public List<IEvent> getEvents() {
     return listEvent;
   }
 
+
+/**
+  * Adds a list of events to the current list of events.
+  * 
+  * @param events The list of events to be added.
+  */
   @Override
   public void addEvents(List<IEvent> events) {
     listEvent.addAll(events);
   }
 
+/**
+  * Returns the time at which the event occurs.
+  * 
+  * @return The event time.
+  */
   @Override
   public double getEventTime() {
     return this.eventTime;

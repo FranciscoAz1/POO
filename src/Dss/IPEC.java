@@ -2,6 +2,11 @@ package dss;
 
 import ep.Individual;
 
+/**
+ * The IPEC interface provides a contract for the Priority Event Container in a
+ * simulation. It defines methods for adding, removing, and managing events.
+ */
+
 public interface IPEC {
 
   public void addEvent(IEvent Event);

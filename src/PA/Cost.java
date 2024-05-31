@@ -12,6 +12,12 @@ public class Cost {
   private int n;
   private int m;
 
+  /**
+   * Constructs a CostMatrix object with the specified dimensions.
+   *
+   * @param n the number of rows
+   * @param m the number of columns
+   */
   public Cost(int n, int m) {
     this.n = n;
     this.m = m;
@@ -19,6 +25,13 @@ public class Cost {
     fillRandom();
   }
 
+  /**
+   * Constructs a CostMatrix object with the specified dimensions and values.
+   *
+   * @param n the number of rows
+   * @param m the number of columns
+   * @param matrix the matrix of cost values
+   */
   public Cost(Scanner scanner, int n, int m) {
     this.n = n;
     this.m = m;
@@ -30,6 +43,9 @@ public class Cost {
     }
   }
 
+  /**
+   * Fills the matrix with random values.
+   */
   private void fillRandom() {
     Random random = new Random();
     for (int i = 0; i < n; i++) {
@@ -39,18 +55,40 @@ public class Cost {
     }
   }
 
+  /**
+   * Sets the value of the matrix at the specified row and column.
+   *
+   * @param row the row index
+   * @param col the column index
+   * @param value the value to set
+   */
   public void setValue(int row, int col, int value) {
     matrix[row][col] = value;
   }
 
+  /**
+   * Returns the matrix.
+   *
+   * @return the matrix
+   */
   public int[][] getMatrix() {
     return matrix;
   }
 
+  /**
+   * Returns the value of the matrix at the specified row and column.
+   *
+   * @param row the row index
+   * @param col the column index
+   * @return the value at the specified row and column
+   */
   public int getValue(int row, int col) {
     return matrix[row][col];
   }
 
+  /**
+   * Prints the matrix.
+   */
   public void printMatrix() {
     System.out.println("Matrix:");
     for (int i = 0; i < n; i++) {
@@ -61,6 +99,11 @@ public class Cost {
     }
   }
 
+  /**
+   * Sets the matrix.
+   *
+   * @param matrix2 the matrix to set
+   */
   public void setMatrix(int[][] matrix2) {
     this.matrix = matrix2;
   }

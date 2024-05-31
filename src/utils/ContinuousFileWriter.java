@@ -4,10 +4,19 @@ package utils;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The ContinuousFileWriter class provides a utility for writing to a file
+ * continuously.
+ */
 public class ContinuousFileWriter {
   private FileWriter fileWriter;
   private StringBuilder sb;
 
+  /**
+   * Constructs a ContinuousFileWriter object with the specified file name.
+   * 
+   * @param fileName the name of the file to write to
+   */
   public ContinuousFileWriter(String fileName) {
     try {
       // Initialize FileWriter in append mode
@@ -18,7 +27,11 @@ public class ContinuousFileWriter {
     }
   }
 
-  // Method to write to the file
+  /**
+   * Method to write to the file
+   * 
+   * @param text the text to write to the file
+   */
   public void writeToFile(String text) {
     sb.append(text);
     try {
@@ -30,7 +43,9 @@ public class ContinuousFileWriter {
     }
   }
 
-  // Method to close the FileWriter when done
+  /**
+   * Method to close the FileWriter when done
+   */
   public void close() {
     try {
       if (fileWriter != null) {

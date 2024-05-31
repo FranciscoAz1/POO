@@ -22,7 +22,9 @@ public class Args {
   public String mode;
   public Cost costMatrix;
 
-  // Default values
+  /**
+   * Default values for the command line arguments.
+   */
   private static final int DEFAULT_N = 8; // patrols
   private static final int DEFAULT_M = 20; // planest
   private static final double DEFAULT_TAU = 200.0; // time max
@@ -132,10 +134,20 @@ public class Args {
     }
   }
 
+  /**
+   * Returns true if the mode is file.
+   *
+   * @return true if the mode is file
+   */
   public boolean fileMode() {
     return this.mode.equals("file");
   }
 
+  /**
+   * Returns true if the mode is read.
+   *
+   * @return true if the mode is read
+   */
   public boolean readMode() {
     return this.mode.equals("read");
   }

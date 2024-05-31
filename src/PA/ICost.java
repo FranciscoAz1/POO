@@ -2,6 +2,11 @@ package pa;
 
 import java.util.Scanner;
 
+/**
+ * The ICost interface provides a contract for cost objects in a simulation.
+ * It defines methods for calculating, setting, and getting cost values.
+ */
+
 public interface ICost {
 
 	public void Cost(int aN, int aM);

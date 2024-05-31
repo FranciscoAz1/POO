@@ -30,13 +30,16 @@ import rand.myMath;
  * (linux)
 ->
  * */
+
+/**
+ * The Main class provides a main method that runs the simulation.
+ */
 public class Main {
 
   /**
    * 
    * @param args
    */
-
   public static void main(String[] args) {
     Args params = new Args(args);
     // Retriepe the values from the arguments object

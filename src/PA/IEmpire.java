@@ -1,5 +1,9 @@
 package pa;
 
+/**
+ * The IEmpire interface provides a contract for empire objects in a simulation.
+ * It defines methods for creating an empire with patrols and planetary systems.
+ */
 public interface IEmpire {
 
   public void Empire(java.util.List<Patrol> aPatrols);

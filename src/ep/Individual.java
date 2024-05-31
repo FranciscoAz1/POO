@@ -16,6 +16,11 @@ import pa.PlanetarySystem;
 import rand.Utils;
 import pa.Patrol;
 
+/**
+ * The Individual class represents an individual in a population. It contains
+ * methods for creating distributions, assigning systems to patrols, calculating
+ * comfort, and printing troop distributions.
+ */
 public class Individual {
 
   private Map<Patrol, Set<PlanetarySystem>> distribution;
@@ -29,6 +34,17 @@ public class Individual {
   // p1 - 1 , 3, 4
   // p2 - 2 , 5
   // p3 - 7
+
+
+  
+  /**
+   * Constructs an Individual object with a specified population, patrols, and
+   * planetary systems.
+   *
+   * @param population       the population to assign
+   * @param patrols          the patrols to assign
+   * @param planetarySystems the planetary systems to assign
+   */
   public Individual(Population population, List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
     // this.id = id; // Inicializando o id
     this.population = population;
@@ -36,12 +52,29 @@ public class Individual {
     createDistribution(patrols, planetarySystems);
   }
 
-  // creating a copy of an individual
+ 
+
+
+  /**
+   * Constructs an Individual object with a specified population, patrols, and
+   * planetary systems.
+   * 
+   * @param individual
+   */
   public Individual(Individual individual) {
     this.distribution = individual.getDistribution();
     this.population = individual.getPopulation();
   }
 
+
+
+  /**
+   * Constructs an Individual object with a specified population, patrols, and
+   * planetary systems.
+   * 
+   * @param population
+   * @param distribution
+   */
   private void createDistribution(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems) {
     // Randomly distribute planetary systems among patrols
     Collections.shuffle(planetarySystems);
@@ -51,19 +84,48 @@ public class Individual {
     }
   }
 
+
+
+  /**
+   * Assigns a planetary system to a patrol.
+   *
+   * @param patrol the patrol to assign
+   * @param system the planetary system to assign
+   */
   public void assignSystemToPatrol(Patrol patrol, PlanetarySystem system) {
     distribution.computeIfAbsent(patrol, k -> new HashSet<>()).add(system);
   }
 
+
+
+  /**
+   * Returns the population of the individual.
+   * 
+   * @return the population of the individual
+   */
   public Population getPopulation() {
     return population;
   }
 
+
+
+  /**
+   * Returns the comfort of the individual.
+   * 
+   * @return the comfort of the individual
+   */
   public double getNewConfort() {
     calculateConfort();
     return confort;
   }
 
+
+
+  /**
+   * Returns the comfort of the individual.
+   * 
+   * @return the comfort of the individual
+   */
   public double getConfort() {
     if (Double.isNaN(this.confort)) {
       calculateConfort();
@@ -71,6 +133,13 @@ public class Individual {
     return confort;
   }
 
+
+
+  /**
+   * Returns the policing time of the individual.
+   * 
+   * @return the policing time of the individual
+   */
   public double getPolicingTime() {
     if (Double.isNaN(this.policingTime)) {
       calculateConfort();
@@ -78,10 +147,24 @@ public class Individual {
     return this.policingTime;
   }
 
+
+
+  /**
+   * Returns the distribution of the individual.
+   * 
+   * @return the distribution of the individual
+   */
   public Map<Patrol, Set<PlanetarySystem>> getDistribution() {
     return distribution;
   }
 
+
+
+  /**
+   * Returns the distribution of the individual.
+   * 
+   * @return the distribution of the individual
+   */
   public void calculateConfort() {
     double total_time = 0;
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
@@ -102,6 +185,13 @@ public class Individual {
     this.policingTime = total_time;
   }
 
+
+
+  /**
+   * Creates a list of events for the individual.
+   * 
+   * @return a list of events for the individual
+   */
   public List<IEvent> createEvents() {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this));
@@ -110,8 +200,15 @@ public class Individual {
     return events;
   }
 
-  // Igual ao de cima, ams apra criar os eventos com um tempo
-  // específico----------------
+
+
+
+  /**
+   * Creates a list of events for the individual. Equal to the above but creates events with a specific time.
+   * 
+   * @param time the time to create the events
+   * @return a list of events for the individual
+   */
   public List<IEvent> createEvents(double time) {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this, time));
@@ -119,14 +216,30 @@ public class Individual {
     return events;
   }
 
+
+
+  /**
+   * Returns a list of events for the individual.
+   * 
+   * @return a list of events for the individual
+   */
   public List<IEvent> getEvents() {
     return createEvents();
   }
 
-  // igual ao de cima, mas com um tempo específico--------------------
+
+
+  /**
+   * Returns a list of events for the individual. Equal to the above but creates events with a specific time.
+   * 
+   * @param time the time to create the events
+   * @return a list of events for the individual
+   */
   public List<IEvent> getNewEvents(double time) {
     return createEvents(time);
   }
+
+
 
   /*
    * // Método para obter o ID do indivíduo
@@ -135,7 +248,12 @@ public class Individual {
    * }
    */
 
-  // Method to print troop distribution over time
+
+
+  /**
+   * Method to print troop distribution over time
+   * 
+   */
   public void printTroopDistribution() {
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
       Patrol patrol = entry.getKey();
@@ -155,15 +273,36 @@ public class Individual {
     }
   }
 
+
+
+  /**
+   * Sets the population of the individual.
+   * 
+   * @param population the population to set
+   */
   public void setDistribution(Map<Patrol, Set<PlanetarySystem>> distribution) {
     calculateConfort();
     this.distribution = distribution;
   }
 
+
+
+  /**
+   * Sets the population of the individual.
+   * 
+   * @param population the population to set
+   */
   public void setConfort(double confort) {
     this.confort = confort;
   }
 
+
+
+  /**
+   * Sets the population of the individual.
+   * 
+   * @param population the population to set
+   */
   public static boolean equalsByDistribution(Individual individualA, Individual individualB) {
     /*
      * 
@@ -208,6 +347,13 @@ public class Individual {
     return true;
   }
 
+
+
+  /**
+   * Returns a string representation of the individual.
+   * 
+   * @return a string representation of the individual
+   */
   @Override
   public String toString() {
     StringBuilder output = new StringBuilder();

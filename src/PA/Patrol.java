@@ -2,6 +2,9 @@ package pa;
 
 import java.util.Map;
 
+/**
+ * The Patrol class represents a patrol in an empire.
+ */
 public class Patrol {
   private int id;
   private Map<PlanetarySystem, Integer> timeRequired;

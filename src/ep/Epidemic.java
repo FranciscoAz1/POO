@@ -5,8 +5,18 @@ import java.util.List;
 
 import dss.IEvent;
 
+/**
+ * The Epidemic class provides functionality for simulating an epidemic in a population.
+ */
 public class Epidemic {
 
+  /**
+   * Determines if an epidemic may occur in the population.
+   *
+   * @param pop the population to check
+   * @param time the current time
+   * @return a list of events that may occur
+   */
   public static List<IEvent> MayOccur(Population pop, double time) {
     if (pop.getNumIndividuals() >= pop.getMaxPopulationSize()) {
       return doEpidemic(pop, time);
@@ -14,6 +24,13 @@ public class Epidemic {
     return new ArrayList<>();
   }
 
+  /**
+   * Simulates an epidemic in the population.
+   *
+   * @param pop the population to simulate
+   * @param time the current time
+   * @return a list of events that occurred
+   */
   private static List<IEvent> doEpidemic(Population pop, double time) {
     List<Individual> individuals = pop.getBestIndividual().getSorted(pop.getPopulation());
     List<IEvent> deaths = new ArrayList<>();

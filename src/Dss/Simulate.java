@@ -6,6 +6,11 @@ import ep.Population;
 import ep.Death;
 import ep.Observation;
 
+
+/**
+ * The Simulate class implements the ISimulate interface. It provides functionality for
+ * running a simulation using a priority event container.
+ */
 public class Simulate implements ISimulate {
   private IPEC pec;
   private double simulationTime;
@@ -13,6 +18,12 @@ public class Simulate implements ISimulate {
   private double currentTime;
   public IEvent unnamed_IEvent_;
 
+  /**
+   * Constructs a Simulate object with the specified simulation time and population.
+   *
+   * @param simulationTime the time to run the simulation
+   * @param population the population to simulate
+   */
   public Simulate(double simulationTime, Population population) {
     this.simulationTime = simulationTime;
     this.currentTime = 0;
@@ -28,11 +39,20 @@ public class Simulate implements ISimulate {
     }
   }
 
+  /**
+   * Adds an event to the priority event container.
+   *
+   * @param aEvent the event to add
+   */
   @Override
   public void AddToPEC(IEvent aEvent) {
     pec.addEvent(aEvent);
   }
 
+  /**
+   * Runs the simulation until the simulation time is reached or the priority event container is
+   * empty.
+   */
   @Override
   public void run() {
     while (this.currentTime < this.simulationTime && !pec.isEmpty()) {
@@ -68,6 +88,12 @@ public class Simulate implements ISimulate {
     }
   }
 
+  /**
+   * Checks if the simulation has reached a solution.
+   *
+   * @param event the event to check
+   * @return true if the simulation has reached a solution, false otherwise
+   */
   private boolean checkSimulationStateBegginning(Population population) { // iterate
     // throuth individuals in population, cheking if any has confort 1
     for (var individual : population.getPopulation()) {

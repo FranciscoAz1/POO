@@ -1,5 +1,8 @@
 package pa;
 
+/**
+ * The PlanetarySystem class represents a planetary system in an empire.
+ */
 public class PlanetarySystem {
 
   private int id;
