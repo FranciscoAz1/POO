@@ -20,6 +20,11 @@ public class Mutation extends AEvent implements Imutation {
   private Individual individual;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
+  /**
+   * Gets the individual that undergoes mutation.
+   *
+   * @return The individual that undergoes mutation.
+   */
   public Individual getIndividual() {
     return individual;
   }
@@ -27,7 +32,7 @@ public class Mutation extends AEvent implements Imutation {
   /**
    * Constructs a Mutation object with a specified individual.
    * 
-   * @param individual
+   * @param individual The individual that undergoes mutation.
    */
   public Mutation(Individual individual) {
     super(myMath.mutationRate(individual.getConfort()));
@@ -37,8 +42,8 @@ public class Mutation extends AEvent implements Imutation {
   /**
    * Constructs a Mutation object with a specified individual and time.
    * 
-   * @param individual
-   * @param time
+   * @param individual The individual that undergoes mutation.
+   * @param time The time of the event.
    */
   public Mutation(Individual individual, double time) {
     super(time + myMath.mutationRate(individual.getConfort()));
@@ -47,8 +52,6 @@ public class Mutation extends AEvent implements Imutation {
 
   /**
    * Handles the event by moving a planetary system from one patrol to another.
-   * 
-   * @return true if the event was successfully handled.
    */
   @Override
   public void HandleEvent() {
@@ -114,7 +117,7 @@ public class Mutation extends AEvent implements Imutation {
   /**
    * Returns a string representation of the Mutation event.
    * 
-   * @return a string representation of the Mutation event
+   * @return A string representation of the Mutation event.
    */
   @Override
   public String toString() {

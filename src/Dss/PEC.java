@@ -14,7 +14,6 @@ import ep.Individual;
  * The PEC class implements the IPEC interface. It provides functionality for
  * managing events in a simulation using a priority queue.
  */
-
 public class PEC implements IPEC {
   private int maxTime;
   private PriorityQueue<IEvent> pec;
@@ -29,13 +28,18 @@ public class PEC implements IPEC {
   /**
    * Adds an event to the priority queue.
    *
-   * @param event the event to add
+   * @param event The event to add.
    */
   @Override
   public void addEvent(IEvent event) {
     pec.add(event);
   }
 
+  /**
+   * Adds a list of events to the priority queue.
+   *
+   * @param events The list of events to add.
+   */
   public void addEvents(List<IEvent> events) {
     pec.addAll(events);
   }
@@ -44,7 +48,7 @@ public class PEC implements IPEC {
    * Removes an individual from the priority queue.
    * Removes any events associated with the individual.
    *
-   * @param individual the individual to remove
+   * @param individual The individual to remove.
    */
   @Override
   public void removeIndividual(Individual individual) {
@@ -73,7 +77,7 @@ public class PEC implements IPEC {
   /**
    * Returns the next event in the priority queue.
    *
-   * @return the next event
+   * @return The next event.
    */
   @Override
   public IEvent nextEvent() {
@@ -82,9 +86,9 @@ public class PEC implements IPEC {
   }
 
   /**
-   * Checks if the priority queue is empty. Without counting Observation
+   * Checks if the priority queue is empty without counting Observation events.
    *
-   * @return true if the priority queue is empty, false otherwise
+   * @return true if the priority queue is empty, false otherwise.
    */
   @Override
   public boolean isEmpty() {
@@ -105,8 +109,8 @@ public class PEC implements IPEC {
   /**
    * Adds an event to the priority queue.
    *
-   * @param aIEvent the event to add
-   * @return the event that was added
+   * @param aIEvent The event to add.
+   * @return The event that was added.
    */
   public IEvent AddToPEC(Object aIEvent) {
     if (aIEvent instanceof IEvent) {

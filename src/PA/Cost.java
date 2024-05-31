@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * The CostMatrix class represents an n*m matrix for cost values.
+ * The Cost class represents an n*m matrix for cost values.
  */
 public class Cost {
   private int[][] matrix;
@@ -13,10 +13,10 @@ public class Cost {
   private int m;
 
   /**
-   * Constructs a CostMatrix object with the specified dimensions.
+   * Constructs a Cost object with the specified dimensions.
    *
-   * @param n the number of rows
-   * @param m the number of columns
+   * @param n The number of rows.
+   * @param m The number of columns.
    */
   public Cost(int n, int m) {
     this.n = n;
@@ -26,11 +26,11 @@ public class Cost {
   }
 
   /**
-   * Constructs a CostMatrix object with the specified dimensions and values.
+   * Constructs a Cost object with the specified dimensions and values.
    *
-   * @param n the number of rows
-   * @param m the number of columns
-   * @param matrix the matrix of cost values
+   * @param scanner The scanner to read the matrix values from.
+   * @param n       The number of rows.
+   * @param m       The number of columns.
    */
   public Cost(Scanner scanner, int n, int m) {
     this.n = n;
@@ -58,9 +58,9 @@ public class Cost {
   /**
    * Sets the value of the matrix at the specified row and column.
    *
-   * @param row the row index
-   * @param col the column index
-   * @param value the value to set
+   * @param row   The row index.
+   * @param col   The column index.
+   * @param value The value to set.
    */
   public void setValue(int row, int col, int value) {
     matrix[row][col] = value;
@@ -78,9 +78,9 @@ public class Cost {
   /**
    * Returns the value of the matrix at the specified row and column.
    *
-   * @param row the row index
-   * @param col the column index
-   * @return the value at the specified row and column
+   * @param row The row index.
+   * @param col The column index.
+   * @return The value at the specified row and column.
    */
   public int getValue(int row, int col) {
     return matrix[row][col];
@@ -102,7 +102,7 @@ public class Cost {
   /**
    * Sets the matrix.
    *
-   * @param matrix2 the matrix to set
+   * @param matrix2 The matrix to set.
    */
   public void setMatrix(int[][] matrix2) {
     this.matrix = matrix2;

@@ -16,8 +16,7 @@ import rand.myMath;
 
 /**
  * The Reproduction class represents an event in the simulation where an
- * individual reproduces.
- * It extends the AEvent class and overrides the HandleEvent method.
+ * individual reproduces. It extends the AEvent class and overrides the HandleEvent method.
  */
 public class Reproduction extends AEvent implements Ireproduction {
   private static final Random random = new Random();
@@ -25,10 +24,10 @@ public class Reproduction extends AEvent implements Ireproduction {
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
   /**
-   * Constructs a Reproduction event for a specific individual.
-   * The event time is calculated based on the individual's comfort level.
+   * Constructs a Reproduction event for a specific individual at a specified time.
    * 
    * @param individual The individual who will reproduce in this event.
+   * @param time       The time at which the reproduction event occurs.
    */
   public Reproduction(Individual individual) {
     super(myMath.reproductionRate(individual.getConfort()));
@@ -57,13 +56,8 @@ public class Reproduction extends AEvent implements Ireproduction {
   }
 
   /**
-   * Handles the reproduction event by creating a new individual and
-   * redistributing
+   * Handles the reproduction event by creating a new individual and redistributing
    * planetary systems among patrols.
-   * 
-   * @return true if the event was successfully handled.
-   * @throws IllegalStateException if the individual's distribution is empty or
-   *                               null.
    */
   @Override
   public void HandleEvent() {
@@ -127,10 +121,10 @@ public class Reproduction extends AEvent implements Ireproduction {
   }
 
   /**
-   * Gets a random patrol that has planetary systems in the distribution.
+   * Gets a random patrol from the distribution.
    * 
    * @param distribution The distribution of patrols and planetary systems.
-   * @return A random patrol with planetary systems.
+   * @return A random patrol.
    */
   private Patrol getRandomPatrolWithSystems(Map<Patrol, Set<PlanetarySystem>> distribution) {
     List<Patrol> patrolsWithSystems = new ArrayList<>();

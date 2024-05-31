@@ -3,9 +3,7 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 import pa.Cost;
-import utils.ContinuousFileWriter;
 
 /**
  * The Args class parses and stores the command line arguments passed to the
@@ -27,19 +25,19 @@ public class Args {
   /**
    * Default values for the command line arguments.
    */
-  private static final int DEFAULT_N = 5; // patrols
-  private static final int DEFAULT_M = 8; // planest
-  private static final double DEFAULT_TAU = 10.0; // time max
-  private static final int DEFAULT_NU = 9; // population init
-  private static final int DEFAULT_NUMAX = 10;// max population
-  private static final double DEFAULT_MU = 1000.0;// death rate
-  private static final double DEFAULT_RHO = 0.0001;// reporduction rate
-  private static final double DEFAULT_DELTA = 1000.0;// mutation rate
+  private static final int DEFAULT_N = 2; // patrols
+  private static final int DEFAULT_M = 3; // planest
+  private static final double DEFAULT_TAU = 150.0; // time max
+  private static final int DEFAULT_NU = 5; // population init
+  private static final int DEFAULT_NUMAX = 20;// max population
+  private static final double DEFAULT_MU = 100.0;// death rate
+  private static final double DEFAULT_RHO = 0.05;// reporduction rate
+  private static final double DEFAULT_DELTA = 0.01;// mutation rate
 
   /**
    * Constructs an Args object and processes the command line arguments.
    *
-   * @param args the command line arguments
+   * @param args The command line arguments.
    */
   public Args(String[] args) {
     if (args.length < 2) {
@@ -81,7 +79,7 @@ public class Args {
   /**
    * Reads the command line arguments and initializes the values accordingly.
    *
-   * @param args the command line arguments
+   * @param args The command line arguments.
    */
   private void readFromArgs(String[] args) {
     this.file = "";
@@ -101,7 +99,7 @@ public class Args {
   /**
    * Reads the values from a file and initializes the values accordingly.
    *
-   * @param args the command line arguments
+   * @param args The command line arguments.
    */
   private void readFromFile(String[] args) {
     try {
@@ -113,8 +111,6 @@ public class Args {
         String currentDir = System.getProperty("user.dir");
         filePath = currentDir + File.separator + filePath.substring(2);
       }
-      // TODO delete before sending
-      // ContinuousFileWriter.initialize(filePath);
 
       File file = new File(filePath);
       Scanner scanner = new Scanner(file);
@@ -141,7 +137,7 @@ public class Args {
   /**
    * Returns true if the mode is file.
    *
-   * @return true if the mode is file
+   * @return true if the mode is file.
    */
   public boolean fileMode() {
     return this.mode.equals("file");
@@ -150,7 +146,7 @@ public class Args {
   /**
    * Returns true if the mode is read.
    *
-   * @return true if the mode is read
+   * @return true if the mode is read.
    */
   public boolean readMode() {
     return this.mode.equals("read");

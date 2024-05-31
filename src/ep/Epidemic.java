@@ -14,9 +14,9 @@ public class Epidemic {
   /**
    * Determines if an epidemic may occur in the population.
    *
-   * @param pop  the population to check
-   * @param time the current time
-   * @return a list of events that may occur
+   * @param pop  The population to check.
+   * @param time The current time.
+   * @return A list of events that may occur.
    */
   public static List<IEvent> MayOccur(Population pop, double time) {
     if (pop.getNumIndividuals() >= pop.getMaxPopulationSize()) {
@@ -28,9 +28,9 @@ public class Epidemic {
   /**
    * Simulates an epidemic in the population.
    *
-   * @param pop  the population to simulate
-   * @param time the current time, used to generate deaths at this time
-   * @return a list of events that occurred
+   * @param pop  The population to simulate.
+   * @param time The current time, used to generate deaths at this time.
+   * @return A list of events that occurred.
    */
   private static List<IEvent> doEpidemic(Population pop, double time) {
 

@@ -2,13 +2,15 @@ package main;
 
 import java.util.List;
 
+import pa.Cost;
+
+import ep.Population;
+import ep.Confort;
+
 import dss.IEvent;
 import dss.Simulate;
-import ep.Confort;
-import ep.Population;
-import pa.Cost;
+
 import rand.myMath;
-import utils.ContinuousFileWriter;
 
 /* 
  * Entrar na pasta certa:
@@ -29,16 +31,17 @@ import utils.ContinuousFileWriter;
 /**
  * The Main class provides a main method that runs the simulation.
  * 
- * @author Henrique João
- * @author Tiago Nascimento
- * @author Ricardo Nobre
- * @author Francisco Azeredo
+ * @autor Henrique João
+ * @autor Tiago Nascimento
+ * @autor Ricardo Nobre
+ * @autor Francisco Azeredo
  */
 public class Main {
 
   /**
-   * 
-   * @param args
+   * The main method that runs the simulation.
+   *
+   * @param args The command line arguments.
    */
   public static void main(String[] args) {
     Args params = new Args(args);
@@ -69,6 +72,7 @@ public class Main {
         { 5, 5, 5, 1, 1, 2, 2, 2, 1, 2, 2, 2, 1, 1 },
         { 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 2 },
     };
+    // costMatrix.setMatrix(matrix);
 
     // Calculate tmin
     Confort confort = new Confort(costMatrix.getMatrix());
@@ -84,6 +88,18 @@ public class Main {
 
     // Criação da instância de myMath antes do loop
     myMath mathUtils = new myMath(mu, rho, delta);
+    // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
+    // population.printPopulation();
+    // Testing Death
+    // List<Individual> individuals = population.getPo pulation();
+    // for (int i = 0; i < 3; i++) {
+    // Individual individual = individuals.get(i);
+    // System.out.println("Individual " + individual.getConfort() + ":");
+    // IEvent event = new Reproduction(individual);
+    // event.HandleEvent();
+    //
+    // System.out.println("Produced Individual " + individual.getConfort() + ":");
+    // }
 
     Simulate simulation = new Simulate(tau, population);
 
@@ -94,7 +110,6 @@ public class Main {
     }
     // simulation.getPec().printPEC();
     simulation.run();
-    // ContinuousFileWriter.close();
     System.out.println("It is Done!");
   }
 

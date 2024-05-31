@@ -8,8 +8,7 @@ import ep.Observation;
 
 /**
  * The Simulate class implements the ISimulate interface. It provides
- * functionality for
- * running a simulation using a priority event container.
+ * functionality for running a simulation using a priority event container.
  */
 public class Simulate implements ISimulate {
   private IPEC pec;
@@ -18,12 +17,13 @@ public class Simulate implements ISimulate {
   private double currentTime;
   public IEvent unnamed_IEvent_;
 
+
   /**
    * Constructs a Simulate object with the specified simulation time and
    * population.
    *
-   * @param simulationTime the time to run the simulation
-   * @param population     the population to simulate
+   * @param simulationTime The time to run the simulation.
+   * @param population     The population to simulate.
    */
   public Simulate(double simulationTime, Population population) {
     this.simulationTime = simulationTime;
@@ -40,10 +40,11 @@ public class Simulate implements ISimulate {
     // }
   }
 
+
   /**
    * Adds an event to the priority event container.
    *
-   * @param aEvent the event to add
+   * @param aEvent The event to add.
    */
   @Override
   public void AddToPEC(IEvent aEvent) {
@@ -52,8 +53,7 @@ public class Simulate implements ISimulate {
 
   /**
    * Runs the simulation until the simulation time is reached or the priority
-   * event container is
-   * empty.
+   * event container is empty.
    */
   @Override
   public void run() {
@@ -87,8 +87,8 @@ public class Simulate implements ISimulate {
   /**
    * Checks if the simulation has reached a solution.
    *
-   * @param event the event to check
-   * @return true if the simulation has reached a solution, false otherwise
+   * @param event The event to check.
+   * @return true if the simulation has reached a solution, false otherwise.
    */
   /*
    * @Override

@@ -18,13 +18,14 @@ public class CustomRandom {
 
 
   /**
-   * Method to get the next random integer.
-   *
-   * @return the next random integer
+   * Generates the next random number following an exponential distribution with
+   * the specified mean.
+   * 
+   * @param mean The mean of the exponential distribution.
+   * @return The next random number following an exponential distribution.
    */
   public double nextExponential(double mean) {
     return -mean * Math.log(random.nextDouble());
   }
 
-  // Outros métodos personalizados podem ser adicionados aqui
 }

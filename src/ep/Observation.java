@@ -6,8 +6,7 @@ import dss.AEvent;
 import utils.ContinuousFileWriter;
 
 /**
- * The Observation class provides a contract for observation events in a
- * simulation.
+ * The Observation class provides a concrete implementation for observation events in a simulation.
  */
 public class Observation extends AEvent implements IObservation {
   private int i = 0;
@@ -15,29 +14,21 @@ public class Observation extends AEvent implements IObservation {
   private ContinuousFileWriter file;
 
   /**
-   * Constructs an Observation object with the specified time, final instance,
-   * population, and i.
+   * Constructs an Observation object with the specified time, population, and index.
    * 
-   * @param time          the time of the observation
-   * @param finalInstance the final instance of the observation
-   * @param population    the population of the observation
-   * @param i             the i of the observation
+   * @param time       The time of the observation.
+   * @param population The population of the observation.
+   * @param i          The index of the observation.
    */
   public Observation(double time, Population population, int i) {
     super(time);
     this.population = population;
     this.i = i;
+    this.file = new ContinuousFileWriter("output.txt");
   }
 
   /**
-   * Constructs an Observation object with the specified time, final instance,
-   * population, i, and actual time.
-   * 
-   * @param time          the time of the observation
-   * @param finalInstance the final instance of the observation
-   * @param population    the population of the observation
-   * @param i             the i of the observation
-   * @param actualTime    the actual time of the observation
+   * Throws UnsupportedOperationException. This method is not implemented.
    */
   @Override
   public void NewEvent() {
@@ -47,11 +38,11 @@ public class Observation extends AEvent implements IObservation {
   /**
    * Updates the simulation.
    * 
-   * @return true if the simulation was successfully updated.
+   * @return true if the simulation was successfully updated. Otherwise, false.
    */
   @Override
   public boolean UpdateSimulation() {
-    if (population.getBestIndividual().getBestIndividual(population.getPopulation()).getConfort() >= 1) {
+    if (population.getBestIndividual().getBestIndividual().getConfort() >= 1) {
       return false;
     }
     if (population.getPopulation().size() == 0) {
@@ -62,27 +53,25 @@ public class Observation extends AEvent implements IObservation {
 
   /**
    * Handles the event by printing the observation.
-   * 
-   * @return true if the event was successfully handled.
    */
   @Override
   public void HandleEvent() {
-	  StringBuilder sb = new StringBuilder();
-	    List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
-	    Individual bestIndividual = population.getBestIndividual().getBestIndividual(population.getPopulation()); // Obtendo o melhor indivíduo já
-	                                                                                    // registrado
-	    double bestConfort = bestIndividual.getConfort(); // Obtendo o melhor conforto já registrado
-	    double bestPolicingTime = bestIndividual.getPolicingTime(); // Obtendo o melhor tempo de policiamento já registrado
-	  sb.append("Observation:\t\t\t\t" + this.i + "\n");
-	    sb.append("Present instant:\t\t\t" + String.format("%.2f", this.eventTime) + "\n");
-	    sb.append("Number of realized events:\t\t" + population.getNumEvents() + "\n");
-	    sb.append("Population size:\t\t\t" + population.getPopulation().size() + "\n");
-	    sb.append("Number of epidemics:\t\t\t" + population.getEpidemicCounter() + "\n");
-	    sb.append(
-	        "Best distribution of the patrols:" + population.getBestIndividual().getBestIndividual(population.getPopulation()).toString() + "\n");
-	    sb.append("Empire policing time:\t\t"  //+ String.format("%.2f", population.getBestIndividual().getBestIndividual(population.getPopulation()).getPolicingTime()) + "\n");
-	    + String.format("%.2f", bestPolicingTime) + "\n");
-     sb.append("Comfort:\t\t\t"
+    StringBuilder sb = new StringBuilder();
+    List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
+    Individual bestIndividual = population.getBestIndividual().getBestIndividual(); // Obtendo o melhor indivíduo já
+                                                                                    // registrado
+    double bestConfort = bestIndividual.getConfort(); // Obtendo o melhor conforto já registrado
+    double bestPolicingTime = bestIndividual.getPolicingTime(); // Obtendo o melhor tempo de policiamento já registrado
+    sb.append("Observation:\t\t\t\t" + this.i + "\n");
+    sb.append("Present instant:\t\t\t" + String.format("%.2f", this.eventTime) + "\n");
+    sb.append("Number of realized events:\t\t" + population.getNumEvents() + "\n");
+    sb.append("Population size:\t\t\t" + population.getPopulation().size() + "\n");
+    sb.append("Number of epidemics:\t\t\t" + population.getEpidemicCounter() + "\n");
+    sb.append(
+        "Best distribution of the patrols:" + population.getBestIndividual().getBestIndividual().toString() + "\n");
+    sb.append("Empire policing time:\t\t"
+        + String.format("%.2f", population.getBestIndividual().getBestIndividual().getPolicingTime()) + "\n");
+    sb.append("Comfort:\t\t\t"
         + String.format("%.2f", bestConfort) + "\n");
     sb.append("Other candidate distributions:\n");
 
@@ -93,16 +82,18 @@ public class Observation extends AEvent implements IObservation {
     }
     // Program the event time for the next TimeEvent
     System.out.println(sb.toString());
-    // TODO delete before submission
-    // utils.ContinuousFileWriter.writeToFile(sb.toString() + "\n");
+    // file.writeToFile(sb.toString() + "\n");
   }
 
+  
+
   /**
-   * Returns a string representation of the Observation event.
+   * Indents a given string by a specified number of spaces.
    * 
-   * @return a string representation of the Observation event
+   * @param string The string to indent.
+   * @param spaces The number of spaces to indent.
+   * @return The indented string.
    */
-  @Override
   public String indentString(String string, int spaces) {
     StringBuilder sb = new StringBuilder();
     String[] lines = string.split("\\r?\\n");

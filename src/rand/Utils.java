@@ -12,10 +12,12 @@ public class Utils {
   private static final Random random = new Random(); // Initialize Random object
 
   /**
-   * Generic method to get a random element from a list
+   * Returns a random element from a list.
    *
-   * @param bound the upper bound (exclusive)
-   * @return a random integer
+   * @param <T>  The type of elements in the list.
+   * @param list The list from which to get a random element.
+   * @return A random element from the list.
+   * @throws IllegalArgumentException if the list is null or empty.
    */
   public static <T> T getRandomElement(List<T> list) {
     if (list == null || list.isEmpty()) {
@@ -25,11 +27,13 @@ public class Utils {
     return list.get(randomIndex); // Return the element at the random index
   }
 
+  
   /**
-   * Generic method to get a random integer
+   * Returns a random element from a set.
    *
-   * @param bound the upper bound (exclusive)
-   * @return a random integer
+   * @param <T> The type of elements in the set.
+   * @param set The set from which to get a random element.
+   * @return A random element from the set.
    */
   public static <T> T getRandomElementFromSet(Set<T> set) {
     int index = random.nextInt(set.size());
