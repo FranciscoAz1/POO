@@ -102,6 +102,7 @@ public class Observation extends AEvent implements IObservation {
    * 
    * @return a string representation of the Observation event
    */
+  @Override
   public String indentString(String string, int spaces) {
     StringBuilder sb = new StringBuilder();
     String[] lines = string.split("\\r?\\n");

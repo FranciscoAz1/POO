@@ -55,6 +55,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @param numIndividuals the number of individuals
    */
+  @Override
   public void createInitialPopulation(int numIndividuals) {
     this.numIndividuals += numIndividuals;
     for (int i = 0; i < numIndividuals; i++) {
@@ -76,6 +77,7 @@ public class Population extends AEmpire implements IPopulation {
   /**
    * Increments the count of events performed.
    */
+  @Override
   public void countEvent() {
     this.eventsPerformed++;
   }
@@ -85,6 +87,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return the number of events performed
    */
+  @Override
   public int getNumEvents() {
     return eventsPerformed;
   }
@@ -94,6 +97,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return the number of epidemics
    */
+  @Override
   public int getEpidemicCounter() {
     return epidemicCounter;
   }
@@ -101,6 +105,7 @@ public class Population extends AEmpire implements IPopulation {
   /**
    * Increments the count of epidemics.
    */
+  @Override
   public void IncrementEpidemic() {
     this.epidemicCounter++;
   }
@@ -110,6 +115,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @param individual the individual to add
    */
+  @Override
   public void addIndividual(Individual individual) {
     int attempts = 0;
     int maxAttempts = 100; // number of times we try to avoid duplicates
@@ -135,6 +141,7 @@ public class Population extends AEmpire implements IPopulation {
     System.out.println("Unique Individual could not be found");
   }
 
+  @Override
   public void forceAdd(Individual individual) {
     population.add(individual);
   }
@@ -144,6 +151,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @param individual the individual to remove
    */
+  @Override
   public void removeIndividual(Individual individual) {
     if (this.population.remove(individual)) {
       this.numIndividuals -= 1;
@@ -205,6 +213,7 @@ public class Population extends AEmpire implements IPopulation {
    *
    * @return A list of all events.
    */
+  @Override
   public List<IEvent> getEvents() {
     List<IEvent> AllEvents = new ArrayList<>();
     for (Individual individual : population) {
@@ -218,6 +227,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return The number of individuals.
    */
+  @Override
   public int getNumIndividuals() {
     return numIndividuals;
   }
@@ -227,6 +237,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return The maximum population size.
    */
+  @Override
   public int getMaxPopulationSize() {
     return MaxPopulationSize;
   }
@@ -236,6 +247,7 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return The best-fitted individual.
    */
+  @Override
   public Best_Fitted_Individual getBestIndividual() {
     return bestIndividual;
   }

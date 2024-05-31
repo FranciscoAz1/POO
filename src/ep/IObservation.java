@@ -7,4 +7,5 @@ import dss.IEvent;
  * simulation.
  */
 public interface IObservation extends IEvent {
+  public String indentString(String string, int spaces);
 }
