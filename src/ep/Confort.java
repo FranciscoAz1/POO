@@ -6,7 +6,7 @@ package ep;
  */
 public class Confort {
 
-  private int[][] matrix;
+  private int[][] array;
   public static double tmin;
 
   /**
@@ -15,7 +15,7 @@ public class Confort {
    * @param matrix the matrix to calculate t_min
    */
   public Confort(int[][] matrix) {
-    this.matrix = matrix;
+    this.array = matrix;
     Confort.tmin = calculateTmin();
   }
 
@@ -25,15 +25,27 @@ public class Confort {
    * @return the minimum time for the matrix
    */
   private double calculateTmin() {
-    int tmin = 0;
-    for (int j = 0; j < matrix.length; j++) {
-      int minTime = Integer.MAX_VALUE;
-      for (int i = 0; i < matrix[j].length; i++) {
-        minTime = Math.min(minTime, matrix[i][j]);
+    int numRows = array.length;
+    int numCols = array[0].length;
+    int sumOfMins = 0;
+
+    // Iterate over each column
+    for (int col = 0; col < numCols; col++) {
+      int min = array[0][col];
+
+      // Find the minimum value in the current column
+      for (int row = 1; row < numRows; row++) {
+        if (array[row][col] < min) {
+          min = array[row][col];
+        }
       }
-      tmin += minTime;
+
+      // Add the minimum value to the sum
+      sumOfMins += min;
     }
-    double sol = tmin / matrix.length;
-    return tmin / matrix.length;
+
+    // Calculate the average
+    double average = (double) sumOfMins / numRows;
+    return average;
   }
 }
