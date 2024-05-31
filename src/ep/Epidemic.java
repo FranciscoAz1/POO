@@ -33,7 +33,6 @@ public class Epidemic {
    * @return a list of events that occurred
    */
   private static List<IEvent> doEpidemic(Population pop, double time) {
-    System.out.println("Epidemic occured");
 
     List<Individual> individuals = pop.getBestIndividual().getSorted(pop.getPopulation());
     List<IEvent> deaths = new ArrayList<>();

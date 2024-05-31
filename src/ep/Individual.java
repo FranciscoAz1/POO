@@ -101,7 +101,7 @@ public class Individual {
    * 
    * @return the comfort of the individual
    */
-  public double getNewConfort(){
+  public double getNewConfort() {
     calculateConfort();
     return confort;
   }
@@ -210,6 +210,7 @@ public class Individual {
   public List<IEvent> getNewEvents(double time) {
     return createEvents(time);
   }
+
   /**
    * Method to print troop distribution over time
    * 
@@ -312,17 +313,20 @@ public class Individual {
     output.append("{");
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
       Patrol patrol = entry.getKey();
-      Set<PlanetarySystem> systems = entry.getValue();
       output.append("{");
+      Set<PlanetarySystem> systems = entry.getValue();
       for (PlanetarySystem system : systems) {
-        output.append(+system.getId());
-        if (system != systems) {
-          output.append(",");
-        }
+        output.append(+system.getId() + ",");
       }
-      output.replace(output.length() - 1, output.length(), "},");
+      if (!systems.isEmpty()) {
+        output.setLength(output.length() - 1);
+      }
+      output.append("},");
     }
-    output.replace(output.length() - 1, output.length(), "}");
+    if (!distribution.isEmpty()) {
+      output.setLength(output.length() - 1);
+    }
+    output.append("}");
     if (output.length() == 0) {
       throw new NullPointerException("Leitura de indivíduo falhou");
     }

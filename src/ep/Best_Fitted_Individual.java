@@ -17,7 +17,6 @@ public class Best_Fitted_Individual {
    */
   public Best_Fitted_Individual() {
   }
-  
 
   /**
    * Sorts the population by confort value and returns the sorted list.
@@ -26,21 +25,21 @@ public class Best_Fitted_Individual {
    * @return the sorted population
    */
   public List<Individual> getSorted(List<Individual> population) {
-      List<Individual> sortedPopulation = population.stream()
-          .sorted(Comparator.comparingDouble(Individual::getConfort).reversed())
-          .collect(Collectors.toList());
+    List<Individual> sortedPopulation = population.stream()
+        .sorted(Comparator.comparingDouble(Individual::getConfort).reversed())
+        .collect(Collectors.toList());
 
-      // Find the best individual ever and update it if it's better than the current best
-      if (!sortedPopulation.isEmpty()) {
-          Individual currentBest = sortedPopulation.get(0);
-          if (bestIndividual == null || currentBest.getConfort() > bestIndividual.getConfort()) {
-              bestIndividual = new Individual(currentBest); // Use copy constructor
-          }
+    // Find the best individual ever and update it if it's better than the current
+    // best
+    if (!sortedPopulation.isEmpty()) {
+      Individual currentBest = sortedPopulation.get(0);
+      if (bestIndividual == null || currentBest.getConfort() > bestIndividual.getConfort()) {
+        bestIndividual = new Individual(currentBest); // Use copy constructor
       }
+    }
 
-      return sortedPopulation;
+    return sortedPopulation;
   }
-
 
   /**
    * Method to find the individual with the best confort value
@@ -50,9 +49,10 @@ public class Best_Fitted_Individual {
   public Individual getBestIndividual() {
     return bestIndividual;
   }
+
   public double getBestConfort() {
-	    return bestIndividual != null ? bestIndividual.getConfort() : 0;
-	  }
+    return bestIndividual != null ? bestIndividual.getConfort() : 0;
+  }
 
   /**
    * Method to get the 5 best individuals

@@ -103,6 +103,7 @@ public class Mutation extends AEvent implements Imutation {
     distribution.computeIfAbsent(destinationPatrol, k -> new HashSet<>()).add(systemToMove);
 
     individual.setDistribution(distribution);
+    individual.getNewConfort();
     // increment event
     individual.getPopulation().countEvent();
 
