@@ -169,30 +169,26 @@ public class Population extends AEmpire implements IPopulation {
       }
     }
 
-    /*
-     * System.out.println("\nLista ordenada de todos os indivíduos:");
-     * Best_Fitted_Individual.sortPopulation(population);
-     * for (Individual individual : population) {
-     * System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(),
-     * individual);
-     * }
-     * 
-     * System.out.println("\nOs 5 melhores indivíduos:");
-     * List<Individual> best5 = Best_Fitted_Individual.getBest5(population);
-     * for (Individual individual : best5) {
-     * System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(),
-     * individual);
-     * }
-     * // Imprimir o melhor indivíduo rastreado
-     * Individual bestIndividual = Best_Fitted_Individual.getBestIndividual();
-     * if (bestIndividual != null) {
-     * System.out.println("\nMelhor indivíduo rastreado:");
-     * System.out.printf("Conforto: %.2f - %s\n", bestIndividual.getConfort(),
-     * bestIndividual);
-     * } else {
-     * System.out.println("\nNenhum indivíduo rastreado como o melhor.");
-     * }
-     */
+    
+    System.out.println("\nLista ordenada de todos os indivíduos:");
+    bestIndividual.getSorted(population); // Utilizando a instância para chamar o método não estático
+    for (Individual individual : population) {
+      System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(), individual);
+    }
+
+    System.out.println("\nOs 5 melhores indivíduos:");
+    List<Individual> best5 = bestIndividual.getBest5(population); // Utilizando a instância para chamar o método não estático
+    for (Individual individual : best5) {
+      System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(), individual);
+    }
+    // Imprimir o melhor indivíduo rastreado
+    Individual bestTrackedIndividual = bestIndividual.getBestIndividual(); // Corrigindo o nome da variável
+    if (bestTrackedIndividual != null) {
+      System.out.println("\nMelhor indivíduo rastreado:");
+      System.out.printf("Conforto: %.2f - %s\n", bestTrackedIndividual.getConfort(), bestTrackedIndividual);
+    } else {
+      System.out.println("\nNenhum indivíduo rastreado como o melhor.");
+    }
   }
 
   /**

@@ -107,6 +107,7 @@ public class Main {
     }
     // simulation.getPec().printPEC();
     simulation.run();
+    population.printPopulation();
     System.out.println("It is Done!");
   }
 

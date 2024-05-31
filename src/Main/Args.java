@@ -25,14 +25,14 @@ public class Args {
   /**
    * Default values for the command line arguments.
    */
-  private static final int DEFAULT_N = 8; // patrols
-  private static final int DEFAULT_M = 20; // planest
-  private static final double DEFAULT_TAU = 200.0; // time max
-  private static final int DEFAULT_NU = 5; // population init
-  private static final int DEFAULT_NUMAX = 20;// max population
+  private static final int DEFAULT_N = 4; // patrols
+  private static final int DEFAULT_M = 10; // planest
+  private static final double DEFAULT_TAU = 300.0; // time max
+  private static final int DEFAULT_NU = 600; // population init
+  private static final int DEFAULT_NUMAX = 10;// max population
   private static final double DEFAULT_MU = 10.0;// death rate
-  private static final double DEFAULT_RHO = 3.0;// reporduction rate
-  private static final double DEFAULT_DELTA = 1.0;// mutation rate
+  private static final double DEFAULT_RHO = 100.0;// reporduction rate
+  private static final double DEFAULT_DELTA = 22.0;// mutation rate
 
   /**
    * Constructs an Args object and processes the command line arguments.
