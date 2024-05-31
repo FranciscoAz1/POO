@@ -111,6 +111,8 @@ public class Args {
         String currentDir = System.getProperty("user.dir");
         filePath = currentDir + File.separator + filePath.substring(2);
       }
+      // TODO delete before sending
+      utils.StringSaver.setString(filePath);
 
       File file = new File(filePath);
       Scanner scanner = new Scanner(file);

@@ -27,7 +27,7 @@ public class Observation extends AEvent implements IObservation {
     super(time);
     this.population = population;
     this.i = i;
-    this.file = new ContinuousFileWriter("output");
+    this.file = new ContinuousFileWriter(utils.StringSaver.getString());
   }
 
   /**
