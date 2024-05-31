@@ -1,12 +1,9 @@
 package ep;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
-import java.util.Vector;
 
-import utils.ContinuousFileWriter;
 import dss.AEvent;
+import utils.ContinuousFileWriter;
 
 /**
  * The Observation class provides a contract for observation events in a
@@ -14,8 +11,6 @@ import dss.AEvent;
  */
 public class Observation extends AEvent implements IObservation {
   private int i = 0;
-  private double finalInstance;
-  private int actualTime;
   private Population population;
   private ContinuousFileWriter file;
 
@@ -28,10 +23,9 @@ public class Observation extends AEvent implements IObservation {
    * @param population    the population of the observation
    * @param i             the i of the observation
    */
-  public Observation(double time, double finalInstance, Population population, int i) {
+  public Observation(double time, Population population, int i) {
     super(time);
     this.population = population;
-    this.finalInstance = finalInstance;
     this.i = i;
     this.file = new ContinuousFileWriter("output.txt");
   }

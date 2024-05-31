@@ -1,9 +1,7 @@
 package ep;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -12,7 +10,6 @@ import java.util.Set;
 import rand.Utils;
 
 import dss.AEvent;
-import dss.IEvent;
 import pa.Patrol;
 import pa.PlanetarySystem;
 import rand.myMath;
@@ -87,11 +84,11 @@ public class Reproduction extends AEvent implements Ireproduction {
     Map<Patrol, Set<PlanetarySystem>> newDistribution = newIndividual.getDistribution();
     // Step 1 calculate ⌊(1 − ϕ(z))m⌋ systems to remove
     int nSystems = 0;
-    List<PlanetarySystem> systemsToRemove = new ArrayList<>();
+    // get total nSystems
     for (Set<PlanetarySystem> planetarySystems : distribution.values()) {
       nSystems += planetarySystems.size();
     }
-    double Confort = individual.getConfort();
+    // ⌊(1 − ϕ(z))m⌋
     int nSystemsToRemove = (int) ((1 - individual.getConfort()) * nSystems);
     //
     // Step 3: Randomly remove planetary systems from the new distribution
@@ -120,7 +117,6 @@ public class Reproduction extends AEvent implements Ireproduction {
     double currentTime = getEventTime();
 
     // Agendar um novo evento de reprodução para o mesmo indivíduo
-    double newEventTime = getEventTime() + myMath.reproductionRate(individual.getConfort());
     Reproduction newReproductionEvent = new Reproduction(individual, getEventTime());
 
     addEvents(newIndividual.getNewEvents(currentTime));

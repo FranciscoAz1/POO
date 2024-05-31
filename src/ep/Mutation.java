@@ -55,10 +55,6 @@ public class Mutation extends AEvent implements Imutation {
     if (individual == null) {
       throw new IllegalStateException("Individual cannot be null.");
     }
-    // // check death
-    // if (individual.getPopulation().getPopulation().contains(individual)) {
-    // return false;
-    // }
     distribution = individual.getDistribution();
     // Check if the distribution is not empty and has more than one patrol
     if (distribution == null || distribution.isEmpty()) {
@@ -71,7 +67,7 @@ public class Mutation extends AEvent implements Imutation {
     Patrol sourcePatrol = null;
     Set<PlanetarySystem> sourceSystems = null;
     boolean foundNonEmptyPatrol = false;
-    double attempts = 10 * patrolList.size();
+    double attempts = 1000 * patrolList.size();
 
     // Try to find a patrol with at least one planetary system
     for (int i = 0; i < attempts; i++) {
