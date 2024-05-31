@@ -140,6 +140,7 @@ public class Population extends AEmpire implements IPopulation {
    */
   public void forceAdd(Individual individual) {
     population.add(individual);
+    this.numIndividuals += 1;
   }
 
   /**

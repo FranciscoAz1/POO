@@ -107,16 +107,15 @@ public class Reproduction extends AEvent implements Ireproduction {
     Population pop = individual.getPopulation();
     pop.forceAdd(newIndividual);
 
-    // add events to the new individual, with the time of the parent individual
     double currentTime = getEventTime();
-
+    // Epidemic may occur
+    this.addEvents(Epidemic.MayOccur(pop, currentTime));
+    // add events to the new individual, with the time of the parent individual
     // Agendar um novo evento de reprodução para o mesmo indivíduo
     Reproduction newReproductionEvent = new Reproduction(individual, getEventTime());
 
     addEvents(newIndividual.getNewEvents(currentTime));
     this.addEvent(newReproductionEvent);
-    // Epidemic may occur
-    this.addEvents(Epidemic.MayOccur(pop, currentTime));
     pop.countEvent();
   }
 

@@ -329,4 +329,17 @@ public class Individual {
     }
     return output.toString();
   }
+
+  /**
+   * Returns the id of the individual.
+   * 
+   * @return The id of the individual.
+   */
+  public void updateFrom(Individual other) {
+    // Atualize os atributos conforme necessário
+    this.distribution = other.getDistribution();
+    this.confort = other.getConfort();
+    this.policingTime = other.getPolicingTime();
+    // Adicione os demais atributos que precisam ser atualizados
+  }
 }
