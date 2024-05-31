@@ -5,9 +5,9 @@ package ep;
  * for a given matrix.
  */
 public class Confort {
-  
+
   private int[][] matrix;
-  public static int tmin;
+  public static double tmin;
 
   /**
    * Constructs a Confort object with the specified matrix.
@@ -24,15 +24,16 @@ public class Confort {
    *
    * @return the minimum time for the matrix
    */
-  private int calculateTmin() {
+  private double calculateTmin() {
     int tmin = 0;
     for (int j = 0; j < matrix.length; j++) {
       int minTime = Integer.MAX_VALUE;
       for (int i = 0; i < matrix[j].length; i++) {
-        minTime = Math.min(minTime, matrix[j][i]);
+        minTime = Math.min(minTime, matrix[i][j]);
       }
       tmin += minTime;
     }
+    double sol = tmin / matrix.length;
     return tmin / matrix.length;
   }
 }

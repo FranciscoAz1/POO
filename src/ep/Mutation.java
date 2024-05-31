@@ -71,9 +71,10 @@ public class Mutation extends AEvent {
     Patrol sourcePatrol = null;
     Set<PlanetarySystem> sourceSystems = null;
     boolean foundNonEmptyPatrol = false;
+    double attempts = 10 * patrolList.size();
 
     // Try to find a patrol with at least one planetary system
-    for (int i = 0; i < patrolList.size(); i++) {
+    for (int i = 0; i < attempts; i++) {
       Patrol potentialSourcePatrol = patrolList.get(random.nextInt(patrolList.size()));
       Set<PlanetarySystem> potentialSourceSystems = distribution.get(potentialSourcePatrol);
       if (potentialSourceSystems != null && !potentialSourceSystems.isEmpty()) {
@@ -95,11 +96,6 @@ public class Mutation extends AEvent {
     // Step 3: Remove the selected PlanetarySystem from the selected Patrol
     sourceSystems.remove(systemToMove);
 
-    // Ensure source patrol has no empty set
-    if (sourceSystems.isEmpty()) {
-      distribution.remove(sourcePatrol);
-    }
-
     // Step 4: Select a different random Patrol
     Patrol destinationPatrol;
     do {
@@ -109,12 +105,15 @@ public class Mutation extends AEvent {
     // Step 5: Add the selected PlanetarySystem to the set associated with the new
     // Patrol
     distribution.computeIfAbsent(destinationPatrol, k -> new HashSet<>()).add(systemToMove);
+
     individual.setDistribution(distribution);
+    // increment event
     individual.getPopulation().countEvent();
 
     // Agendar um novo evento de reprodução para o mesmo indivíduo
     double newEventTime = getEventTime() + myMath.mutationRate(individual.getConfort());
-    Mutation newMutationEvent = new Mutation(individual, newEventTime);
+
+    Mutation newMutationEvent = new Mutation(individual, getEventTime());
     this.addEvent(newMutationEvent);
   }
 

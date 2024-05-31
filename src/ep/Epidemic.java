@@ -6,14 +6,15 @@ import java.util.List;
 import dss.IEvent;
 
 /**
- * The Epidemic class provides functionality for simulating an epidemic in a population.
+ * The Epidemic class provides functionality for simulating an epidemic in a
+ * population.
  */
 public class Epidemic {
 
   /**
    * Determines if an epidemic may occur in the population.
    *
-   * @param pop the population to check
+   * @param pop  the population to check
    * @param time the current time
    * @return a list of events that may occur
    */
@@ -27,23 +28,25 @@ public class Epidemic {
   /**
    * Simulates an epidemic in the population.
    *
-   * @param pop the population to simulate
+   * @param pop  the population to simulate
    * @param time the current time
    * @return a list of events that occurred
    */
   private static List<IEvent> doEpidemic(Population pop, double time) {
+    System.out.println("Epidemic occured");
+
     List<Individual> individuals = pop.getBestIndividual().getSorted(pop.getPopulation());
     List<IEvent> deaths = new ArrayList<>();
-    if (individuals.size() < 5) {
+    if (individuals.size() < 6) {
       return deaths;
     }
-    for (int i = 5; i < individuals.size(); i++) {
-      final Individual individual = individuals.get(i);
+    for (int i = 0; i < individuals.size() - 6; i++) {
+      Individual individual = individuals.get(i);
       // Kill with randomness
-      final double randomNumber = Math.random();
-      final double individualScore = randomNumber * individual.getConfort();
+      double randomNumber = Math.random();
+      double individualScore = randomNumber * individual.getConfort();
       if (individualScore < (2.0 / 3.0)) {
-        final Death death = new Death(individual, time);
+        Death death = new Death(individual, time);
         deaths.add(death);
       }
     }

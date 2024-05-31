@@ -31,7 +31,7 @@ public class Simulate implements ISimulate {
     this.pec = new PEC();
 
     // Schedule the 20 initial observation events
-    for (int i = 1; i <= 20; i++) {
+    for (int i = 0; i <= 20; i++) {
       double observationTime = i * this.simulationTime / 20;
       AddToPEC(new Observation(observationTime, this.simulationTime, population, i));
     }
@@ -57,6 +57,7 @@ public class Simulate implements ISimulate {
    */
   @Override
   public void run() {
+    System.out.println("start run");
     while (this.currentTime < this.simulationTime && !pec.isEmpty()) {
       this.currentEvent = pec.nextEvent();
       // updates the current time if handling event was successful

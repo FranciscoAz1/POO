@@ -61,6 +61,9 @@ public class Observation extends AEvent implements IObservation {
     if (population.getBestIndividual().getBestIndividual().getConfort() >= 1) {
       return false;
     }
+    if (population.getPopulation().size() == 0) {
+      return false;
+    }
     return true;
   }
 

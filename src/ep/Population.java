@@ -134,6 +134,10 @@ public class Population extends AEmpire implements IPopulation {
     System.out.println("Unique Individual could not be found");
   }
 
+  public void forceAdd(Individual individual) {
+    population.add(individual);
+  }
+
   /**
    * Removes an individual from the population.
    * 

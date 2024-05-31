@@ -91,7 +91,8 @@ public class Reproduction extends AEvent implements Ireproduction {
     for (Set<PlanetarySystem> planetarySystems : distribution.values()) {
       nSystems += planetarySystems.size();
     }
-    int nSystemsToRemove = (int) (1 - individual.getConfort()) * nSystems;
+    double Confort = individual.getConfort();
+    int nSystemsToRemove = (int) ((1 - individual.getConfort()) * nSystems);
     //
     // Step 3: Randomly remove planetary systems from the new distribution
     List<PlanetarySystem> removedSystems = new ArrayList<>();
@@ -113,16 +114,16 @@ public class Reproduction extends AEvent implements Ireproduction {
     // Step 5: add new individual to population
     newIndividual.setDistribution(newDistribution);
     Population pop = individual.getPopulation();
-    pop.addIndividual(newIndividual);
+    pop.forceAdd(newIndividual);
 
     // add events to the new individual, with the time of the parent individual
     double currentTime = getEventTime();
-    addEvents(newIndividual.getNewEvents(currentTime));
 
     // Agendar um novo evento de reprodução para o mesmo indivíduo
     double newEventTime = getEventTime() + myMath.reproductionRate(individual.getConfort());
-    Reproduction newReproductionEvent = new Reproduction(individual, newEventTime);
+    Reproduction newReproductionEvent = new Reproduction(individual, getEventTime());
 
+    addEvents(newIndividual.getNewEvents(currentTime));
     this.addEvent(newReproductionEvent);
     // Epidemic may occur
     this.addEvents(Epidemic.MayOccur(pop, currentTime));

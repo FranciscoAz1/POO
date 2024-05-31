@@ -145,9 +145,8 @@ public class Individual {
    * @return the distribution of the individual
    */
   public void calculateConfort() {
-    double total_time = 0;
+    double timez = 0;
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : distribution.entrySet()) {
-      double timez = 0.0;
       Patrol patrol = entry.getKey();
       Set<PlanetarySystem> systems = entry.getValue();
 
@@ -158,10 +157,10 @@ public class Individual {
         }
         timez += time;
       }
-      total_time += timez;
-      this.confort = ep.Confort.tmin / timez;
     }
-    this.policingTime = total_time;
+    double confort = ep.Confort.tmin;
+    this.policingTime = timez;
+    this.confort = ep.Confort.tmin / timez;
   }
 
   /**
