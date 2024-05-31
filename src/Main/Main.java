@@ -69,7 +69,6 @@ public class Main {
         { 5, 5, 5, 1, 1, 2, 2, 2, 1, 2, 2, 2, 1, 1 },
         { 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 2 },
     };
-    // costMatrix.setMatrix(matrix);
 
     // Calculate tmin
     Confort confort = new Confort(costMatrix.getMatrix());
@@ -85,18 +84,6 @@ public class Main {
 
     // Criação da instância de myMath antes do loop
     myMath mathUtils = new myMath(mu, rho, delta);
-    // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
-    // population.printPopulation();
-    // Testing Death
-    // List<Individual> individuals = population.getPo pulation();
-    // for (int i = 0; i < 3; i++) {
-    // Individual individual = individuals.get(i);
-    // System.out.println("Individual " + individual.getConfort() + ":");
-    // IEvent event = new Reproduction(individual);
-    // event.HandleEvent();
-    //
-    // System.out.println("Produced Individual " + individual.getConfort() + ":");
-    // }
 
     Simulate simulation = new Simulate(tau, population);
 
@@ -107,7 +94,7 @@ public class Main {
     }
     // simulation.getPec().printPEC();
     simulation.run();
-    ContinuousFileWriter.close();
+    // ContinuousFileWriter.close();
     System.out.println("It is Done!");
   }
 

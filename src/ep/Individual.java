@@ -1,8 +1,5 @@
 package ep;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,9 +9,10 @@ import java.util.Map;
 import java.util.Set;
 
 import dss.IEvent;
+import pa.Patrol;
 import pa.PlanetarySystem;
 import rand.Utils;
-import pa.Patrol;
+import rand.myMath;
 
 /**
  * The Individual class represents an individual in a population. It contains
@@ -187,7 +185,7 @@ public class Individual {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this, time));
     events.add(new Mutation(this, time));
-    events.add(new Death(this, time));
+    events.add(new Death(this, time + myMath.mutationRate(confort)));
     return events;
   }
 

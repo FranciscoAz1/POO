@@ -27,14 +27,14 @@ public class Args {
   /**
    * Default values for the command line arguments.
    */
-  private static final int DEFAULT_N = 2; // patrols
-  private static final int DEFAULT_M = 3; // planest
-  private static final double DEFAULT_TAU = 150.0; // time max
-  private static final int DEFAULT_NU = 5; // population init
-  private static final int DEFAULT_NUMAX = 20;// max population
-  private static final double DEFAULT_MU = 100.0;// death rate
-  private static final double DEFAULT_RHO = 0.05;// reporduction rate
-  private static final double DEFAULT_DELTA = 0.01;// mutation rate
+  private static final int DEFAULT_N = 5; // patrols
+  private static final int DEFAULT_M = 8; // planest
+  private static final double DEFAULT_TAU = 10.0; // time max
+  private static final int DEFAULT_NU = 9; // population init
+  private static final int DEFAULT_NUMAX = 10;// max population
+  private static final double DEFAULT_MU = 1000.0;// death rate
+  private static final double DEFAULT_RHO = 0.0001;// reporduction rate
+  private static final double DEFAULT_DELTA = 1000.0;// mutation rate
 
   /**
    * Constructs an Args object and processes the command line arguments.
@@ -114,7 +114,7 @@ public class Args {
         filePath = currentDir + File.separator + filePath.substring(2);
       }
       // TODO delete before sending
-      ContinuousFileWriter.initialize(filePath);
+      // ContinuousFileWriter.initialize(filePath);
 
       File file = new File(filePath);
       Scanner scanner = new Scanner(file);

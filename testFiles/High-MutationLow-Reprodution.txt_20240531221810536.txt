@@ -1,0 +1,25 @@
+Observation:				0
+Present instant:			0.00
+Number of realized events:		0
+Population size:			10
+Number of epidemics:			0
+Best distribution of the patrols:{{7,8},{5,2},{1,0},{6,9,4},{3}}
+Empire policing time:		25.00
+Comfort:			0.44
+Other candidate distributions:
+				{{7,8},{5,2},{1,0},{6,9,4},{3}} : 25.00 : 0.44
+				{{4},{7,3},{6,5,9,8,2},{0},{1}} : 27.00 : 0.41
+				{{3},{7,8},{1,4},{6},{0},{5,2,9}} : 28.00 : 0.39
+				{{1,5,0,8},{7,6},{2},{3,4},{9}} : 28.00 : 0.39
+				{{6,9,4},{5,0},{3,2},{1},{7,8}} : 29.00 : 0.38
+
+Observation:				1
+Present instant:			15.00
+Number of realized events:		30
+Population size:			0
+Number of epidemics:			0
+Best distribution of the patrols:{{7,8},{5,2},{1,0},{6,9,4},{3}}
+Empire policing time:		25.00
+Comfort:			0.44
+Other candidate distributions:
+
