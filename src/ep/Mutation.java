@@ -46,9 +46,8 @@ public class Mutation extends AEvent {
   }
 
   /**
-   * Handles the event by moving a planetary system from one patrol to another.
-   * 
-   * @return true if the event was successfully handled.
+   * Handles the Mutation event by moving a planetary system from one patrol to
+   * another.
    */
   @Override
   public void HandleEvent() {

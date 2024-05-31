@@ -60,13 +60,11 @@ public class Reproduction extends AEvent implements Ireproduction {
   }
 
   /**
-   * Handles the reproduction event by creating a new individual and
-   * redistributing
-   * planetary systems among patrols.
+   * Handles the Reproduction event by creating a new individual and adding it to
+   * the population.
    * 
-   * @return true if the event was successfully handled.
-   * @throws IllegalStateException if the individual's distribution is empty or
-   *                               null.
+   * @throws IllegalStateException if the individual is null or the distribution is
+   *                              empty.
    */
   @Override
   public void HandleEvent() {

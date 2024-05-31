@@ -51,9 +51,8 @@ public class Simulate implements ISimulate {
   }
 
   /**
-   * Runs the simulation until the simulation time is reached or the priority
-   * event container is
-   * empty.
+   * Runs the simulation until the simulation time is reached or the priority event
+   * container is empty.
    */
   @Override
   public void run() {

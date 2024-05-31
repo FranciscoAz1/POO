@@ -37,9 +37,8 @@ public class Death extends AEvent {
   }
 
   /**
-   * Handles the event by removing the individual from the population.
-   *
-   * @return true if the event was successfully handled
+   * Handles the Death event by removing the individual from the population.
+   * 
    */
   @Override
   public void HandleEvent() {

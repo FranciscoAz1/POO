@@ -54,7 +54,6 @@ public abstract class AEvent implements IEvent {
    * Handles the event. As this is an abstract class, the implementation should
    * define the specific handling logic.
    * 
-   * @return true if the event was successfully handled.
    * @throws IllegalStateException if this method is called directly on AEvent.
    */
   @Override

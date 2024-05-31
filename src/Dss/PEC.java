@@ -36,6 +36,11 @@ public class PEC implements IPEC {
     pec.add(event);
   }
 
+  /**
+   * Adds a list of events to the priority queue.
+   *
+   * @param events the list of events to add
+   */
   public void addEvents(List<IEvent> events) {
     pec.addAll(events);
   }

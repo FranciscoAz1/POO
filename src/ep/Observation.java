@@ -66,8 +66,6 @@ public class Observation extends AEvent implements IObservation {
 
   /**
    * Handles the event by printing the observation.
-   * 
-   * @return true if the event was successfully handled.
    */
   @Override
   public void HandleEvent() {
@@ -93,7 +91,7 @@ public class Observation extends AEvent implements IObservation {
     }
     // Program the event time for the next TimeEvent
     System.out.println(sb.toString());
-    // file.writeToFile(sb.toString() + "\n");
+    file.writeToFile(sb.toString() + "\n");
   }
 
   /**
