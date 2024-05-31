@@ -20,28 +20,32 @@ public class PEC implements IPEC {
   private PriorityQueue<IEvent> pec;
 
   /**
-    * Constructs a PEC object with an empty priority queue for managing events.
-    */
+   * Constructs a PEC object with an empty priority queue for managing events.
+   */
   public PEC() {
     pec = new PriorityQueue<>((e1, e2) -> Double.compare(e1.getEventTime(), e2.getEventTime()));
   }
 
   /**
-    * Adds an event to the priority queue.
-    *
-    * @param event the event to add
-    */ 
+   * Adds an event to the priority queue.
+   *
+   * @param event the event to add
+   */
   @Override
   public void addEvent(IEvent event) {
     pec.add(event);
   }
 
+  public void addEvents(List<IEvent> events) {
+    pec.addAll(events);
+  }
+
   /**
-    * Removes an individual from the priority queue. 
-    * Removes any events associated with the individual.
-    *
-    * @param individual the individual to remove
-    */
+   * Removes an individual from the priority queue.
+   * Removes any events associated with the individual.
+   *
+   * @param individual the individual to remove
+   */
   @Override
   public void removeIndividual(Individual individual) {
     Iterator<IEvent> it = pec.iterator();
@@ -67,10 +71,10 @@ public class PEC implements IPEC {
   }
 
   /**
-    * Returns the next event in the priority queue.
-    *
-    * @return the next event
-    */
+   * Returns the next event in the priority queue.
+   *
+   * @return the next event
+   */
   @Override
   public IEvent nextEvent() {
     // System.out.println("-> PEC next event: " + pec.peek());
@@ -78,10 +82,10 @@ public class PEC implements IPEC {
   }
 
   /**
-    * Checks if the priority queue is empty.
-    *
-    * @return true if the priority queue is empty, false otherwise
-    */
+   * Checks if the priority queue is empty.
+   *
+   * @return true if the priority queue is empty, false otherwise
+   */
   @Override
   public boolean isEmpty() {
     // System.out.println(" PEC should be empty");
@@ -89,11 +93,11 @@ public class PEC implements IPEC {
   }
 
   /**
-    * Adds an event to the priority queue.
-    *
-    * @param aIEvent the event to add
-    * @return the event that was added
-    */
+   * Adds an event to the priority queue.
+   *
+   * @param aIEvent the event to add
+   * @return the event that was added
+   */
   public IEvent AddToPEC(Object aIEvent) {
     if (aIEvent instanceof IEvent) {
       addEvent((IEvent) aIEvent);
@@ -103,8 +107,8 @@ public class PEC implements IPEC {
   }
 
   /**
-    * Prints the current state of the priority queue.
-    */
+   * Prints the current state of the priority queue.
+   */
   public void printPEC() {
     // System.out.println("Current state of PEC:");
     for (IEvent event : pec) {

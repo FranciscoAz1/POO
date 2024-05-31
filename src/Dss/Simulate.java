@@ -6,9 +6,9 @@ import ep.Population;
 import ep.Death;
 import ep.Observation;
 
-
 /**
- * The Simulate class implements the ISimulate interface. It provides functionality for
+ * The Simulate class implements the ISimulate interface. It provides
+ * functionality for
  * running a simulation using a priority event container.
  */
 public class Simulate implements ISimulate {
@@ -19,10 +19,11 @@ public class Simulate implements ISimulate {
   public IEvent unnamed_IEvent_;
 
   /**
-   * Constructs a Simulate object with the specified simulation time and population.
+   * Constructs a Simulate object with the specified simulation time and
+   * population.
    *
    * @param simulationTime the time to run the simulation
-   * @param population the population to simulate
+   * @param population     the population to simulate
    */
   public Simulate(double simulationTime, Population population) {
     this.simulationTime = simulationTime;
@@ -50,7 +51,8 @@ public class Simulate implements ISimulate {
   }
 
   /**
-   * Runs the simulation until the simulation time is reached or the priority event container is
+   * Runs the simulation until the simulation time is reached or the priority
+   * event container is
    * empty.
    */
   @Override
@@ -58,13 +60,11 @@ public class Simulate implements ISimulate {
     while (this.currentTime < this.simulationTime && !pec.isEmpty()) {
       this.currentEvent = pec.nextEvent();
       // updates the current time if handling event was successful
-      if (currentEvent.HandleEvent()) {
-        this.currentTime = this.currentEvent.getEventTime();
-      }
-      List<IEvent> events = currentEvent.getEvents();
-      for (IEvent e : events) {
-        pec.addEvent(e);
-      }
+      currentEvent.HandleEvent();
+      this.currentTime = this.currentEvent.getEventTime();
+      // Add new events to pec
+      pec.addEvents(currentEvent.getEvents());
+
       currentTime = currentEvent.getEventTime();
       if (currentTime > simulationTime) {
         break;

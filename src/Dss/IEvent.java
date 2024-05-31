@@ -7,13 +7,12 @@ import java.util.List;
  * It defines methods for handling, updating, and managing events.
  */
 public interface IEvent {
-  
 
   public void NewEvent();
 
   public boolean UpdateSimulation();
 
-  public boolean HandleEvent();
+  public void HandleEvent();
 
   public void addEvents(List<IEvent> events);
 

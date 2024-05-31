@@ -1,5 +1,7 @@
 package dss;
 
+import java.util.List;
+
 import ep.Individual;
 
 /**
@@ -10,6 +12,8 @@ import ep.Individual;
 public interface IPEC {
 
   public void addEvent(IEvent Event);
+
+  public void addEvents(List<IEvent> events);
 
   public IEvent nextEvent();
 

@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import pa.AEmpire;
 
 /**
- * The Population class extends the AEmpire class and implements the IPopulation interface.
+ * The Population class extends the AEmpire class and implements the IPopulation
+ * interface.
  * It manages a population of individuals in the simulation.
  */
 public class Population extends AEmpire implements IPopulation {
@@ -22,9 +23,10 @@ public class Population extends AEmpire implements IPopulation {
   private Best_Fitted_Individual bestIndividual = new Best_Fitted_Individual();
 
   /**
-   * Constructs a Population object with the given matrix and maximum population size.
+   * Constructs a Population object with the given matrix and maximum population
+   * size.
    * 
-   * @param matrix the matrix of planetary systems
+   * @param matrix            the matrix of planetary systems
    * @param MaxPopulationSize the maximum population size
    */
   public Population(int[][] matrix, int MaxPopulationSize) {
@@ -33,11 +35,12 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   /**
-   * Constructs a Population object with the given matrix, maximum population size, and number of individuals.
+   * Constructs a Population object with the given matrix, maximum population
+   * size, and number of individuals.
    * 
-   * @param matrix the matrix of planetary systems
+   * @param matrix            the matrix of planetary systems
    * @param MaxPopulationSize the maximum population size
-   * @param numIndividuals the number of individuals
+   * @param numIndividuals    the number of individuals
    */
   public Population(int[][] matrix, int MaxPopulationSize, int numIndividuals) {
     super(matrix);
@@ -47,7 +50,8 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   /**
-   * Constructs a Population object with the given matrix, maximum population size, number of individuals, and number of events performed.
+   * Constructs a Population object with the given matrix, maximum population
+   * size, number of individuals, and number of events performed.
    * 
    * @param numIndividuals the number of individuals
    */
@@ -69,8 +73,8 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   /**
-    * Increments the count of events performed.
-    */
+   * Increments the count of events performed.
+   */
   public void countEvent() {
     this.eventsPerformed++;
   }
@@ -92,7 +96,6 @@ public class Population extends AEmpire implements IPopulation {
   public int getEpidemicCounter() {
     return epidemicCounter;
   }
-
 
   /**
    * Increments the count of epidemics.
@@ -127,15 +130,8 @@ public class Population extends AEmpire implements IPopulation {
         attempts++;
       }
     }
-
+    population.add(individual);
     System.out.println("Unique Individual could not be found");
-    // System.out.println("Exceeded maximum attempts to add individual, adding a
-    // duplicate.");
-    /*
-     * population.add(individual);
-     * this.numIndividuals += 1;
-     * epidemic.MayOccur(this);
-     */
   }
 
   /**
@@ -150,8 +146,9 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   /**
-    * Prints the details of the population, including each individual and their events.
-    */
+   * Prints the details of the population, including each individual and their
+   * events.
+   */
   @Override
   public void printPopulation() {
     for (int i = 0; i < population.size(); i++) {
@@ -211,12 +208,11 @@ public class Population extends AEmpire implements IPopulation {
     return AllEvents;
   }
 
-    
   /**
-    * Returns the number of individuals in the population.
-    * 
-    * @return The number of individuals.
-    */
+   * Returns the number of individuals in the population.
+   * 
+   * @return The number of individuals.
+   */
   public int getNumIndividuals() {
     return numIndividuals;
   }
@@ -226,8 +222,8 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return The maximum population size.
    */
-    public int getMaxPopulationSize() {
-      return MaxPopulationSize;
+  public int getMaxPopulationSize() {
+    return MaxPopulationSize;
   }
 
   /**
@@ -236,6 +232,6 @@ public class Population extends AEmpire implements IPopulation {
    * @return The best-fitted individual.
    */
   public Best_Fitted_Individual getBestIndividual() {
-      return bestIndividual;
+    return bestIndividual;
   }
 }

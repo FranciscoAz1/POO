@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 /**
  * The Best_Fitted_Individual class provides functionality for
  * finding the best fitted individual in a population.
@@ -49,7 +48,7 @@ public class Best_Fitted_Individual {
   }
 
   /**
-   *  Method to get the 5 best individuals
+   * Method to get the 5 best individuals
    *
    * @param population the population to get the best 5 individuals from
    * @return the best 5 individuals

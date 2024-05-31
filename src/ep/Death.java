@@ -4,7 +4,8 @@ import dss.AEvent;
 import rand.myMath;
 
 /**
- * The Death class represents an event in the simulation where an individual dies.
+ * The Death class represents an event in the simulation where an individual
+ * dies.
  * It extends the AEvent class and overrides the HandleEvent method.
  */
 public class Death extends AEvent {
@@ -28,7 +29,7 @@ public class Death extends AEvent {
    * Constructs a Death object with a specified individual and time.
    *
    * @param individual the individual that dies
-   * @param time the time of the event
+   * @param time       the time of the event
    */
   public Death(Individual individual, double time) {
     super(time);
@@ -41,7 +42,7 @@ public class Death extends AEvent {
    * @return true if the event was successfully handled
    */
   @Override
-  public boolean HandleEvent() {
+  public void HandleEvent() {
     // check death of individual
     // if (individual == null) {
     // return false;
@@ -52,7 +53,6 @@ public class Death extends AEvent {
     Population pop = individual.getPopulation();
     pop.removeIndividual(individual);
     pop.countEvent();
-    return true;
   }
 
   /**

@@ -35,8 +35,6 @@ public class Individual {
   // p2 - 2 , 5
   // p3 - 7
 
-
-  
   /**
    * Constructs an Individual object with a specified population, patrols, and
    * planetary systems.
@@ -52,9 +50,6 @@ public class Individual {
     createDistribution(patrols, planetarySystems);
   }
 
- 
-
-
   /**
    * Constructs an Individual object with a specified population, patrols, and
    * planetary systems.
@@ -65,8 +60,6 @@ public class Individual {
     this.distribution = individual.getDistribution();
     this.population = individual.getPopulation();
   }
-
-
 
   /**
    * Constructs an Individual object with a specified population, patrols, and
@@ -84,8 +77,6 @@ public class Individual {
     }
   }
 
-
-
   /**
    * Assigns a planetary system to a patrol.
    *
@@ -96,8 +87,6 @@ public class Individual {
     distribution.computeIfAbsent(patrol, k -> new HashSet<>()).add(system);
   }
 
-
-
   /**
    * Returns the population of the individual.
    * 
@@ -106,8 +95,6 @@ public class Individual {
   public Population getPopulation() {
     return population;
   }
-
-
 
   /**
    * Returns the comfort of the individual.
@@ -118,8 +105,6 @@ public class Individual {
     calculateConfort();
     return confort;
   }
-
-
 
   /**
    * Returns the comfort of the individual.
@@ -133,8 +118,6 @@ public class Individual {
     return confort;
   }
 
-
-
   /**
    * Returns the policing time of the individual.
    * 
@@ -147,8 +130,6 @@ public class Individual {
     return this.policingTime;
   }
 
-
-
   /**
    * Returns the distribution of the individual.
    * 
@@ -157,8 +138,6 @@ public class Individual {
   public Map<Patrol, Set<PlanetarySystem>> getDistribution() {
     return distribution;
   }
-
-
 
   /**
    * Returns the distribution of the individual.
@@ -185,8 +164,6 @@ public class Individual {
     this.policingTime = total_time;
   }
 
-
-
   /**
    * Creates a list of events for the individual.
    * 
@@ -200,11 +177,9 @@ public class Individual {
     return events;
   }
 
-
-
-
   /**
-   * Creates a list of events for the individual. Equal to the above but creates events with a specific time.
+   * Creates a list of events for the individual. Equal to the above but creates
+   * events with a specific time.
    * 
    * @param time the time to create the events
    * @return a list of events for the individual
@@ -213,10 +188,9 @@ public class Individual {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this, time));
     events.add(new Mutation(this, time));
+    events.add(new Death(this, time));
     return events;
   }
-
-
 
   /**
    * Returns a list of events for the individual.
@@ -227,10 +201,9 @@ public class Individual {
     return createEvents();
   }
 
-
-
   /**
-   * Returns a list of events for the individual. Equal to the above but creates events with a specific time.
+   * Returns a list of events for the individual. Equal to the above but creates
+   * events with a specific time.
    * 
    * @param time the time to create the events
    * @return a list of events for the individual
@@ -239,16 +212,12 @@ public class Individual {
     return createEvents(time);
   }
 
-
-
   /*
    * // Método para obter o ID do indivíduo
    * public int getId() {
    * return id;
    * }
    */
-
-
 
   /**
    * Method to print troop distribution over time
@@ -273,8 +242,6 @@ public class Individual {
     }
   }
 
-
-
   /**
    * Sets the population of the individual.
    * 
@@ -285,8 +252,6 @@ public class Individual {
     this.distribution = distribution;
   }
 
-
-
   /**
    * Sets the population of the individual.
    * 
@@ -295,8 +260,6 @@ public class Individual {
   public void setConfort(double confort) {
     this.confort = confort;
   }
-
-
 
   /**
    * Sets the population of the individual.
@@ -346,8 +309,6 @@ public class Individual {
     // a mesma distribuição de patrulha.");
     return true;
   }
-
-
 
   /**
    * Returns a string representation of the individual.

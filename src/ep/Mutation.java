@@ -51,9 +51,9 @@ public class Mutation extends AEvent {
    * @return true if the event was successfully handled.
    */
   @Override
-  public boolean HandleEvent() {
+  public void HandleEvent() {
     if (individual == null) {
-      return false;
+      throw new IllegalStateException("Individual cannot be null.");
     }
     // // check death
     // if (individual.getPopulation().getPopulation().contains(individual)) {
@@ -116,11 +116,8 @@ public class Mutation extends AEvent {
     double newEventTime = getEventTime() + myMath.mutationRate(individual.getConfort());
     Mutation newMutationEvent = new Mutation(individual, newEventTime);
     this.addEvent(newMutationEvent);
-
-    return true;
   }
 
-  
   /**
    * Returns a string representation of the Mutation event.
    * 

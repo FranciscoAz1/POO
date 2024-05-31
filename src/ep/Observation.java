@@ -19,15 +19,14 @@ public class Observation extends AEvent implements IObservation {
   private Population population;
   private ContinuousFileWriter file;
 
-
   /**
    * Constructs an Observation object with the specified time, final instance,
    * population, and i.
    * 
-   * @param time         the time of the observation
+   * @param time          the time of the observation
    * @param finalInstance the final instance of the observation
-   * @param population   the population of the observation
-   * @param i            the i of the observation
+   * @param population    the population of the observation
+   * @param i             the i of the observation
    */
   public Observation(double time, double finalInstance, Population population, int i) {
     super(time);
@@ -41,11 +40,11 @@ public class Observation extends AEvent implements IObservation {
    * Constructs an Observation object with the specified time, final instance,
    * population, i, and actual time.
    * 
-   * @param time         the time of the observation
+   * @param time          the time of the observation
    * @param finalInstance the final instance of the observation
-   * @param population   the population of the observation
-   * @param i            the i of the observation
-   * @param actualTime   the actual time of the observation
+   * @param population    the population of the observation
+   * @param i             the i of the observation
+   * @param actualTime    the actual time of the observation
    */
   @Override
   public void NewEvent() {
@@ -71,9 +70,9 @@ public class Observation extends AEvent implements IObservation {
    * @return true if the event was successfully handled.
    */
   @Override
-  public boolean HandleEvent() {
+  public void HandleEvent() {
     StringBuilder sb = new StringBuilder();
-
+    List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
     sb.append("Observation:\t\t\t\t" + this.i + "\n");
     sb.append("Present instant:\t\t\t" + String.format("%.2f", this.eventTime) + "\n");
     sb.append("Number of realized events:\t\t" + population.getNumEvents() + "\n");
@@ -87,7 +86,6 @@ public class Observation extends AEvent implements IObservation {
         + String.format("%.2f", population.getBestIndividual().getBestIndividual().getConfort()) + "\n");
     sb.append("Other candidate distributions:\n");
 
-    List<Individual> otherCandidates = population.getBestIndividual().getBest5(population.getPopulation());
     for (int i = 0; i < otherCandidates.size(); i++) {
       Individual candidate = otherCandidates.get(i);
       sb.append("\t\t\t\t" + candidate.toString() + " : " + String.format("%.2f", candidate.getPolicingTime()) + " : "
@@ -95,9 +93,7 @@ public class Observation extends AEvent implements IObservation {
     }
     // Program the event time for the next TimeEvent
     System.out.println(sb.toString());
-    file.writeToFile(sb.toString() + "\n");
-    return true;
-
+    // file.writeToFile(sb.toString() + "\n");
   }
 
   /**
