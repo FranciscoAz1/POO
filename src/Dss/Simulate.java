@@ -57,8 +57,7 @@ public class Simulate implements ISimulate {
    */
   @Override
   public void run() {
-    System.out.println("start run");
-    while (this.currentTime < this.simulationTime && !pec.isEmpty()) {
+    while (this.currentTime < this.simulationTime) {
       this.currentEvent = pec.nextEvent();
       // updates the current time if handling event was successful
       currentEvent.HandleEvent();
@@ -73,7 +72,7 @@ public class Simulate implements ISimulate {
 
       // check if solution has been found
       if (currentEvent instanceof Observation) {
-        if (!currentEvent.UpdateSimulation()) {
+        if (!currentEvent.UpdateSimulation() || pec.isEmpty()) {
           break;
         }
       }
@@ -91,16 +90,18 @@ public class Simulate implements ISimulate {
    * @param event the event to check
    * @return true if the simulation has reached a solution, false otherwise
    */
-  /* 
-  @Override
-  private boolean checkSimulationStateBegginning(Population population) { // iterate
-    // throuth individuals in population, cheking if any has confort 1
-    for (var individual : population.getPopulation()) {
-      if (individual.getConfort() >= 1) {
-        return true;
-      }
-    }
-    return false;
-
-  }*/
+  /*
+   * @Override
+   * private boolean checkSimulationStateBegginning(Population population) { //
+   * iterate
+   * // throuth individuals in population, cheking if any has confort 1
+   * for (var individual : population.getPopulation()) {
+   * if (individual.getConfort() >= 1) {
+   * return true;
+   * }
+   * }
+   * return false;
+   * 
+   * }
+   */
 }

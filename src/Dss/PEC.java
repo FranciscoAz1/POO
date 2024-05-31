@@ -82,14 +82,24 @@ public class PEC implements IPEC {
   }
 
   /**
-   * Checks if the priority queue is empty.
+   * Checks if the priority queue is empty. Without counting Observation
    *
    * @return true if the priority queue is empty, false otherwise
    */
   @Override
   public boolean isEmpty() {
-    // System.out.println(" PEC should be empty");
-    return pec.isEmpty();
+    Iterator<IEvent> it = pec.iterator();
+    while (it.hasNext()) {
+      IEvent event = it.next();
+      if (event instanceof Death) {
+        return false;
+      } else if (event instanceof Reproduction) {
+        return false;
+      } else if (event instanceof Mutation) {
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
