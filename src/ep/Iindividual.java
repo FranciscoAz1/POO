@@ -45,7 +45,7 @@ public interface Iindividual {
 
 	public void setConfort(double confort);
 
-	public static boolean equalsByDistribution(Individual individualA, Individual individualB);
+	public boolean equalsByDistribution(Individual individualA, Individual individualB);
 
 	public String toString();
 }
