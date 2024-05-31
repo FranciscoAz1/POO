@@ -11,9 +11,9 @@ public class Confort {
 
   /**
    * Constructs a Confort object with the specified matrix.
-   * it iniitiates static variable tmin
+   * It initializes the static variable tmin.
    *
-   * @param matrix the matrix to calculate t_min
+   * @param matrix The matrix to calculate tmin.
    */
   public Confort(int[][] matrix) {
     this.array = matrix;
@@ -21,9 +21,9 @@ public class Confort {
   }
 
   /**
-   * Method to get the minimum time for the matrix
+   * Calculates the minimum time for the matrix.
    *
-   * @return the minimum time for the matrix
+   * @return The minimum time for the matrix.
    */
   private double calculateTmin() {
     int numRows = array.length;

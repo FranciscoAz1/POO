@@ -3,9 +3,7 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 import pa.Cost;
-import utils.ContinuousFileWriter;
 
 /**
  * The Args class parses and stores the command line arguments passed to the
@@ -39,7 +37,7 @@ public class Args {
   /**
    * Constructs an Args object and processes the command line arguments.
    *
-   * @param args the command line arguments
+   * @param args The command line arguments.
    */
   public Args(String[] args) {
     if (args.length < 2) {
@@ -81,7 +79,7 @@ public class Args {
   /**
    * Reads the command line arguments and initializes the values accordingly.
    *
-   * @param args the command line arguments
+   * @param args The command line arguments.
    */
   private void readFromArgs(String[] args) {
     this.file = "";
@@ -101,7 +99,7 @@ public class Args {
   /**
    * Reads the values from a file and initializes the values accordingly.
    *
-   * @param args the command line arguments
+   * @param args The command line arguments.
    */
   private void readFromFile(String[] args) {
     try {
@@ -113,8 +111,6 @@ public class Args {
         String currentDir = System.getProperty("user.dir");
         filePath = currentDir + File.separator + filePath.substring(2);
       }
-      // TODO delete before sending
-      // ContinuousFileWriter.initialize(filePath);
 
       File file = new File(filePath);
       Scanner scanner = new Scanner(file);
@@ -141,7 +137,7 @@ public class Args {
   /**
    * Returns true if the mode is file.
    *
-   * @return true if the mode is file
+   * @return true if the mode is file.
    */
   public boolean fileMode() {
     return this.mode.equals("file");
@@ -150,7 +146,7 @@ public class Args {
   /**
    * Returns true if the mode is read.
    *
-   * @return true if the mode is read
+   * @return true if the mode is read.
    */
   public boolean readMode() {
     return this.mode.equals("read");

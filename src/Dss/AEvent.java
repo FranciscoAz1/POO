@@ -7,12 +7,9 @@ import java.util.List;
  * The AEvent class is an abstract class that implements the IEvent interface.
  * It provides common functionality for event objects in a simulation.
  * 
- * 
- * Note: This class assumes the existence of the IEvent interface
- * Implementations of the IEvent interface are not provided here
- * 
+ * Note: This class assumes the existence of the IEvent interface.
+ * Implementations of the IEvent interface are not provided here.
  */
-
 public abstract class AEvent implements IEvent {
   protected double eventTime;
   private List<IEvent> listEvent;
@@ -21,7 +18,7 @@ public abstract class AEvent implements IEvent {
   /**
    * Constructs an AEvent object with the specified event time.
    * 
-   * @param eventTime
+   * @param eventTime The time at which the event occurs.
    */
   public AEvent(double eventTime) {
     this.eventTime = eventTime;
@@ -31,7 +28,6 @@ public abstract class AEvent implements IEvent {
   /**
    * Creates a new event. Implementation should define the logic for creating a
    * new event.
-   * 
    */
   @Override
   public void NewEvent() {
@@ -54,7 +50,6 @@ public abstract class AEvent implements IEvent {
    * Handles the event. As this is an abstract class, the implementation should
    * define the specific handling logic.
    * 
-   * @return true if the event was successfully handled.
    * @throws IllegalStateException if this method is called directly on AEvent.
    */
   @Override
@@ -65,7 +60,7 @@ public abstract class AEvent implements IEvent {
   /**
    * Adds an event to the list of events.
    * 
-   * @param event the event to be added.
+   * @param event The event to be added.
    */
   @Override
   public void addEvent(IEvent event) {

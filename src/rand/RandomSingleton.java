@@ -19,7 +19,7 @@ public class RandomSingleton {
   /**
    * Returns the instance of the RandomSingleton object.
    *
-   * @return the instance of the RandomSingleton object
+   * @return The instance of the RandomSingleton object.
    */
   public static RandomSingleton getInstance() {
     if (instance == null) {
@@ -31,7 +31,7 @@ public class RandomSingleton {
   /**
    * Returns the random number generator.
    *
-   * @return the random number generator
+   * @return The random number generator.
    */
   public Random getRandom() {
     return random;

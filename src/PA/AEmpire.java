@@ -7,8 +7,7 @@ import java.util.Map;
 
 /**
  * The AEmpire class provides a contract for empire objects in a simulation. It
- * defines methods for
- * managing patrols and planetary systems.
+ * defines methods for managing patrols and planetary systems.
  */
 public abstract class AEmpire {
   protected List<Patrol> patrols = new ArrayList<>();
@@ -28,7 +27,7 @@ public abstract class AEmpire {
   /**
    * Constructs an AEmpire object with the given matrix.
    * 
-   * @param matrix the matrix of planetary systems
+   * @param matrix The matrix of planetary systems.
    */
   public AEmpire(int[][] matrix) {
     // Create planetary systems first
@@ -55,8 +54,6 @@ public abstract class AEmpire {
 
   /**
    * Prints the patrols.
-   * 
-   * @param patrols the list of patrols
    */
   public void printPatrols() {
     for (int i = 0; i < patrols.size(); i++) {
@@ -66,8 +63,6 @@ public abstract class AEmpire {
 
   /**
    * Prints the planetary systems.
-   * 
-   * @param planetarySystems the list of planetary systems
    */
   public void printSystems() {
     for (int i = 0; i < planetarySystems.size(); i++) {
@@ -78,7 +73,7 @@ public abstract class AEmpire {
   /**
    * Gets the list of patrols.
    * 
-   * @return the list of patrols
+   * @return The list of patrols.
    */
   public List<Patrol> getPatrols() {
     return patrols;
@@ -87,7 +82,7 @@ public abstract class AEmpire {
   /**
    * Gets the list of planetary systems.
    * 
-   * @return the list of planetary systems
+   * @return The list of planetary systems.
    */
   public ArrayList<PlanetarySystem> getPlanetarySystems() {
     return planetarySystems;

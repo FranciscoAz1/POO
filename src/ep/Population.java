@@ -10,8 +10,7 @@ import pa.AEmpire;
 
 /**
  * The Population class extends the AEmpire class and implements the IPopulation
- * interface.
- * It manages a population of individuals in the simulation.
+ * interface. It manages a population of individuals in the simulation.
  */
 public class Population extends AEmpire implements IPopulation {
 
@@ -26,8 +25,8 @@ public class Population extends AEmpire implements IPopulation {
    * Constructs a Population object with the given matrix and maximum population
    * size.
    * 
-   * @param matrix            the matrix of planetary systems
-   * @param MaxPopulationSize the maximum population size
+   * @param matrix            The matrix of planetary systems.
+   * @param MaxPopulationSize The maximum population size.
    */
   public Population(int[][] matrix, int MaxPopulationSize) {
     super(matrix);
@@ -38,9 +37,9 @@ public class Population extends AEmpire implements IPopulation {
    * Constructs a Population object with the given matrix, maximum population
    * size, and number of individuals.
    * 
-   * @param matrix            the matrix of planetary systems
-   * @param MaxPopulationSize the maximum population size
-   * @param numIndividuals    the number of individuals
+   * @param matrix            The matrix of planetary systems.
+   * @param MaxPopulationSize The maximum population size.
+   * @param numIndividuals    The number of individuals.
    */
   public Population(int[][] matrix, int MaxPopulationSize, int numIndividuals) {
     super(matrix);
@@ -50,12 +49,10 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   /**
-   * Constructs a Population object with the given matrix, maximum population
-   * size, number of individuals, and number of events performed.
+   * Creates the initial population of individuals.
    * 
-   * @param numIndividuals the number of individuals
+   * @param numIndividuals The number of individuals.
    */
-  @Override
   public void createInitialPopulation(int numIndividuals) {
     this.numIndividuals += numIndividuals;
     for (int i = 0; i < numIndividuals; i++) {
@@ -65,9 +62,9 @@ public class Population extends AEmpire implements IPopulation {
   }
 
   /**
-   * Method to return the list of individuals in the population.
+   * Returns the list of individuals in the population.
    * 
-   * @return true if the simulation is in the beginning state
+   * @return The list of individuals in the population.
    */
   @Override
   public List<Individual> getPopulation() {
@@ -77,17 +74,15 @@ public class Population extends AEmpire implements IPopulation {
   /**
    * Increments the count of events performed.
    */
-  @Override
   public void countEvent() {
     this.eventsPerformed++;
   }
 
   /**
-   * Return the number of events performed.
+   * Returns the number of events performed.
    * 
-   * @return the number of events performed
+   * @return The number of events performed.
    */
-  @Override
   public int getNumEvents() {
     return eventsPerformed;
   }
@@ -95,9 +90,8 @@ public class Population extends AEmpire implements IPopulation {
   /**
    * Returns the epidemic counter.
    * 
-   * @return the number of epidemics
+   * @return The number of epidemics.
    */
-  @Override
   public int getEpidemicCounter() {
     return epidemicCounter;
   }
@@ -105,7 +99,6 @@ public class Population extends AEmpire implements IPopulation {
   /**
    * Increments the count of epidemics.
    */
-  @Override
   public void IncrementEpidemic() {
     this.epidemicCounter++;
   }
@@ -113,9 +106,8 @@ public class Population extends AEmpire implements IPopulation {
   /**
    * Adds an individual to the population.
    * 
-   * @param individual the individual to add
+   * @param individual The individual to add.
    */
-  @Override
   public void addIndividual(Individual individual) {
     int attempts = 0;
     int maxAttempts = 10 * population.size(); // number of times we try to avoid duplicates
@@ -159,7 +151,11 @@ public class Population extends AEmpire implements IPopulation {
     return true;
   }
 
-  @Override
+  /**
+   * Forces the addition of an individual to the population.
+   * 
+   * @param individual The individual to add.
+   */
   public void forceAdd(Individual individual) {
     population.add(individual);
     this.numIndividuals += 1;
@@ -168,9 +164,8 @@ public class Population extends AEmpire implements IPopulation {
   /**
    * Removes an individual from the population.
    * 
-   * @param individual the individual to remove
+   * @param individual The individual to remove.
    */
-  @Override
   public void removeIndividual(Individual individual) {
     if (this.population.remove(individual)) {
       this.numIndividuals -= 1;
@@ -232,7 +227,6 @@ public class Population extends AEmpire implements IPopulation {
    *
    * @return A list of all events.
    */
-  @Override
   public List<IEvent> getEvents() {
     List<IEvent> AllEvents = new ArrayList<>();
     for (Individual individual : population) {
@@ -246,7 +240,6 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return The number of individuals.
    */
-  @Override
   public int getNumIndividuals() {
     return numIndividuals;
   }
@@ -256,7 +249,6 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return The maximum population size.
    */
-  @Override
   public int getMaxPopulationSize() {
     return MaxPopulationSize;
   }
@@ -266,7 +258,6 @@ public class Population extends AEmpire implements IPopulation {
    * 
    * @return The best-fitted individual.
    */
-  @Override
   public Best_Fitted_Individual getBestIndividual() {
     return bestIndividual;
   }
