@@ -7,6 +7,7 @@ import rand.myMath;
  * The Death class represents an event in the simulation where an individual
  * dies.
  * It extends the AEvent class and overrides the HandleEvent method.
+ * It does not remove events from @PEC that must be done in PEC.
  */
 public class Death extends AEvent implements Ideath {
   private Individual individual;
@@ -43,13 +44,6 @@ public class Death extends AEvent implements Ideath {
    */
   @Override
   public void HandleEvent() {
-    // check death of individual
-    // if (individual == null) {
-    // return false;
-    // }
-    // if (individual.getPopulation().getPopulation().contains(individual)) {
-    // return false;
-    // }
     Population pop = individual.getPopulation();
     pop.removeIndividual(individual);
     pop.countEvent();
@@ -62,6 +56,6 @@ public class Death extends AEvent implements Ideath {
    */
   @Override
   public String toString() {
-    return "Death Event{time=" + getEventTime() + "}";
+    return "Death Event{time=" + getEventTime() + "Individual" + getIndividual() + "}";
   }
 }

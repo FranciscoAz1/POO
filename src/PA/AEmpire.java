@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The AEmpire class provides a contract for empire objects in a simulation. It defines methods for
+ * The AEmpire class provides a contract for empire objects in a simulation. It
+ * defines methods for
  * managing patrols and planetary systems.
  */
 public abstract class AEmpire {
@@ -16,7 +17,7 @@ public abstract class AEmpire {
   /**
    * Constructs an AEmpire object with the given patrols and planetary systems.
    * 
-   * @param patrols the list of patrols
+   * @param patrols          the list of patrols
    * @param planetarySystems the list of planetary systems
    */
   public AEmpire(List<Patrol> patrols, ArrayList<PlanetarySystem> planetarySystems2) {

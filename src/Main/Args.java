@@ -30,9 +30,9 @@ public class Args {
   private static final double DEFAULT_TAU = 150.0; // time max
   private static final int DEFAULT_NU = 100; // population init
   private static final int DEFAULT_NUMAX = 200;// max population
-  private static final double DEFAULT_MU = 10.0;// death rate
+  private static final double DEFAULT_MU = 10000.0;// death rate
   private static final double DEFAULT_RHO = 0.05;// reporduction rate
-  private static final double DEFAULT_DELTA = 1.0;// mutation rate
+  private static final double DEFAULT_DELTA = 0.01;// mutation rate
 
   /**
    * Constructs an Args object and processes the command line arguments.
@@ -59,13 +59,13 @@ public class Args {
     }
 
     String option = args[0];
+    // check if reads from a argumtents or from file
     if (option.equals("-r")) {
       if (args.length < 9) {
         System.out.println("Not enough command line arguments.");
         System.exit(0);
       }
       this.readFromArgs(args);
-      // Read the matrix values and store in Cost object
     } else if (option.equals("-f")) {
       this.file = args[1];
       this.mode = "read file";
