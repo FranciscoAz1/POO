@@ -330,4 +330,11 @@ public class Individual {
     }
     return output.toString();
   }
+  public void updateFrom(Individual other) {
+      // Atualize os atributos conforme necessário
+      this.distribution = other.getDistribution();
+      this.confort = other.getConfort();
+      this.policingTime = other.getPolicingTime();
+      // Adicione os demais atributos que precisam ser atualizados
+  }
 }
