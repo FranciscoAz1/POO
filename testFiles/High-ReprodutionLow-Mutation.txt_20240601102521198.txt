@@ -1,0 +1,14 @@
+Observation:				0
+Present instant:			0.00
+Number of realized events:		0
+Population size:			10
+Number of epidemics:			0
+Best distribution of the patrols:{{2,0,1}}
+Empire policing time:		6.00
+Comfort:			0.67
+Other candidate distributions:
+				{{2,0,1}} : 6.00 : 0.67
+				{{2},{0,1}} : 7.00 : 0.57
+				{{2},{0,1}} : 8.00 : 0.50
+				{{1},{2},{0}} : 8.00 : 0.50
+				{{2},{1},{0}} : 9.00 : 0.44

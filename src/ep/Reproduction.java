@@ -88,7 +88,7 @@ public class Reproduction extends AEvent implements Ireproduction {
     int nSystemsToRemove = (int) ((1 - individual.getConfort()) * nSystems);
     //
     Population pop = individual.getPopulation();
-    int attempts = 10 + nSystems * pop.getPopulation().size();
+    int attempts = 100 + nSystems * pop.getPopulation().size();
     do {
       attempts--;
       if (attempts == 0) {
@@ -121,7 +121,8 @@ public class Reproduction extends AEvent implements Ireproduction {
     double currentTime = getEventTime();
     // Epidemic may occur
     if (attempts == 0) {
-      this.addEvents(Epidemic.doEpidemic(pop, currentTime));
+      // this.addEvents(Epidemic.doEpidemic(pop, currentTime));
+      pop.forceAdd(newIndividual);
     } else {
       this.addEvents(Epidemic.MayOccur(pop, currentTime));
     }

@@ -1,0 +1,28 @@
+Observation:				0
+Present instant:			0.00
+Number of realized events:		0
+Population size:			10
+Number of epidemics:			0
+Best distribution of the patrols:{{6,3,8,9},{0},{4},{5,1},{7,2}}
+Empire policing time:		23.00
+Comfort:			0.48
+Other candidate distributions:
+				{{6,3,8,9},{0},{4},{5,1},{7,2}} : 23.00 : 0.48
+				{{6,7,9},{5},{3,2,1},{0},{4,8}} : 27.00 : 0.41
+				{{7,5,4,8,2},{0},{9},{3},{6,1}} : 27.00 : 0.41
+				{{3,2,1},{6,7},{9},{5,4,0},{8}} : 29.00 : 0.38
+				{{8},{6,2,0},{1},{7,4},{3,9},{5}} : 30.00 : 0.37
+Observation:				1
+Present instant:			15.00
+Number of realized events:		3465
+Population size:			6
+Number of epidemics:			3194
+Best distribution of the patrols:{{6,3,8,9},{0},{4},{5,1},{7,2}}
+Empire policing time:		23.00
+Comfort:			0.48
+Other candidate distributions:
+				{{6},{},{5,4},{7,2,9,0},{3,8,1}} : 27.00 : 0.41
+				{{6,4},{},{3,2},{8,0},{1},{7,5,9}} : 29.00 : 0.38
+				{{6},{7},{3,5},{8,2,9,1},{},{4,0}} : 29.00 : 0.38
+				{{6,3,7,4,8,9,0,1},{},{},{5,2}} : 36.00 : 0.31
+				{{6},{},{9,0},{7,3,5,1},{8},{4,2}} : 37.00 : 0.30
