@@ -116,8 +116,6 @@ public class Reproduction extends AEvent implements Ireproduction {
       newIndividual.setDistribution(newDistribution);
     } while (!pop.tryAdd(newIndividual));
 
-    // pop.forceAdd(newIndividual);
-
     double currentTime = getEventTime();
     // Epidemic may occur
     if (attempts == 0) {

@@ -1,7 +1,6 @@
 package dss;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import java.util.PriorityQueue;
@@ -15,7 +14,6 @@ import ep.Individual;
  * managing events in a simulation using a priority queue.
  */
 public class PEC implements IPEC {
-  private int maxTime;
   private PriorityQueue<IEvent> pec;
 
   /**

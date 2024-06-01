@@ -149,6 +149,7 @@ public class Population extends AEmpire implements IPopulation {
       }
     }
     population.add(individual);
+    individual.calculateConfort();
     this.numIndividuals += 1;
     return true;
   }
@@ -160,6 +161,7 @@ public class Population extends AEmpire implements IPopulation {
    */
   public void forceAdd(Individual individual) {
     population.add(individual);
+    individual.calculateConfort();
     this.numIndividuals += 1;
   }
 

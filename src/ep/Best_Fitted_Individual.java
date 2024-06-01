@@ -1,10 +1,8 @@
 package ep;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 /**
  * The Best_Fitted_Individual class provides functionality for
@@ -46,14 +44,12 @@ public class Best_Fitted_Individual {
     if (!sortedPopulation.isEmpty()) {
       Individual currentBest = sortedPopulation.get(0);
 
-
       if (bestIndividual == null || currentBest.getConfort() > bestIndividual.getConfort()) {
 
         if (bestIndividual == null) {
           bestIndividual = new Individual(currentBest);
         }
         bestIndividual.updateFrom(currentBest);
-
 
       }
     }
@@ -69,7 +65,6 @@ public class Best_Fitted_Individual {
   public double getBestConfort() {
     return bestIndividual != null ? bestIndividual.getConfort() : 0;
   }
-
 
   /**
    * Gets the top 5 best individuals from the population.
