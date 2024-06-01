@@ -2,8 +2,6 @@ package ep;
 
 import java.util.List;
 
-import dss.AEvent;
-
 /**
  * The Observation class provides a concrete implementation for observation
  * events in a simulation.

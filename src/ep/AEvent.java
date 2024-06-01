@@ -1,7 +1,8 @@
-package dss;
+package ep;
 
 import java.util.ArrayList;
 import java.util.List;
+import dss.IEvent;
 
 /**
  * The AEvent class is an abstract class that implements the IEvent interface.

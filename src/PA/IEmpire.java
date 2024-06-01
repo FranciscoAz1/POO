@@ -6,10 +6,6 @@ package pa;
  */
 public interface IEmpire {
 
-  public void Empire(java.util.List<Patrol> aPatrols);
-
-  public void Empire(int[][] aMatrix);
-
   public void printPatrols();
 
   public void printSystems();

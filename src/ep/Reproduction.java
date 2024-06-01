@@ -1,7 +1,6 @@
 package ep;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -10,14 +9,14 @@ import java.util.Set;
 
 import rand.Utils;
 
-import dss.AEvent;
 import pa.Patrol;
 import pa.PlanetarySystem;
 import rand.myMath;
 
 /**
  * The Reproduction class represents an event in the simulation where an
- * individual reproduces. It extends the AEvent class and overrides the HandleEvent method.
+ * individual reproduces. It extends the AEvent class and overrides the
+ * HandleEvent method.
  */
 public class Reproduction extends AEvent implements Ireproduction {
   private static final Random random = new Random();
@@ -25,7 +24,8 @@ public class Reproduction extends AEvent implements Ireproduction {
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
   /**
-   * Constructs a Reproduction event for a specific individual at a specified time.
+   * Constructs a Reproduction event for a specific individual at a specified
+   * time.
    * 
    * @param individual The individual who will reproduce in this event.
    * @param time       The time at which the reproduction event occurs.
@@ -57,7 +57,8 @@ public class Reproduction extends AEvent implements Ireproduction {
   }
 
   /**
-   * Handles the reproduction event by creating a new individual and redistributing
+   * Handles the reproduction event by creating a new individual and
+   * redistributing
    * planetary systems among patrols.
    */
   @Override
