@@ -43,7 +43,7 @@ public class Mutation extends AEvent implements Imutation {
    * Constructs a Mutation object with a specified individual and time.
    * 
    * @param individual The individual that undergoes mutation.
-   * @param time The time of the event.
+   * @param time       The time of the event.
    */
   public Mutation(Individual individual, double time) {
     super(time + myMath.mutationRate(individual.getConfort()));

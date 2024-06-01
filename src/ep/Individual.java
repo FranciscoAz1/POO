@@ -1,20 +1,18 @@
 package ep;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import dss.IEvent;
+import pa.Patrol;
 import pa.PlanetarySystem;
 import rand.Utils;
-import pa.Patrol;
 
 /**
  * The Individual class represents an individual in a population. It contains
@@ -206,7 +204,6 @@ public class Individual {
     return createEvents(time);
   }
 
-
   /**
    * Prints the troop distribution over time.
    */
@@ -247,30 +244,6 @@ public class Individual {
   public void setConfort(double confort) {
     this.confort = confort;
   }
-
-  /**
-   * Compares the distribution of two individuals for equality.
-   * 
-   * @param individualA The first individual to compare.
-   * @param individualB The second individual to compare.
-   * @return true if the distributions are equal, false otherwise.
-   */
-  public static boolean equalsByDistribution(Individual individualA, Individual individualB) {
-    /*
-     * 
-     * The first for loop iterates over the patrol distribution of individualA
-     * and checks if the patrols and their corresponding systems are equal
-     * in both individualA and individualB.
-     *
-     * The second for loop iterates over the patrol distribution of individualB
-     * and checks if all the patrols present in this individual are also present
-     * in the patrol distribution of individualA.
-     *
-     * This ensures that the patrol distribution of individualB does not
-     * contain patrols that are not present in the patrol distribution of
-     * individualA.
-     * 
-     */
 
   @Override
   public boolean equals(Object o) {

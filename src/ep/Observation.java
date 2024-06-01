@@ -3,18 +3,18 @@ package ep;
 import java.util.List;
 
 import dss.AEvent;
-import utils.ContinuousFileWriter;
 
 /**
- * The Observation class provides a concrete implementation for observation events in a simulation.
+ * The Observation class provides a concrete implementation for observation
+ * events in a simulation.
  */
 public class Observation extends AEvent implements IObservation {
   private int i = 0;
   private Population population;
-  private ContinuousFileWriter file;
 
   /**
-   * Constructs an Observation object with the specified time, population, and index.
+   * Constructs an Observation object with the specified time, population, and
+   * index.
    * 
    * @param time       The time of the observation.
    * @param population The population of the observation.
@@ -24,7 +24,6 @@ public class Observation extends AEvent implements IObservation {
     super(time);
     this.population = population;
     this.i = i;
-    this.file = new ContinuousFileWriter("output.txt");
   }
 
   /**
@@ -42,7 +41,7 @@ public class Observation extends AEvent implements IObservation {
    */
   @Override
   public boolean UpdateSimulation() {
-    if (population.getBestIndividual().getBestIndividual().getConfort() >= 1) {
+    if (population.getBestIndividual().getBestIndividual(population.getPopulation()).getConfort() >= 1) {
       return false;
     }
     if (population.getPopulation().size() == 0) {
@@ -91,8 +90,6 @@ public class Observation extends AEvent implements IObservation {
     System.out.println(sb.toString());
     // file.writeToFile(sb.toString() + "\n");
   }
-
-  
 
   /**
    * Indents a given string by a specified number of spaces.
