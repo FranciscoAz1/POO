@@ -13,6 +13,7 @@ import dss.IEvent;
 import pa.Patrol;
 import pa.PlanetarySystem;
 import rand.Utils;
+import rand.myMath;
 
 /**
  * The Individual class represents an individual in a population. It contains
@@ -181,7 +182,7 @@ public class Individual {
     List<IEvent> events = new ArrayList<>();
     events.add(new Reproduction(this, time));
     events.add(new Mutation(this, time));
-    events.add(new Death(this, time));
+    events.add(new Death(this, time + myMath.deathRate(getConfort())));
     return events;
   }
 

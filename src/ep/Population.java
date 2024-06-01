@@ -139,6 +139,7 @@ public class Population extends AEmpire implements IPopulation {
     // If the loop exits without finding a unique individual, add the last generated
     // one anyway
     population.add(individual);
+    this.numIndividuals += 1;
   }
 
   public boolean tryAdd(Individual individual) {
@@ -148,6 +149,7 @@ public class Population extends AEmpire implements IPopulation {
       }
     }
     population.add(individual);
+    this.numIndividuals += 1;
     return true;
   }
 
