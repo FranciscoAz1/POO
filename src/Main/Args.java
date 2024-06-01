@@ -3,13 +3,14 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 import pa.Cost;
 
 /**
  * The Args class parses and stores the command line arguments passed to the
  * program.
  */
-public class Args {
+public class Args implements IArgs {
 
   public int n, m;
   public double tau;
@@ -25,6 +26,7 @@ public class Args {
   /**
    * Default values for the command line arguments.
    */
+  // TODO remove this
   private static final int DEFAULT_N = 5; // patrols
   private static final int DEFAULT_M = 10; // planest
   private static final double DEFAULT_TAU = 10.0; // time max
@@ -62,8 +64,7 @@ public class Args {
     // check if reads from a argumtents or from file
     if (option.equals("-r")) {
       if (args.length < 9) {
-        System.out.println("Not enough command line arguments.");
-        System.exit(0);
+        throw new IllegalArgumentException("Not enough command line arguments.");
       }
       this.readFromArgs(args);
     } else if (option.equals("-f")) {
@@ -71,8 +72,7 @@ public class Args {
       this.mode = "read file";
       this.readFromFile(args);
     } else {
-      System.out.println("Invalid command line arguments.");
-      System.exit(0);
+      throw new IllegalArgumentException("Invalid command line arguments.");
     }
   }
 
@@ -112,6 +112,7 @@ public class Args {
         filePath = currentDir + File.separator + filePath.substring(2);
       }
 
+      this.file = filePath;
       File file = new File(filePath);
       Scanner scanner = new Scanner(file);
 
@@ -139,6 +140,7 @@ public class Args {
    *
    * @return true if the mode is file.
    */
+  @Override
   public boolean fileMode() {
     return this.mode.equals("file");
   }
@@ -148,6 +150,7 @@ public class Args {
    *
    * @return true if the mode is read.
    */
+  @Override
   public boolean readMode() {
     return this.mode.equals("read");
   }

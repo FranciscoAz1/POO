@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * The Cost class represents an n*m matrix for cost values.
  */
-public class Cost {
+public class Cost implements ICost {
   private int[][] matrix;
   private int n;
   private int m;
@@ -62,6 +62,7 @@ public class Cost {
    * @param col   The column index.
    * @param value The value to set.
    */
+  @Override
   public void setValue(int row, int col, int value) {
     matrix[row][col] = value;
   }
@@ -71,6 +72,7 @@ public class Cost {
    *
    * @return the matrix
    */
+  @Override
   public int[][] getMatrix() {
     return matrix;
   }
@@ -82,6 +84,7 @@ public class Cost {
    * @param col The column index.
    * @return The value at the specified row and column.
    */
+  @Override
   public int getValue(int row, int col) {
     return matrix[row][col];
   }
@@ -89,6 +92,7 @@ public class Cost {
   /**
    * Prints the matrix.
    */
+  @Override
   public void printMatrix() {
     System.out.println("Matrix:");
     for (int i = 0; i < n; i++) {
@@ -104,8 +108,8 @@ public class Cost {
    *
    * @param matrix2 The matrix to set.
    */
+  @Override
   public void setMatrix(int[][] matrix2) {
     this.matrix = matrix2;
   }
-
 }

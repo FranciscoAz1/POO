@@ -9,6 +9,7 @@ import ep.Confort;
 
 import dss.IEvent;
 import dss.Simulate;
+import utils.ContinuousFileWriter;
 
 import rand.myMath;
 
@@ -61,45 +62,18 @@ public class Main {
         n, m, tau, nu, numax, mu, rho, delta);
     costMatrix.printMatrix();
 
-    // Exemple matrix
-    int[][] matrix = {
-        { 1, 2, 1, 1, 1, 2, 2, 1, 2, 1, 1, 1, 2, 2 },
-        { 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 2 },
-        { 1, 2, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 1, 1 },
-        { 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 2 },
-        { 1, 2, 1, 1, 1, 2, 2, 1, 2, 1, 1, 1, 2, 2 },
-        { 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 2 },
-        { 5, 5, 5, 1, 1, 2, 2, 2, 1, 2, 2, 2, 1, 1 },
-        { 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 2 },
-    };
-    // costMatrix.setMatrix(matrix);
-
+    // TODO close
+    utils.ContinuousFileWriter.initialize(params.file);
     // Calculate tmin
     Confort confort = new Confort(costMatrix.getMatrix());
 
     // Population population = new Population(costMatrix.getMatrix(), numax);
     Population population = new Population(costMatrix.getMatrix(), numax);
-
-    // population.printPatrols();
-    // population.printSystems();
-
     // Create initial population
     population.createInitialPopulation(nu);
 
-    // Criação da instância de myMath antes do loop
+    // initiate parameters to calculate the interval time of events
     myMath mathUtils = new myMath(mu, rho, delta);
-    // Imprime a população, incluindo o conforto e os eventos de cada indivíduo
-    // population.printPopulation();
-    // Testing Death
-    // List<Individual> individuals = population.getPo pulation();
-    // for (int i = 0; i < 3; i++) {
-    // Individual individual = individuals.get(i);
-    // System.out.println("Individual " + individual.getConfort() + ":");
-    // IEvent event = new Reproduction(individual);
-    // event.HandleEvent();
-    //
-    // System.out.println("Produced Individual " + individual.getConfort() + ":");
-    // }
 
     Simulate simulation = new Simulate(tau, population);
 
@@ -110,6 +84,8 @@ public class Main {
     }
     // simulation.getPec().printPEC();
     simulation.run();
+    // TODO close
+    utils.ContinuousFileWriter.close();
     System.out.println("It is Done!");
   }
 

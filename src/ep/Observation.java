@@ -88,7 +88,7 @@ public class Observation extends AEvent implements IObservation {
     }
     // Program the event time for the next TimeEvent
     System.out.println(sb.toString());
-    // file.writeToFile(sb.toString() + "\n");
+    utils.ContinuousFileWriter.writeToFile(sb.toString());
   }
 
   /**

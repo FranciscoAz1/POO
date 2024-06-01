@@ -1,38 +1,52 @@
-
 package utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * The ContinuousFileWriter class provides a utility for writing to a file
  * continuously.
  */
 public class ContinuousFileWriter {
-  private FileWriter fileWriter;
-  private StringBuilder sb;
+  private static FileWriter fileWriter;
+  private static StringBuilder sb = new StringBuilder();
 
   /**
-   * Constructs a ContinuousFileWriter object with the specified file name.
+   * Initializes the ContinuousFileWriter with the specified base file name.
    * 
-   * @param fileName the name of the file to write to
+   * @param baseFileName the base name of the file to write to
    */
-  public ContinuousFileWriter(String fileName) {
+  public static void initialize(String baseFileName) {
     try {
-      // Initialize FileWriter in append mode
-      fileWriter = new FileWriter(fileName, true);
-      sb = new StringBuilder();
+      // Generate a unique file name by appending the current timestamp
+      String uniqueFileName = generateUniqueFileName(baseFileName);
+      // Initialize FileWriter in write mode (new file)
+      fileWriter = new FileWriter(uniqueFileName, false);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
   /**
-   * Method to write to the file
+   * Method to generate a unique file name by appending the current timestamp.
+   * 
+   * @param baseFileName the base name of the file
+   * @return the unique file name
+   */
+  private static String generateUniqueFileName(String baseFileName) {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+    String timestamp = sdf.format(new Date());
+    return baseFileName + "_" + timestamp + ".txt";
+  }
+
+  /**
+   * Method to write to the file.
    * 
    * @param text the text to write to the file
    */
-  public void writeToFile(String text) {
+  public static void writeToFile(String text) {
     sb.append(text);
     try {
       fileWriter.write(sb.toString());
@@ -44,9 +58,9 @@ public class ContinuousFileWriter {
   }
 
   /**
-   * Method to close the FileWriter when done
+   * Method to close the FileWriter when done.
    */
-  public void close() {
+  public static void close() {
     try {
       if (fileWriter != null) {
         fileWriter.close();
@@ -55,16 +69,17 @@ public class ContinuousFileWriter {
       e.printStackTrace();
     }
   }
+
   // public static void main(String[] args) {
-  // // Create an instance of ContinuousFileWriter
-  // fileWriter writer = new fileWriter("output.txt");
+  // // Initialize the ContinuousFileWriter
+  // ContinuousFileWriter.initialize("output");
   //
   // // Simulate some events that cause writing to the file
-  // writer.writeToFile("Event 1 occurred.\n");
-  // writer.writeToFile("Event 2 occurred.\n");
-  // writer.writeToFile("Event 3 occurred.\n");
+  // ContinuousFileWriter.writeToFile("Event 1 occurred.\n");
+  // ContinuousFileWriter.writeToFile("Event 2 occurred.\n");
+  // ContinuousFileWriter.writeToFile("Event 3 occurred.\n");
   //
   // // Close the writer when done
-  // writer.close();
+  // ContinuousFileWriter.close();
   // }
 }
