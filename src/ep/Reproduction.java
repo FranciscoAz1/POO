@@ -19,7 +19,6 @@ import rand.myMath;
  * HandleEvent method.
  */
 public class Reproduction extends AEvent implements Ireproduction {
-  private static final Random random = new Random();
   private Individual individual;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
@@ -28,7 +27,6 @@ public class Reproduction extends AEvent implements Ireproduction {
    * time.
    * 
    * @param individual The individual who will reproduce in this event.
-   * @param time       The time at which the reproduction event occurs.
    */
   public Reproduction(Individual individual) {
     super(myMath.reproductionRate(individual.getConfort()));
@@ -121,9 +119,8 @@ public class Reproduction extends AEvent implements Ireproduction {
     if (attempts == 0) {
       // this.addEvents(Epidemic.doEpidemic(pop, currentTime));
       pop.forceAdd(newIndividual);
-    } else {
-      this.addEvents(Epidemic.MayOccur(pop, currentTime));
     }
+    this.addEvents(Epidemic.MayOccur(pop, currentTime));
     // add events to the new individual, with the time of the parent individual
     // Agendar um novo evento de reprodução para o mesmo indivíduo
     Reproduction newReproductionEvent = new Reproduction(individual, getEventTime());
@@ -146,6 +143,7 @@ public class Reproduction extends AEvent implements Ireproduction {
         patrolsWithSystems.add(entry.getKey());
       }
     }
+    Random random = new Random();
     return patrolsWithSystems.isEmpty() ? null : patrolsWithSystems.get(random.nextInt(patrolsWithSystems.size()));
   }
 
@@ -157,6 +155,7 @@ public class Reproduction extends AEvent implements Ireproduction {
    */
   private Patrol getRandomPatrol(Map<Patrol, Set<PlanetarySystem>> distribution) {
     List<Patrol> patrolList = new ArrayList<>(distribution.keySet());
+    Random random = new Random();
     return patrolList.get(random.nextInt(patrolList.size()));
   }
 

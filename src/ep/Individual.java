@@ -109,10 +109,10 @@ public class Individual {
    * @return the comfort of the individual
    */
   public double getConfort() {
-    if (Double.isNaN(this.confort)) {
-      calculateConfort();
-    }
-    return confort;
+    // if (Double.isNaN(this.confort)) {
+    calculateConfort();
+    // }
+    return this.confort;
   }
 
   /**
@@ -149,12 +149,11 @@ public class Individual {
       for (PlanetarySystem system : systems) {
         double time = patrol.getTimeRequired().getOrDefault(system, -1);
         if (time == -1) {
-          System.out.println("Error in calculating confort for Individual");
+          throw new IllegalStateException("Time required cannot be -1.");
         }
         timez += time;
       }
     }
-    double confort = ep.Confort.tmin;
     this.policingTime = timez;
     this.confort = ep.Confort.tmin / timez;
   }
@@ -240,7 +239,7 @@ public class Individual {
   /**
    * Sets the comfort of the individual.
    * 
-   * @param comfort The comfort to set.
+   * @param confort The comfort to set.
    */
   public void setConfort(double confort) {
     this.confort = confort;
@@ -261,7 +260,11 @@ public class Individual {
     return Objects.hash(distribution);
   }
 
-  // Static method for comparing by distribution if needed
+  /**
+   * Compares distribuition of two individuals
+   * 
+   * @return true if it is equal, false if it is not
+   */
   public static boolean equalsByDistribution(Individual a, Individual b) {
     return Objects.equals(a.distribution, b.distribution);
   }
@@ -298,9 +301,7 @@ public class Individual {
   }
 
   /**
-   * Returns the id of the individual.
-   * 
-   * @return The id of the individual.
+   * Updates this individual from another individual.
    */
   public void updateFrom(Individual other) {
     // Atualize os atributos conforme necessário

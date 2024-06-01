@@ -9,7 +9,6 @@ import ep.Confort;
 
 import dss.IEvent;
 import dss.Simulate;
-import utils.ContinuousFileWriter;
 
 import rand.myMath;
 
@@ -45,48 +44,32 @@ public class Main {
    * @param args The command line arguments.
    */
   public static void main(String[] args) {
+    // read arguments
     Args params = new Args(args);
-    // Retriepe the values from the arguments object
-    int n = params.n;
-    int m = params.m;
-    double tau = params.tau;
-    int nu = params.nu;
-    int numax = params.numax;
-    double mu = params.mu;
-    double rho = params.rho;
-    double delta = params.delta;
 
     Cost costMatrix = params.costMatrix;
-    // Use the values as needed
-    System.out.printf("n: %d, m: %d, τ: %.2f, ν: %d, νmax: %d, µ: %.2f, ρ: %.2f, δ: %.2f%n",
-        n, m, tau, nu, numax, mu, rho, delta);
-    costMatrix.printMatrix();
-
-    // TODO close
-    utils.ContinuousFileWriter.initialize(params.file);
     // Calculate tmin
     Confort confort = new Confort(costMatrix.getMatrix());
 
     // Population population = new Population(costMatrix.getMatrix(), numax);
-    Population population = new Population(costMatrix.getMatrix(), numax);
+    Population population = new Population(costMatrix.getMatrix(), params.numax);
     // Create initial population
-    population.createInitialPopulation(nu);
+    population.createInitialPopulation(params.nu);
 
     // initiate parameters to calculate the interval time of events
-    myMath mathUtils = new myMath(mu, rho, delta);
+    myMath mathUtils = new myMath(params.mu, params.rho, params.delta);
 
-    Simulate simulation = new Simulate(tau, population);
+    utils.ContinuousFileWriter.initialize(params.file);
+    // Setup Simulation
+    Simulate simulation = new Simulate(params.tau, population);
 
     // Initiate pec
     List<IEvent> events = population.getEvents();
     for (IEvent e : events) {
       simulation.AddToPEC(e);
     }
-    // simulation.getPec().printPEC();
     simulation.run();
-    // TODO close
     utils.ContinuousFileWriter.close();
-    System.out.println("It is Done!");
   }
 
 }

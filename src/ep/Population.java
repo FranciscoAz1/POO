@@ -142,14 +142,20 @@ public class Population extends AEmpire implements IPopulation {
     this.numIndividuals += 1;
   }
 
+  /**
+   * Try to add a unique individual to the population
+   * 
+   * @param individual The individual to add.
+   * @return true if the succeeded, false if not
+   */
   public boolean tryAdd(Individual individual) {
     for (Individual fromPop : population) {
       if (Individual.equalsByDistribution(individual, fromPop)) {
         return false;
       }
     }
-    population.add(individual);
     individual.calculateConfort();
+    population.add(individual);
     this.numIndividuals += 1;
     return true;
   }
@@ -160,8 +166,9 @@ public class Population extends AEmpire implements IPopulation {
    * @param individual The individual to add.
    */
   public void forceAdd(Individual individual) {
-    population.add(individual);
+
     individual.calculateConfort();
+    population.add(individual);
     this.numIndividuals += 1;
   }
 
@@ -183,7 +190,6 @@ public class Population extends AEmpire implements IPopulation {
   @Override
   public void printPopulation() {
     for (int i = 0; i < population.size(); i++) {
-
       // Linha que indica o indivíduo com uma linha em branco antes
       System.out.println();
       System.out.println("Individual " + i + ":");
@@ -199,31 +205,6 @@ public class Population extends AEmpire implements IPopulation {
         System.out.println(event);
       }
     }
-
-    /*
-     * System.out.println("\nLista ordenada de todos os indivíduos:");
-     * Best_Fitted_Individual.sortPopulation(population);
-     * for (Individual individual : population) {
-     * System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(),
-     * individual);
-     * }
-     * 
-     * System.out.println("\nOs 5 melhores indivíduos:");
-     * List<Individual> best5 = Best_Fitted_Individual.getBest5(population);
-     * for (Individual individual : best5) {
-     * System.out.printf("Conforto: %.2f - %s\n", individual.getConfort(),
-     * individual);
-     * }
-     * // Imprimir o melhor indivíduo rastreado
-     * Individual bestIndividual = Best_Fitted_Individual.getBestIndividual();
-     * if (bestIndividual != null) {
-     * System.out.println("\nMelhor indivíduo rastreado:");
-     * System.out.printf("Conforto: %.2f - %s\n", bestIndividual.getConfort(),
-     * bestIndividual);
-     * } else {
-     * System.out.println("\nNenhum indivíduo rastreado como o melhor.");
-     * }
-     */
   }
 
   /**

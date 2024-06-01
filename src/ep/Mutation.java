@@ -64,7 +64,6 @@ public class Mutation extends AEvent implements Imutation {
     }
 
     Random random = new Random();
-
     List<Patrol> patrolList = new ArrayList<>(distribution.keySet());
     Patrol sourcePatrol = null;
     Set<PlanetarySystem> sourceSystems = null;
@@ -105,7 +104,6 @@ public class Mutation extends AEvent implements Imutation {
     distribution.computeIfAbsent(destinationPatrol, k -> new HashSet<>()).add(systemToMove);
 
     individual.setDistribution(distribution);
-    individual.getNewConfort();
     // increment event
     individual.getPopulation().countEvent();
 
