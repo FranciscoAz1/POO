@@ -58,8 +58,6 @@ public class Observation extends AEvent implements IObservation {
     Individual bestIndividual = population.getBestIndividual().getBestIndividual(population.getPopulation()); // Obtendo
                                                                                                               // o
                                                                                                               // melhor
-                                                                                                              // indivíduo
-                                                                                                              // já
     // registrado
     double bestConfort = bestIndividual.getConfort(); // Obtendo o melhor conforto já registrado
     double bestPolicingTime = bestIndividual.getPolicingTime(); // Obtendo o melhor tempo de policiamento já registrado
@@ -70,7 +68,7 @@ public class Observation extends AEvent implements IObservation {
     sb.append("Number of epidemics:\t\t\t" + population.getEpidemicCounter() + "\n");
     sb.append(
         "Best distribution of the patrols:"
-            + population.getBestIndividual().getBestIndividual(population.getPopulation()).toString() + "\n");
+            + bestIndividual.toString() + "\n");
     sb.append("Empire policing time:\t\t" // + String.format("%.2f",
                                           // population.getBestIndividual().getBestIndividual(population.getPopulation()).getPolicingTime())
                                           // + "\n");
@@ -86,7 +84,6 @@ public class Observation extends AEvent implements IObservation {
     }
     // Program the event time for the next TimeEvent
     System.out.println(sb.toString());
-    utils.ContinuousFileWriter.writeToFile(sb.toString());
   }
 
   /**

@@ -1,7 +1,10 @@
 package ep;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -38,22 +41,20 @@ public class Best_Fitted_Individual {
    */
   public Individual getBestIndividual(List<Individual> population) {
     List<Individual> sortedPopulation = getSorted(population);
-
     // Find the best individual ever and update it if it's better than the current
     // best
     if (!sortedPopulation.isEmpty()) {
       Individual currentBest = sortedPopulation.get(0);
 
-      if (bestIndividual == null || currentBest.getConfort() > bestIndividual.getConfort()) {
-
-        if (bestIndividual == null) {
-          bestIndividual = new Individual(currentBest);
-        }
-        bestIndividual.updateFrom(currentBest);
-
+      if (bestIndividual == null) {
+        bestIndividual = new Individual(currentBest);
+      }
+      if (currentBest.getConfort() > bestIndividual.getConfort()) {
+        System.out.println(bestIndividual.toString() + bestIndividual.getConfort());
+        System.out.println(currentBest.toString() + currentBest.getConfort());
+        bestIndividual = new Individual(currentBest);
       }
     }
-
     return bestIndividual;
   }
 
@@ -74,6 +75,26 @@ public class Best_Fitted_Individual {
    */
   public List<Individual> getBest5(List<Individual> population) {
     List<Individual> sortedPopulation = getSorted(population);
-    return sortedPopulation.stream().limit(5).collect(Collectors.toList());
+    List<Individual> best5 = new ArrayList<>();
+
+    for (Individual individual : sortedPopulation) {
+      if (tryAdd(individual, best5)) {
+        best5.add(individual);
+        if (best5.size() == 5) {
+          break;
+        }
+      }
+    }
+
+    return best5;
+  }
+
+  private boolean tryAdd(Individual individual, List<Individual> uniqueIndividuals) {
+    for (Individual fromPop : uniqueIndividuals) {
+      if (Individual.equalsByDistribution(individual, fromPop)) {
+        return false;
+      }
+    }
+    return true;
   }
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import pa.Patrol;
 import pa.PlanetarySystem;
+import rand.RandomSingleton;
 import rand.myMath;
 
 /**
@@ -63,7 +64,6 @@ public class Mutation extends AEvent implements Imutation {
       throw new IllegalStateException("There must be at least one patrol with planetary systems in the distribution.");
     }
 
-    Random random = new Random();
     List<Patrol> patrolList = new ArrayList<>(distribution.keySet());
     Patrol sourcePatrol = null;
     Set<PlanetarySystem> sourceSystems = null;
@@ -72,7 +72,8 @@ public class Mutation extends AEvent implements Imutation {
 
     // Try to find a patrol with at least one planetary system
     for (int i = 0; i < attempts; i++) {
-      Patrol potentialSourcePatrol = patrolList.get(random.nextInt(patrolList.size()));
+      Patrol potentialSourcePatrol = patrolList
+          .get(RandomSingleton.getInstance().getRandom().nextInt(patrolList.size()));
       Set<PlanetarySystem> potentialSourceSystems = distribution.get(potentialSourcePatrol);
       if (potentialSourceSystems != null && !potentialSourceSystems.isEmpty()) {
         sourcePatrol = potentialSourcePatrol;
@@ -88,7 +89,7 @@ public class Mutation extends AEvent implements Imutation {
 
     // Step 2: Select a random PlanetarySystem from the selected Patrol
     List<PlanetarySystem> systemList = new ArrayList<>(sourceSystems);
-    PlanetarySystem systemToMove = systemList.get(random.nextInt(systemList.size()));
+    PlanetarySystem systemToMove = systemList.get(RandomSingleton.getInstance().getRandom().nextInt(systemList.size()));
 
     // Step 3: Remove the selected PlanetarySystem from the selected Patrol
     sourceSystems.remove(systemToMove);
@@ -96,7 +97,7 @@ public class Mutation extends AEvent implements Imutation {
     // Step 4: Select a different random Patrol
     Patrol destinationPatrol;
     do {
-      destinationPatrol = patrolList.get(random.nextInt(patrolList.size()));
+      destinationPatrol = patrolList.get(RandomSingleton.getInstance().getRandom().nextInt(patrolList.size()));
     } while (destinationPatrol.equals(sourcePatrol));
 
     // Step 5: Add the selected PlanetarySystem to the set associated with the new
@@ -104,6 +105,7 @@ public class Mutation extends AEvent implements Imutation {
     distribution.computeIfAbsent(destinationPatrol, k -> new HashSet<>()).add(systemToMove);
 
     individual.setDistribution(distribution);
+    individual.getNewConfort();
     // increment event
     individual.getPopulation().countEvent();
 

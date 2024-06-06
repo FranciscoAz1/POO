@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import rand.RandomSingleton;
 import rand.Utils;
 
 import pa.Patrol;
@@ -19,6 +20,7 @@ import rand.myMath;
  * HandleEvent method.
  */
 public class Reproduction extends AEvent implements Ireproduction {
+  private static final Random random = new Random();
   private Individual individual;
   private Map<Patrol, Set<PlanetarySystem>> distribution;
 
@@ -83,10 +85,11 @@ public class Reproduction extends AEvent implements Ireproduction {
       nSystems += planetarySystems.size();
     }
     // ⌊(1 − ϕ(z))m⌋
-    int nSystemsToRemove = (int) ((1 - individual.getConfort()) * nSystems);
+    int nSystemsToRemove = (int) Math.ceil((1 - individual.getConfort()) * nSystems);
     //
     Population pop = individual.getPopulation();
     int attempts = 100 + nSystems * pop.getPopulation().size();
+    attempts = 2;
     do {
       attempts--;
       if (attempts == 0) {
@@ -97,9 +100,15 @@ public class Reproduction extends AEvent implements Ireproduction {
       // Step 3: Randomly remove planetary systems from the new distribution
       List<PlanetarySystem> removedSystems = new ArrayList<>();
       for (int i = 0; i < nSystemsToRemove; i++) {
-        Patrol randomPatrol = getRandomPatrolWithSystems(newIndividual.getDistribution());
+        Patrol randomPatrol = null;
+        while (randomPatrol == null) {
+          randomPatrol = getRandomPatrolWithSystems(newIndividual.getDistribution());
+        }
 
         Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
+        if (systems.isEmpty()) {
+          continue;
+        }
         PlanetarySystem system = Utils.getRandomElementFromSet(systems);
         systems.remove(system);
         removedSystems.add(system);
@@ -112,7 +121,7 @@ public class Reproduction extends AEvent implements Ireproduction {
       }
       // Step 5: add new individual to population
       newIndividual.setDistribution(newDistribution);
-    } while (!pop.tryAdd(newIndividual));
+    } while (pop.tryAdd(newIndividual) == false);
 
     double currentTime = getEventTime();
     // Epidemic may occur
@@ -143,8 +152,9 @@ public class Reproduction extends AEvent implements Ireproduction {
         patrolsWithSystems.add(entry.getKey());
       }
     }
-    Random random = new Random();
-    return patrolsWithSystems.isEmpty() ? null : patrolsWithSystems.get(random.nextInt(patrolsWithSystems.size()));
+    return patrolsWithSystems.isEmpty() ? null
+        : patrolsWithSystems.get(
+            RandomSingleton.getInstance().getRandom().nextInt(patrolsWithSystems.size()));
   }
 
   /**
@@ -155,8 +165,7 @@ public class Reproduction extends AEvent implements Ireproduction {
    */
   private Patrol getRandomPatrol(Map<Patrol, Set<PlanetarySystem>> distribution) {
     List<Patrol> patrolList = new ArrayList<>(distribution.keySet());
-    Random random = new Random();
-    return patrolList.get(random.nextInt(patrolList.size()));
+    return patrolList.get(RandomSingleton.getInstance().getRandom().nextInt(patrolList.size()));
   }
 
   /**

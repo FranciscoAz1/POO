@@ -55,7 +55,15 @@ public class Individual {
    * @param individual The individual to copy.
    */
   public Individual(Individual individual) {
-    this.distribution = individual.getDistribution();
+    this.distribution = new HashMap<>();
+    for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individual.getDistribution().entrySet()) {
+      // Assuming Patrol has a copy constructor
+      Patrol patrolCopy = entry.getKey();
+      // Assuming PlanetarySystem has a copy constructor
+      for (PlanetarySystem system : entry.getValue()) {
+        assignSystemToPatrol(patrolCopy, system);
+      }
+    }
     this.population = individual.getPopulation();
   }
 
@@ -81,7 +89,7 @@ public class Individual {
    * @param system The planetary system to assign.
    */
   public void assignSystemToPatrol(Patrol patrol, PlanetarySystem system) {
-    distribution.computeIfAbsent(patrol, k -> new HashSet<>()).add(system);
+    this.distribution.computeIfAbsent(patrol, k -> new HashSet<>()).add(system);
   }
 
   /**
@@ -109,10 +117,8 @@ public class Individual {
    * @return the comfort of the individual
    */
   public double getConfort() {
-    // if (Double.isNaN(this.confort)) {
     calculateConfort();
-    // }
-    return this.confort;
+    return confort;
   }
 
   /**

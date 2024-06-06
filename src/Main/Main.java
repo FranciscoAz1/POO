@@ -48,6 +48,9 @@ public class Main {
     Args params = new Args(args);
 
     Cost costMatrix = params.costMatrix;
+
+    int[][] matrix = { { 1, 2, 1, 1, 2, 1 }, { 2, 2, 2, 2, 2, 2 }, { 3, 3, 3, 3, 3, 3 } };
+    costMatrix.setMatrix(matrix);
     // Calculate tmin
     Confort confort = new Confort(costMatrix.getMatrix());
 
@@ -59,7 +62,6 @@ public class Main {
     // initiate parameters to calculate the interval time of events
     myMath mathUtils = new myMath(params.mu, params.rho, params.delta);
 
-    utils.ContinuousFileWriter.initialize(params.file);
     // Setup Simulation
     Simulate simulation = new Simulate(params.tau, population);
 
@@ -69,7 +71,6 @@ public class Main {
       simulation.AddToPEC(e);
     }
     simulation.run();
-    utils.ContinuousFileWriter.close();
   }
 
 }

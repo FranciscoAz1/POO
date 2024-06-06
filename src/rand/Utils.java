@@ -9,8 +9,6 @@ import java.util.Set;
  * The Utils class provides utility methods for random number generation.
  */
 public class Utils {
-  private static final Random random = new Random(); // Initialize Random object
-
   /**
    * Returns a random element from a list.
    *
@@ -23,11 +21,11 @@ public class Utils {
     if (list == null || list.isEmpty()) {
       throw new IllegalArgumentException("The list must not be null or empty");
     }
+    Random random = RandomSingleton.getInstance().getRandom();
     int randomIndex = random.nextInt(list.size()); // Get a random index
     return list.get(randomIndex); // Return the element at the random index
   }
 
-  
   /**
    * Returns a random element from a set.
    *
@@ -36,6 +34,13 @@ public class Utils {
    * @return A random element from the set.
    */
   public static <T> T getRandomElementFromSet(Set<T> set) {
+    if (set == null) {
+      throw new IllegalArgumentException("The set must not be null");
+    }
+    if (set.isEmpty()) {
+      throw new IllegalArgumentException("The set must not be empty");
+    }
+    Random random = RandomSingleton.getInstance().getRandom();
     int index = random.nextInt(set.size());
     Iterator<T> iter = set.iterator();
     for (int i = 0; i < index; i++) {

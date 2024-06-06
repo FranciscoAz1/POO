@@ -23,6 +23,16 @@ public class Args implements IArgs {
   public String mode;
   public Cost costMatrix;
 
+  // Default values
+  private static final int DEFAULT_N = 3;
+  private static final int DEFAULT_M = 6;
+  private static final double DEFAULT_TAU = 100.0;
+  private static final int DEFAULT_NU = 10;
+  private static final int DEFAULT_NUMAX = 100;
+  private static final double DEFAULT_MU = 10.0;
+  private static final double DEFAULT_RHO = 1.0;
+  private static final double DEFAULT_DELTA = 1.0;
+
   /**
    * Default values for the command line arguments.
    */
@@ -34,7 +44,20 @@ public class Args implements IArgs {
   public Args(String[] args) {
     if (args.length < 2) {
       // No arguments provided, use default values
-      throw new IllegalArgumentException("no arguments, make use of -r or -f");
+      System.out.println("Not enough command line arguments. Using default vaules");
+      this.file = "";
+      this.mode = "generate";
+      this.n = DEFAULT_N;
+      this.m = DEFAULT_M;
+      this.tau = DEFAULT_TAU;
+      this.nu = DEFAULT_NU;
+      this.numax = DEFAULT_NUMAX;
+      this.mu = DEFAULT_MU;
+      this.rho = DEFAULT_RHO;
+      this.delta = DEFAULT_DELTA;
+
+      this.costMatrix = new Cost(this.n, this.m);
+      return;
     }
 
     String option = args[0];

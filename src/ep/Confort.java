@@ -40,13 +40,11 @@ public class Confort {
           min = array[row][col];
         }
       }
-
       // Add the minimum value to the sum
       sumOfMins += min;
     }
-
     // Calculate the average
-    double average = (double) sumOfMins;
+    double average = (double) sumOfMins / numRows;
     return average;
   }
 }
