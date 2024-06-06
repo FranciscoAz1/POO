@@ -55,7 +55,12 @@ public class Individual {
    * @param individual The individual to copy.
    */
   public Individual(Individual individual) {
+    this.population = individual.getPopulation();
     this.distribution = new HashMap<>();
+    for (Patrol patrol : population.getPatrols()) {
+      this.distribution.put(patrol, new HashSet<>());
+    }
+
     for (Map.Entry<Patrol, Set<PlanetarySystem>> entry : individual.getDistribution().entrySet()) {
       // Assuming Patrol has a copy constructor
       Patrol patrolCopy = entry.getKey();
@@ -64,7 +69,7 @@ public class Individual {
         assignSystemToPatrol(patrolCopy, system);
       }
     }
-    this.population = individual.getPopulation();
+    calculateConfort();
   }
 
   /**

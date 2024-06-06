@@ -88,47 +88,35 @@ public class Reproduction extends AEvent implements Ireproduction {
     int nSystemsToRemove = (int) Math.ceil((1 - individual.getConfort()) * nSystems);
     //
     Population pop = individual.getPopulation();
-    int attempts = 100 + nSystems * pop.getPopulation().size();
-    attempts = 2;
-    do {
-      attempts--;
-      if (attempts == 0) {
-        // pop.forceAdd(newIndividual);
-        break;
-      }
-      newIndividual.setDistribution(individual.getDistribution());
-      // Step 3: Randomly remove planetary systems from the new distribution
-      List<PlanetarySystem> removedSystems = new ArrayList<>();
-      for (int i = 0; i < nSystemsToRemove; i++) {
-        Patrol randomPatrol = null;
-        while (randomPatrol == null) {
-          randomPatrol = getRandomPatrolWithSystems(newIndividual.getDistribution());
-        }
 
-        Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
-        if (systems.isEmpty()) {
-          continue;
-        }
-        PlanetarySystem system = Utils.getRandomElementFromSet(systems);
-        systems.remove(system);
-        removedSystems.add(system);
+    // Step 3: Randomly remove planetary systems from the new distribution
+    List<PlanetarySystem> removedSystems = new ArrayList<>();
+    for (int i = 0; i < nSystemsToRemove; i++) {
+      Patrol randomPatrol = null;
+      while (randomPatrol == null) {
+        randomPatrol = getRandomPatrolWithSystems(newIndividual.getDistribution());
       }
 
-      // Step 4: Randomly redistribute the removed systems among the patrols
-      for (PlanetarySystem system : removedSystems) {
-        Patrol randomPatrol = getRandomPatrol(newDistribution);
-        newDistribution.computeIfAbsent(randomPatrol, k -> new HashSet<>()).add(system);
+      Set<PlanetarySystem> systems = newDistribution.get(randomPatrol);
+      if (systems.isEmpty()) {
+        i--;
+        continue;
       }
-      // Step 5: add new individual to population
-      newIndividual.setDistribution(newDistribution);
-    } while (pop.tryAdd(newIndividual) == false);
+      PlanetarySystem system = Utils.getRandomElementFromSet(systems);
+      systems.remove(system);
+      removedSystems.add(system);
+    }
 
+    // Step 4: Randomly redistribute the removed systems among the patrols
+    for (PlanetarySystem system : removedSystems) {
+      Patrol randomPatrol = getRandomPatrol(newDistribution);
+      newDistribution.computeIfAbsent(randomPatrol, k -> new HashSet<>()).add(system);
+    }
+    // Step 5: add new individual to population
     double currentTime = getEventTime();
     // Epidemic may occur
-    if (attempts == 0) {
-      // this.addEvents(Epidemic.doEpidemic(pop, currentTime));
-      pop.forceAdd(newIndividual);
-    }
+    // this.addEvents(Epidemic.doEpidemic(pop, currentTime));
+    pop.forceAdd(newIndividual);
     this.addEvents(Epidemic.MayOccur(pop, currentTime));
     // add events to the new individual, with the time of the parent individual
     // Agendar um novo evento de reprodução para o mesmo indivíduo

@@ -65,6 +65,7 @@ public class Mutation extends AEvent implements Imutation {
     }
 
     List<Patrol> patrolList = new ArrayList<>(distribution.keySet());
+    ;
     Patrol sourcePatrol = null;
     Set<PlanetarySystem> sourceSystems = null;
     boolean foundNonEmptyPatrol = false;
@@ -89,6 +90,9 @@ public class Mutation extends AEvent implements Imutation {
 
     // Step 2: Select a random PlanetarySystem from the selected Patrol
     List<PlanetarySystem> systemList = new ArrayList<>(sourceSystems);
+    if (systemList.isEmpty()) {
+      throw new IllegalStateException("systemList is empty");
+    }
     PlanetarySystem systemToMove = systemList.get(RandomSingleton.getInstance().getRandom().nextInt(systemList.size()));
 
     // Step 3: Remove the selected PlanetarySystem from the selected Patrol
@@ -97,6 +101,9 @@ public class Mutation extends AEvent implements Imutation {
     // Step 4: Select a different random Patrol
     Patrol destinationPatrol;
     do {
+      if (patrolList.isEmpty()) {
+        throw new IllegalStateException("patrolList is empty");
+      }
       destinationPatrol = patrolList.get(RandomSingleton.getInstance().getRandom().nextInt(patrolList.size()));
     } while (destinationPatrol.equals(sourcePatrol));
 
